@@ -51,7 +51,7 @@ func (r *Request) SetHeader(header map[string]string) *Request {
 	return r
 }
 
-func (r *Request) Body(body interface{}) *Request {
+func (r *Request) Body(body any) *Request {
 	if r.err != nil {
 		return r
 	}

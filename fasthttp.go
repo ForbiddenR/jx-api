@@ -15,7 +15,7 @@ var client *fasthttp.Client
 
 type headers = map[string]string
 
-func SendRequest(ctx context.Context, url string, protocol interface{}, header map[string]string) ([]byte, error) {
+func SendRequest(ctx context.Context, url string, protocol any, header map[string]string) ([]byte, error) {
 	reqEntityBytes, err := json.Marshal(protocol)
 	if err != nil {
 		return nil, err

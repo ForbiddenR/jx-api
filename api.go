@@ -35,7 +35,10 @@ const (
 
 const msgId = "msgId"
 
-const Perms = "Perms"
+const (
+	Perms = "Perms"
+	TraceId = "TraceId"
+)
 
 var (
 	ErrBodyIsNil = errors.New("body is nil")

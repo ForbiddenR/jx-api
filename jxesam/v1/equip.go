@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"strings"
 	"time"
 
 	api "github.com/ForbiddenR/jxapi/v2"
@@ -46,16 +45,14 @@ type accessVerifyResponseData struct {
 	TransactionInterval int            `json:"transactionInterval"`
 	Registered          bool           `json:"registered"`
 	ReadWait            utils.Duration `json:"readWait"`
-	Blocked             bool           `json:"blocked"`
 }
 
 func AccessVerifyRequest(ctx context.Context, ticket string, traceId string, request *accessVerifyRequest) (*accessVerifyResponse, error) {
-	headerValue := make([]string, 0)
-	headerValue = append(headerValue, api.Esam, esam.Equip)
-	headerValue = append(headerValue, esam.Access.Split()...)
+	// headerValue := make([]string, 0, 4)
+	// headerValue = append(headerValue, api.Esam, esam.Equip)
+	// headerValue = append(headerValue, esam.Access.Split()...)
 
-	header := map[string]string{api.Perms: strings.Join(headerValue, ":"), esam.TicketKey: ticket, "TraceId": traceId}
-	//header := map[string]string{"Perms": "esam:equip:access:verify"}
+	header := map[string]string{api.Perms: esam.Perm(), esam.TicketKey: ticket, api.TraceId: traceId}
 	url := api.EsamUrl + esam.Equip + "/verify"
 	resp, err := api.SendRequest(ctx, url, request, header)
 	if err != nil {

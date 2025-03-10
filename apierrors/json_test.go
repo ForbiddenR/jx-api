@@ -105,7 +105,7 @@ const StatusNotificationJsonStatusUnavailable StatusNotificationJsonStatus = "Un
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *StatusNotificationJson) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
+	var raw map[string]any
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return WrapSyntaxJsonError(err)
 	}
@@ -154,7 +154,7 @@ type StatusNotificationJson struct {
 	VendorId *string `json:"vendorId,omitempty" yaml:"vendorId,omitempty"`
 }
 
-var enumValues_StatusNotificationJsonStatus = []interface{}{
+var enumValues_StatusNotificationJsonStatus = []any{
 	"Available",
 	"Preparing",
 	"Charging",
@@ -186,7 +186,7 @@ func (j *StatusNotificationJsonStatus) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-var enumValues_StatusNotificationJsonErrorCode = []interface{}{
+var enumValues_StatusNotificationJsonErrorCode = []any{
 	"ConnectorLockFailure",
 	"EVCommunicationError",
 	"GroundFailure",
