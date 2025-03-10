@@ -7,8 +7,10 @@ import (
 
 	api "github.com/ForbiddenR/jxapi/v2"
 	services "github.com/ForbiddenR/jxapi/v2/jxservices"
+	"github.com/ForbiddenR/toolkit/transport"
 	"github.com/makasim/amqpextra/publisher"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/tidwall/sjson"
 )
 
 const updateTransactionQueue = services.QueuePrefix + "transaction"
@@ -73,9 +75,12 @@ func NewUpdateTransactionRequest(sn, pod, msgID string, p *services.Protocol, tr
 	return updateTransaction
 }
 
-func UpdateTransactionReqeust(req *equipUpdateTransactionRequest, p *publisher.Publisher) error {
-	ctx := context.Background()
+func UpdateTransactionReqeust(ctx context.Context, req *equipUpdateTransactionRequest, p *publisher.Publisher) error {
 	bytes, err := json.Marshal(req)
+	if err != nil {
+		return err
+	}
+	bytes, err = sjson.SetBytes(bytes, services.IdHandle.Value(), transport.EquipmentIdFromCtx(ctx))
 	if err != nil {
 		return err
 	}

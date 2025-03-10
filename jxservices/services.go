@@ -19,7 +19,7 @@ type callbackGenerator func(base Base, err *apierrors.CallbackError) Request
 
 var UnsupportedFeatures = store.NewReceptacle[callbackGenerator]()
 
-var idHandle = unique.Make("equipmentId")
+var IdHandle = unique.Make("equipmentId")
 
 // These constants are usually used in services package many times.
 const (
@@ -434,7 +434,7 @@ func getURI(req Request) string {
 
 func Transport(ctx context.Context, req Request) error {
 	equipmentId := transport.EquipmentIdFromCtx(ctx)
-	ext := extra.Extra{Key: idHandle.Value(), Value: equipmentId}
+	ext := extra.Extra{Key: IdHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
@@ -464,7 +464,7 @@ func Transport(ctx context.Context, req Request) error {
 
 func TransportWithResp[T Response](ctx context.Context, req Request, t T) error {
 	equipmentId := transport.EquipmentIdFromCtx(ctx)
-	ext := extra.Extra{Key: idHandle.Value(), Value: equipmentId}
+	ext := extra.Extra{Key: IdHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
