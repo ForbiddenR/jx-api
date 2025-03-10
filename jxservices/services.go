@@ -6,15 +6,20 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"unique"
 
 	api "github.com/ForbiddenR/jxapi/v2"
 	"github.com/ForbiddenR/jxapi/v2/apierrors"
+	"github.com/ForbiddenR/jxapi/v2/jxutils/extra"
 	"github.com/ForbiddenR/jxapi/v2/jxutils/store"
+	"github.com/ForbiddenR/toolkit/transport"
 )
 
 type callbackGenerator func(base Base, err *apierrors.CallbackError) Request
 
 var UnsupportedFeatures = store.NewReceptacle[callbackGenerator]()
+
+var idHandle = unique.Make("equipmentId")
 
 // These constants are usually used in services package many times.
 const (
@@ -26,7 +31,6 @@ const (
 	TestSN          = "JK000000006"
 	TestAccessPod   = "jx-acos-0"
 	CallbackSuffix  = "Callback"
-	//Acos            = "Acos"
 )
 
 // Define some default status fields in callback.
@@ -429,14 +433,16 @@ func getURI(req Request) string {
 }
 
 func Transport(ctx context.Context, req Request) error {
+	equipmentId := transport.EquipmentIdFromCtx(ctx)
+	ext := extra.Extra{Key: idHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
 		RequestURI(uri).
-		Body(req).
+		Body(req, ext).
 		SetHeader(getHeader(req)).
 		Do(ctx)
-	message, _ := json.Marshal(req)
+	message, _ := extra.Marshal(req, ext)
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))
 	if result.Error() != nil {
 		request, _ := json.Marshal(req)
@@ -457,14 +463,16 @@ func Transport(ctx context.Context, req Request) error {
 }
 
 func TransportWithResp[T Response](ctx context.Context, req Request, t T) error {
+	equipmentId := transport.EquipmentIdFromCtx(ctx)
+	ext := extra.Extra{Key: idHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
 		RequestURI(uri).
-		Body(req).
+		Body(req, ext).
 		SetHeader(getHeader(req)).
 		Do(ctx)
-	message, _ := json.Marshal(req)
+	message, _ := extra.Marshal(req, ext)
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))
 	if result.Error() != nil {
 		request, _ := json.Marshal(req)

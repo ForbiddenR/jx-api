@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/ForbiddenR/jxapi/v2/apierrors"
+	"github.com/ForbiddenR/jxapi/v2/jxutils/extra"
 	"github.com/valyala/fasthttp"
 )
 
@@ -51,11 +52,11 @@ func (r *Request) SetHeader(header map[string]string) *Request {
 	return r
 }
 
-func (r *Request) Body(body any) *Request {
+func (r *Request) Body(body any, extras ...extra.Extra) *Request {
 	if r.err != nil {
 		return r
 	}
-	raw, err := json.Marshal(body)
+	raw, err := extra.Marshal(body, extras...)
 	if err != nil {
 		r.err = err
 		return r
