@@ -231,6 +231,7 @@ type Base struct {
 
 type BaseConfig struct {
 	equipmentSn string
+	equipmentId string
 	protocol    *Protocol
 	category    string
 	accessPod   string
@@ -243,6 +244,11 @@ func NewBaseConfig() *BaseConfig {
 
 func (b *BaseConfig) EquipmentSn(sn string) *BaseConfig {
 	b.equipmentSn = sn
+	return b
+}
+
+func (b *BaseConfig) EquipmentId(id string) *BaseConfig {
+	b.equipmentId = id
 	return b
 }
 
@@ -279,6 +285,7 @@ func (b *BaseConfig) MsgID(msgID string) *BaseConfig {
 func (b *BaseConfig) Build() Base {
 	return Base{
 		EquipmentSn: b.equipmentSn,
+		EquipmentId: b.equipmentId,
 		Protocol:    b.protocol,
 		Category:    b.category,
 		AccessPod:   b.accessPod,
