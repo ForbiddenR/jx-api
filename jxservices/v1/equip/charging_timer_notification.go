@@ -47,14 +47,15 @@ func (equipChargingTimerNotificationRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipChargingTimerNotificationRequest(sn, pod, msgID string, connectorId string, timerId int64, status ChargingTimerStatus) *equipChargingTimerNotificationRequest {
+func NewEquipChargingTimerNotificationRequest(sn, id, pod, msgId string, connectorId string, timerId int64, status ChargingTimerStatus) *equipChargingTimerNotificationRequest {
 	return &equipChargingTimerNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    services.OCPP16(),
 			Category:    services.ChargingTimerNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipChargingTimerNotificationRequestDetail{
 			Charging: &Charging{

@@ -68,10 +68,11 @@ func NewEquipBMSLimitRequestWithConfig(config *BMSLimitRequestConfig) *equipBMSL
 	return &equipBMSLimitRequest{
 		Base: services.Base{
 			EquipmentSn: config.Sn,
+			EquipmentId: config.Id,
 			Protocol:    config.Protocol,
 			Category:    services.BMSLimit.FirstUpper(),
 			AccessPod:   config.Pod,
-			MsgID:       config.MsgID,
+			MsgID:       config.MsgId,
 		},
 		Data: &equipBMSLimitRequestDetail{
 			ConnectorId:      config.ConnectorId,
@@ -88,15 +89,16 @@ func NewEquipBMSLimitRequestWithConfig(config *BMSLimitRequestConfig) *equipBMSL
 	}
 }
 
-func NewEquipBMSLimitRequest(sn string, protocol *services.Protocol, pod, msgID string, connecorId string, maxTemp uint64,
+func NewEquipBMSLimitRequest(sn, id, pod, msgId string, protocol *services.Protocol, connecorId string, maxTemp uint64,
 	maxCurrent, maxVoltage, maxOutputVoltage, maxOutputCurrent, soc, capacity float64, vin string, prepare bool) *equipBMSLimitRequest {
 	req := &equipBMSLimitRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    protocol,
 			Category:    services.BMSLimit.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipBMSLimitRequestDetail{
 			ConnectorId:      connecorId,
@@ -135,8 +137,8 @@ func BMSLimitRequest(ctx context.Context, req services.Request, p *publisher.Pub
 	}
 
 	messsage := publisher.Message{
-		Context:      ctx,
-		Key:          bmsLimitQueue,
+		Context: ctx,
+		Key:     bmsLimitQueue,
 		Publishing: amqp.Publishing{
 			ContentType: "application/json",
 			Body:        bytes,

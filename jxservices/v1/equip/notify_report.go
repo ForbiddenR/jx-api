@@ -42,12 +42,13 @@ type equipNotifyReportResponse struct {
 	api.Response
 }
 
-func NewEquipNotifyReportRequest(sn, pod, msgID string, p *services.Protocol, requestId int64, tbc bool, reportDatas ...ReportData) *equipNotifyReportRequest {
+func NewEquipNotifyReportRequest(sn, id, pod, msgId string, p *services.Protocol, requestId int64, tbc bool, reportDatas ...ReportData) *equipNotifyReportRequest {
 	return &equipNotifyReportRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 			Protocol:    p,
 			Category:    services.NotifyReport.FirstUpper(),
 		},

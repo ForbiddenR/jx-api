@@ -65,14 +65,15 @@ func (*equipFirmwareStatusNotificationRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, pod, msgID string, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
+func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, id, pod, msgId string, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
 	return &equipFirmwareStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    services.OCPP16(),
 			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipFirmwareStatusNotificationRequestDetail{
 			Status: status,
@@ -80,14 +81,15 @@ func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, pod, msgID string, stat
 	}
 }
 
-func NewEquipFirmwareStatusNotificationRequest(sn, pod, msgID string, p *services.Protocol, requestID uint32, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
+func NewEquipFirmwareStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, requestID uint32, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
 	return &equipFirmwareStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipFirmwareStatusNotificationRequestDetail{
 			RequestId: &requestID,

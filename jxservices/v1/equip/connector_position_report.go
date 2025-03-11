@@ -28,14 +28,15 @@ func (equipConnectorPositionReport) IsCallback() bool {
 	return false
 }
 
-func NewEquipConnectorPositionReportRequest(sn, pod, msgID string, p *services.Protocol, released bool, connectorId string) *equipConnectorPositionReport {
+func NewEquipConnectorPositionReportRequest(sn, id, pod, msgId string, p *services.Protocol, released bool, connectorId string) *equipConnectorPositionReport {
 	return &equipConnectorPositionReport{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ConnectorPositionReport.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipConnectorPositionReportDetail{
 			Released:        released,

@@ -36,14 +36,15 @@ func (equipBootNotificationRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipBootNotificationRequest(sn, pod, msgID string, p *services.Protocol) *equipBootNotificationRequest {
+func NewEquipBootNotificationRequest(sn, id, pod, msgId string, p *services.Protocol) *equipBootNotificationRequest {
 	request := &equipBootNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.BootNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 	}
 	request.Data = &equipBootNotificationRequestDetail{}

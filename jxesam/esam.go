@@ -1,6 +1,10 @@
 package jxesam
 
-import "strings"
+import (
+	"strings"
+
+	api "github.com/ForbiddenR/jxapi"
+)
 
 const (
 	Equip     = "device"
@@ -13,15 +17,28 @@ const (
 	Access RequestNameEsamType = "accessVerify"
 )
 
+var reusedPerm *string
+
 func (r RequestNameEsamType) String() string {
 	return string(r)
 }
 
+func (r RequestNameEsamType) Perm() string {
+	if reusedPerm != nil {
+		return *reusedPerm
+	}
+	permSlice := make([]string, 0, 4)
+	permSlice = append(permSlice, api.Esam, Equip)
+	permSlice = append(permSlice, r.Split()...)
+	perm := strings.Join(permSlice, ":")
+	reusedPerm = &perm
+	return perm
+}
+
 func (r RequestNameEsamType) Split() []string {
-	for i := 0; i < len(r.String()); i++ {
-		str := r.String()[i : i+1]
-		if str == strings.ToUpper(str) {
-			return []string{r.String()[:i], strings.ToLower(r.String()[i:])}
+	for i, v := range r {
+		if string(v) == strings.ToUpper(string(v)) {
+			return []string{string(r)[:i], string(r)[i:]}
 		}
 	}
 	return nil

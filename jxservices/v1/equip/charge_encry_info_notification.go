@@ -46,16 +46,17 @@ type ChargeEncryInfoNotificationRequestConfig struct {
 	EncryType        uint64
 }
 
-func NewEquipChargeEncryInfoNotificationRequestWithConfig(config *ChargeEncryInfoNotificationRequestConfig) *equipChargeEncryInfoNotificationRequest{
-	return NewEquipChargeEncryInfoNotificationRequest(config.Sn, config.Protocol, config.Pod, config.MsgID, 
-	config.ConnectorId, config.TransactionId, config.EncryptedData, config.MeterNum, config.ElecmeterVersion, config.EncryType)
+func NewEquipChargeEncryInfoNotificationRequestWithConfig(config *ChargeEncryInfoNotificationRequestConfig) *equipChargeEncryInfoNotificationRequest {
+	return NewEquipChargeEncryInfoNotificationRequest(config.Sn, config.Id, config.Pod, config.MsgId, config.Protocol,
+		config.ConnectorId, config.TransactionId, config.EncryptedData, config.MeterNum, config.ElecmeterVersion, config.EncryType)
 }
 
-func NewEquipChargeEncryInfoNotificationRequest(sn string, p *services.Protocol, pod, msgID string,
+func NewEquipChargeEncryInfoNotificationRequest(sn, id, pod, msgID string, p *services.Protocol,
 	connectorId, transactionId, encryptedData, meterNum string, elecmeterVersion int64, encryType uint64) *equipChargeEncryInfoNotificationRequest {
 	req := &equipChargeEncryInfoNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ChargeEncryInfoNotification.FirstUpper(),
 			AccessPod:   pod,

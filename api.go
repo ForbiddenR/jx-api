@@ -32,7 +32,10 @@ const (
 	Esam     = "esam"
 )
 
-const Perms = "Perms"
+const (
+	Perms   = "Perms"
+	TraceId = "TraceId"
+)
 
 var (
 	ErrBodyIsNil = errors.New("body is nil")

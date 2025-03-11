@@ -222,11 +222,11 @@ func (r Request2ServicesNameType) GetCallbackCategory() string {
 
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
+	EquipmentId string    `json:"equipmentId"`
 	Protocol    *Protocol `json:"protocol"`
 	Category    string    `json:"category"`
 	AccessPod   string    `json:"accessPod"`
 	MsgID       string    `json:"msgId"`
-	// Callback    *CB       `json:"callback,omitempty"`
 }
 
 type BaseConfig struct {
@@ -487,24 +487,6 @@ func Transport(ctx context.Context, req Request) error {
 	}
 	return err
 }
-
-// func RequestGeneral(ctx context.Context, req Request, url string, header map[string]string) error {
-// 	message, err := api.SendRequest(ctx, url, req, header)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	resp := &api.Response{}
-// 	err = json.Unmarshal(message, resp)
-// 	if err != nil {
-// 		request, _ := json.Marshal(req)
-// 		return apierrors.GetFailedResponseUnmarshalError(url, request, message, err)
-// 	}
-
-// 	if resp.Status == 1 {
-// 		return errors.New(resp.Msg)
-// 	}
-// 	return err
-// }
 
 func RequestWithoutResponse[T Response](ctx context.Context, req Request, url string, header map[string]string, t T) (err error) {
 	header["TraceId"] = req.TraceId()

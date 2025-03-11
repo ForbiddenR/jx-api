@@ -18,10 +18,11 @@ type equipRegisterRequestDetail struct {
 	RemoteAddress *string `json:"remoteAddress"`
 }
 
-func NewEquipRegisterRequest(sn string, protocol *services.Protocol, pod, msgID string) *equipRegisterRequest {
+func NewEquipRegisterRequest(sn, id, pod, msgID string, protocol *services.Protocol) *equipRegisterRequest {
 	return &equipRegisterRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    protocol,
 			Category:    services.Register.FirstUpper(),
 			AccessPod:   pod,

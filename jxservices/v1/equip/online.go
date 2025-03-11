@@ -23,13 +23,14 @@ type OnlineConfig struct {
 }
 
 func NewEquipOnlineRequestWithConfig(config OnlineConfig) *equipOnlineRequest {
-	return NewEquipOnlineRequest(config.Sn, config.Protocol, config.Pod, config.MsgID)
+	return NewEquipOnlineRequest(config.Sn, config.Id, config.Pod, config.MsgId, config.Protocol)
 }
 
-func NewEquipOnlineRequest(sn string, protocol *services.Protocol, pod, msgID string) *equipOnlineRequest {
+func NewEquipOnlineRequest(sn, id, pod, msgID string, protocol *services.Protocol) *equipOnlineRequest {
 	return &equipOnlineRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    protocol,
 			Category:    services.Online.FirstUpper(),
 			AccessPod:   pod,

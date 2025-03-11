@@ -40,14 +40,15 @@ func (equipUpdatedParaReportRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipUpdatedParaReportRequest(sn, pod, msgID string, p *services.Protocol, authFree, btFastAuth bool, outputType string, outputCurrentLimit float64) *equipUpdatedParaReportRequest {
+func NewEquipUpdatedParaReportRequest(sn, id, pod, msgId string, p *services.Protocol, authFree, btFastAuth bool, outputType string, outputCurrentLimit float64) *equipUpdatedParaReportRequest {
 	return &equipUpdatedParaReportRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.UpdatedParaReport.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipUpdatedParaReportRequestDetail{
 			AuthFree:           authFree,

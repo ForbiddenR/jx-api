@@ -22,9 +22,10 @@ type CallbackRequest interface {
 
 type ReusedConfig struct {
 	Sn       string
+	Id       string
 	Protocol *Protocol
 	Pod      string
-	MsgID    string
+	MsgId    string
 }
 
 type Option func(option CallbackRequest) error

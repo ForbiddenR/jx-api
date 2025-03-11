@@ -401,10 +401,11 @@ func NewEquipStopTransactionRequestWithConfig(config *StopTransactionRequestConf
 	return &equipStopTransactionRequest{
 		Base: services.Base{
 			EquipmentSn: config.Sn,
+			EquipmentId: config.Id,
 			Protocol:    config.Protocol,
 			Category:    services.StopTransaction.FirstUpper(),
 			AccessPod:   config.Pod,
-			MsgID:       config.MsgID,
+			MsgID:       config.MsgId,
 		},
 		Data: &equipStopTransactionRequestDetail{
 			IdTokenType:   &IdTokenType{},
@@ -432,15 +433,16 @@ func (equipStopTransactionRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipStopTransactionRequest(sn, pod, msgID string, p *services.Protocol,
+func NewEquipStopTransactionRequest(sn, id, pod, msgId string, p *services.Protocol,
 	reason StoppingReasonType, transactionId string, isOffline bool, timestamp int64) *equipStopTransactionRequest {
 	req := &equipStopTransactionRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.StopTransaction.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipStopTransactionRequestDetail{
 			IdTokenType:   &IdTokenType{},

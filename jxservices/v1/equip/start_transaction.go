@@ -47,10 +47,11 @@ func NewEquipStartTransactionRequestWithConfig(config *StartTransactionRequestCo
 	req := &equipStartTransactionRequest{
 		Base: services.Base{
 			EquipmentSn: config.Sn,
+			EquipmentId: config.Id,
 			Protocol:    config.Protocol,
 			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   config.Pod,
-			MsgID:       config.MsgID,
+			MsgID:       config.MsgId,
 		},
 		Data: &equipStartTransactionRequestDetail{
 			IdTokenType: IdTokenType{
@@ -84,16 +85,17 @@ func (equipStartTransactionRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipStartTransactionRequest(sn, pod, msgID string, p *services.Protocol,
+func NewEquipStartTransactionRequest(sn, id, pod, msgId string, p *services.Protocol,
 	idToken string, connectorId string,
 	timestamp int64) *equipStartTransactionRequest {
 	req := &equipStartTransactionRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipStartTransactionRequestDetail{
 			IdTokenType: IdTokenType{

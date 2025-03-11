@@ -55,14 +55,14 @@ func (equipDiagnosticsStatusNotificationRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, pod, msgID string, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
+func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId string, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
 	req := &equipDiagnosticsStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
 			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipDiagnosticsStatusNotificationRequestDetail{
 			Status: status,

@@ -47,14 +47,15 @@ type equipUpdateTransactionReqeustDetail struct {
 	Temperatures  *Temperatures `json:"temperatures,omitempty"`
 }
 
-func NewUpdateTransactionRequest(sn, pod, msgID string, p *services.Protocol, transactionId, connectorId string, offline bool, timestamp int64, chargeState uint8) *equipUpdateTransactionRequest {
+func NewUpdateTransactionRequest(sn, id, pod, msgId string, p *services.Protocol, transactionId, connectorId string, offline bool, timestamp int64, chargeState uint8) *equipUpdateTransactionRequest {
 	updateTransaction := &equipUpdateTransactionRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.UpdateTransaction.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipUpdateTransactionReqeustDetail{
 			Actime:        time.Now().Unix(),

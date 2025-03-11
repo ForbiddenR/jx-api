@@ -29,7 +29,7 @@ type StatusNotificationRequestConfig struct {
 	Timestamp       int64
 }
 
-func NewEquipStatusNotificationRequestOCPP16(sn, pod, msgID string, connectorId string, status int, errorCode StatusNotificationErrorCodeEnum, timestamp int64) *equipStatusNotificationRequest {
+func NewEquipStatusNotificationRequestOCPP16(sn, id, pod, msgId string, connectorId string, status int, errorCode StatusNotificationErrorCodeEnum, timestamp int64) *equipStatusNotificationRequest {
 	ec := string(errorCode)
 	return &equipStatusNotificationRequest{
 		Base: services.Base{
@@ -37,7 +37,7 @@ func NewEquipStatusNotificationRequestOCPP16(sn, pod, msgID string, connectorId 
 			Protocol:    services.OCPP16(),
 			Category:    services.StatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipStatusNotificationRequestDetail{
 			ConnectorSerial: connectorId,
@@ -53,21 +53,22 @@ func NewStatusNotification(base services.Base, config *StatusNotificationRequest
 		Base: base,
 		Data: &equipStatusNotificationRequestDetail{
 			ConnectorSerial: config.ConnectorSerial,
-			Status: config.Status,
-			Timestamp: config.Timestamp,
+			Status:          config.Status,
+			Timestamp:       config.Timestamp,
 		},
 	}
 	return req
 }
 
-func NewEquipStatusNotificationRequest(sn, pod, msgID string, p *services.Protocol, connectorId string, status int, timestamp int64) *equipStatusNotificationRequest {
+func NewEquipStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, connectorId string, status int, timestamp int64) *equipStatusNotificationRequest {
 	return &equipStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.StatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipStatusNotificationRequestDetail{
 			ConnectorSerial: connectorId,
@@ -119,44 +120,6 @@ const (
 	ConnectorStatus201Finishing                                       // 结束中
 )
 
-// func OCPP16ConnectorStatus(s ocpp16.StatusNotificationJsonStatus) ConnectorStatusTypeEnum {
-// 	switch s {
-// 	case ocpp16.StatusNotificationJsonStatusAvailable:
-// 		return ConnectorStatusAvailable
-// 	case ocpp16.StatusNotificationJsonStatusPreparing:
-// 		return ConnectorStatusPreparing
-// 	case ocpp16.StatusNotificationJsonStatusCharging:
-// 		return ConnectorStatusCharging
-// 	case ocpp16.StatusNotificationJsonStatusSuspendedEV:
-// 		return ConnectorStatusSuspendedEV
-// 	case ocpp16.StatusNotificationJsonStatusSuspendedEVSE:
-// 		return ConnectorStatusSuspendedEVSE
-// 	case ocpp16.StatusNotificationJsonStatusFinishing:
-// 		return ConnectorStatusFinishing
-// 	case ocpp16.StatusNotificationJsonStatusFaulted:
-// 		return ConnectorStatusFaulted
-// 	case ocpp16.StatusNotificationJsonStatusReserved:
-// 		return ConnectorStatusReserved
-// 	default:
-// 		return ConnectorStatusUnavailable
-// 	}
-// }
-
-// func OCPP201ConnectorStatus(s ocpp201.ConnectorStatusEnumType) ConnectorStatusTypeEnum {
-// 	switch s {
-// 	case ocpp201.ConnectorStatusEnumTypeAvailable:
-// 		return ConnectorStatusAvailable
-// 	case ocpp201.ConnectorStatusEnumTypeOccupied:
-// 		return ConnectorStatusOccupied
-// 	case ocpp201.ConnectorStatusEnumTypeFaulted:
-// 		return ConnectorStatusFaulted
-// 	case ocpp201.ConnectorStatusEnumTypeReserved:
-// 		return ConnectorStatusReserved
-// 	default:
-// 		return ConnectorStatusUnavailable
-// 	}
-// }
-
 type StatusNotificationErrorCodeEnum string
 
 const (
@@ -177,43 +140,6 @@ const (
 	StatusNotificationErrorCodeWeakSignal           StatusNotificationErrorCodeEnum = "WeakSignal"
 	StatusNotificationErrorCodeOtherError           StatusNotificationErrorCodeEnum = "OtherError"
 )
-
-// func OCPP16StatusNotificationErrorCode(s ocpp16.StatusNotificationJsonErrorCode) StatusNotificationErrorCodeEnum {
-// 	switch s {
-// 	case ocpp16.StatusNotificationJsonErrorCodeNoError:
-// 		return StatusNotificationErrorCodeNoError
-// 	case ocpp16.StatusNotificationJsonErrorCodeConnectorLockFailure:
-// 		return StatusNotificationErrorCodeConnectorLockFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeEVCommunicationError:
-// 		return StatusNotificationErrorCodeEVCommunicationError
-// 	case ocpp16.StatusNotificationJsonErrorCodeGroundFailure:
-// 		return StatusNotificationErrorCodeGroundFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeHighTemperature:
-// 		return StatusNotificationErrorCodeHighTemperature
-// 	case ocpp16.StatusNotificationJsonErrorCodeInternalError:
-// 		return StatusNotificationErrorCodeInternalError
-// 	case ocpp16.StatusNotificationJsonErrorCodeLocalListConflict:
-// 		return StatusNotificationErrorCodeLocalListConflict
-// 	case ocpp16.StatusNotificationJsonErrorCodeOverCurrentFailure:
-// 		return StatusNotificationErrorCodeOverCurrentFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeOverVoltage:
-// 		return StatusNotificationErrorCodeOverVoltage
-// 	case ocpp16.StatusNotificationJsonErrorCodePowerMeterFailure:
-// 		return StatusNotificationErrorCodePowerMeterFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodePowerSwitchFailure:
-// 		return StatusNotificationErrorCodePowerSwitchFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeReaderFailure:
-// 		return StatusNotificationErrorCodeReaderFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeResetFailure:
-// 		return StatusNotificationErrorCodeResetFailure
-// 	case ocpp16.StatusNotificationJsonErrorCodeWeakSignal:
-// 		return StatusNotificationErrorCodeWeakSignal
-// 	case ocpp16.StatusNotificationJsonErrorCodeUnderVoltage:
-// 		return StatusNotificationErrorCodeUnderVoltage
-// 	default:
-// 		return StatusNotificationErrorCodeOtherError
-// 	}
-// }
 
 var _ services.Response = &equipStatusNotificationResponse{}
 

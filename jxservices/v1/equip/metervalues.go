@@ -43,14 +43,15 @@ func (equipMeterValuesRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipMeterValuesOCPP16Request(sn, pod, msgID string, connectorId string) *equipMeterValuesRequest {
+func NewEquipMeterValuesOCPP16Request(sn, id, pod, msgId string, connectorId string) *equipMeterValuesRequest {
 	meterValue := &equipMeterValuesRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    services.OCPP16(),
 			Category:    services.MeterValues.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipMeterValuesRequestDetail{
 			ConnectorId: &connectorId,

@@ -40,11 +40,12 @@ type equipOfflineRequestDetail struct {
 	OfflineReason string `json:"offlineReason"`
 }
 
-func NewEquipOfflineRequest(sn string, protocol *services.Protocol, pod, msgID string, reason string) *equipOfflineRequest {
+func NewEquipOfflineRequest(sn, id, pod, msgID string, protocol *services.Protocol, reason string) *equipOfflineRequest {
 	return &equipOfflineRequest{
 		Base: services.Base{
 			Category:    services.Offline.FirstUpper(),
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    protocol,
 			AccessPod:   pod,
 			MsgID:       msgID,
