@@ -38,10 +38,11 @@ func (equipReservationStatusNotificationRequest) IsCallback() bool {
 	return false
 }
 
-func NewEquipReservationStatusNotification(sn, pod, msgID string, p *services.Protocol, reservationId uint64, status ReservationStatusNotificationRequestStautsType) *equipReservationStatusNotificationRequest {
+func NewEquipReservationStatusNotification(sn, id, pod, msgID string, p *services.Protocol, reservationId uint64, status ReservationStatusNotificationRequestStautsType) *equipReservationStatusNotificationRequest {
 	return &equipReservationStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ReservationStatusNotification.FirstUpper(),
 			AccessPod:   pod,

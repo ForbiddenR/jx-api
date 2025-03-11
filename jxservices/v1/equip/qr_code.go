@@ -19,10 +19,11 @@ type equipQRCoeRequestDetail struct {
 	ConnectorId string  `json:"connectorSerial"`
 }
 
-func NewEquipQRCodeRequest(sn, pod, msgID string, protocol *services.Protocol, connectorId string) *equipQRCodeRequest {
+func NewEquipQRCodeRequest(sn, id, pod, msgID string, protocol *services.Protocol, connectorId string) *equipQRCodeRequest {
 	return &equipQRCodeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    protocol,
 			Category:    services.QRCode.FirstUpper(),
 			AccessPod:   pod,

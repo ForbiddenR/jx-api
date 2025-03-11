@@ -71,14 +71,15 @@ func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId strin
 	return req
 }
 
-func NewEquipDiagnosticsStatusNotificationRequest(sn, pod, msgID string, p *services.Protocol, requestId int64, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
+func NewEquipDiagnosticsStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, requestId int64, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
 	req := &equipDiagnosticsStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Data: &equipDiagnosticsStatusNotificationRequestDetail{
 			RequestId: &requestId,

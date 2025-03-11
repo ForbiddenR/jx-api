@@ -62,10 +62,11 @@ func NewEquipMeterValuesOCPP16Request(sn, id, pod, msgId string, connectorId str
 	return meterValue
 }
 
-func NewEquipMeterValuesRequest(sn, pod, msgID string, p *services.Protocol) *equipMeterValuesRequest {
+func NewEquipMeterValuesRequest(sn, id, pod, msgID string, p *services.Protocol) *equipMeterValuesRequest {
 	meterValue := &equipMeterValuesRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.MeterValues.FirstUpper(),
 			AccessPod:   pod,
