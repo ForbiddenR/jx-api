@@ -29,14 +29,15 @@ func (equipSetLoadBalanceRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetLoadBalanceRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetLoadBalanceRequest {
+func NewEquipSetLoadBalanceRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetLoadBalanceRequest {
 	req := &equipSetLoadBalanceRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetLoadBalance.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 		Data:     &equipSetLoadBalanceRequestDetail{},
@@ -44,14 +45,15 @@ func NewEquipSetLoadBalanceRequest(sn, pod, msgID string, p *services.Protocol, 
 	return req
 }
 
-func NewEquipSetLoadBalanceRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetLoadBalanceRequest {
+func NewEquipSetLoadBalanceRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetLoadBalanceRequest {
 	req := &equipSetLoadBalanceRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetLoadBalance.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 		Data:     &equipSetLoadBalanceRequestDetail{},

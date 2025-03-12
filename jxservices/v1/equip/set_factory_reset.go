@@ -31,14 +31,15 @@ func (equipSetFactoryResetRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetFactoryResetRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetFactoryResetRequest {
+func NewEquipSetFactoryResetRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetFactoryResetRequest {
 	req := &equipSetFactoryResetRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetFactoryReset.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 		Data:     &equipSetFactoryResetRequestDetail{},
@@ -46,14 +47,15 @@ func NewEquipSetFactoryResetRequest(sn, pod, msgID string, p *services.Protocol,
 	return req
 }
 
-func NewEquipSetFactoryResetRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetFactoryResetRequest {
+func NewEquipSetFactoryResetRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetFactoryResetRequest {
 	req := &equipSetFactoryResetRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetFactoryReset.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 		Data:     &equipSetFactoryResetRequestDetail{},
