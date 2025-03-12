@@ -41,14 +41,15 @@ func NewSetChargingProfileCallbackRequest(sn, id, pod, msgId string, p *services
 	return req
 }
 
-func NewSetChargingProfileCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetChargingProfileRequest {
+func NewSetChargingProfileCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetChargingProfileRequest {
 	req := &equipSetChargingProfileRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetChargingProfile.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

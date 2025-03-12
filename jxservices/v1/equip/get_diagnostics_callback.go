@@ -33,10 +33,11 @@ func (equipGetDiagnosticsCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipGetDiagnosticsCallbackRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipGetDiagnosticsCallbackRequest {
+func NewEquipGetDiagnosticsCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipGetDiagnosticsCallbackRequest {
 	req := &equipGetDiagnosticsCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetDiagnostics.GetCallbackCategory(),
 			AccessPod:   pod,

@@ -54,14 +54,15 @@ func NewSendQRCodeCallbackRequest(base services.Base, option services.Option) *e
 	return req
 }
 
-func NewEquipSendQRCodeCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSendQRCodeRequest {
+func NewEquipSendQRCodeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSendQRCodeRequest {
 	req := &equipSendQRCodeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SendQRCode.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

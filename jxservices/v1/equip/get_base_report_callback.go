@@ -75,14 +75,15 @@ func NewEquipGetBaseReportCallbackRequestOCPP16(sn, id, pod, msgId string, statu
 	return req
 }
 
-func NewEquipGetBaseReportCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipGetBaseReportCallbackRequest {
+func NewEquipGetBaseReportCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 		Data:     &equipGetBaseReportCallbackRequestDetail{},

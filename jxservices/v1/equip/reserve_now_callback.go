@@ -42,14 +42,15 @@ func NewEquipReserveNowCallbackRequest(sn, id, pod, msgId string, p *services.Pr
 	return req
 }
 
-func NewEquipReserveNowCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipReserveNowCallbackRequest {
+func NewEquipReserveNowCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipReserveNowCallbackRequest {
 	req := &equipReserveNowCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ReserveNow.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

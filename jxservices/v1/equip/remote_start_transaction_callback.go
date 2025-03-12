@@ -42,14 +42,15 @@ func NewEquipRemoteStartTransactionCallbackRequest(sn, id, pod, msgId string, p 
 	return req
 }
 
-func NewEquipRemoteStartTransactionCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStartTransactionCallbackRequest {
+func NewEquipRemoteStartTransactionCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStartTransactionCallbackRequest {
 	req := &equipRemoteStartTransactionCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.RemoteStartTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

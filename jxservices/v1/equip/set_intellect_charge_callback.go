@@ -40,14 +40,15 @@ func NewEquipSetIntellectChargeCallbackRequest(sn, id, pod, msgId string, p *ser
 	return req
 }
 
-func NewEquipSetIntellectChargeCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetIntellectChargeRequest {
+func NewEquipSetIntellectChargeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetIntellectChargeRequest {
 	req := &equipSetIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

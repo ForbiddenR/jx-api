@@ -27,7 +27,7 @@ func (equipSetPriceSchemeRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetPriceSchemeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int) *equipSetPriceSchemeRequest {
+func NewEquipSetPriceSchemeCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetPriceSchemeRequest {
 	req := &equipSetPriceSchemeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
@@ -35,21 +35,21 @@ func NewEquipSetPriceSchemeCallbackRequest(sn, id, pod, msgID string, p *service
 			Protocol:    p,
 			Category:    services.SetPriceScheme.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}
 	return req
 }
 
-func NewEquipSetPriceSchemeCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetPriceSchemeRequest {
+func NewEquipSetPriceSchemeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetPriceSchemeRequest {
 	req := &equipSetPriceSchemeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
 			Category:    services.SetPriceScheme.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

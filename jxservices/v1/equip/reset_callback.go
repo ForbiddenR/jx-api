@@ -47,14 +47,15 @@ func NewEquipResetCallbackRequest(sn, id, pod, msgId string, p *services.Protoco
 	return req
 }
 
-func NewEquipResetCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipResetCallbackRequest {
+func NewEquipResetCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipResetCallbackRequest {
 	req := &equipResetCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.Reset.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

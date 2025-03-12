@@ -42,14 +42,15 @@ func NewEquipRemoteStopTransactionCallbackRequest(sn, id, pod, msgId string, p *
 	return req
 }
 
-func NewEquipRemoteStopTransactionCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStopTransactionCallbackRequest {
+func NewEquipRemoteStopTransactionCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStopTransactionCallbackRequest {
 	req := &equipRemoteStopTransactionCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.RemoteStopTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

@@ -27,14 +27,15 @@ func (equipCancelReservationCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipCancelReseravtionCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipCancelReservationCallbackRequest {
+func NewEquipCancelReseravtionCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipCancelReservationCallbackRequest {
 	req := &equipCancelReservationCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

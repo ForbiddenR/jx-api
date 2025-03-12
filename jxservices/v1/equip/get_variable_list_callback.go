@@ -40,14 +40,15 @@ func NewEquipGetVariableListCallbackRequest(sn, id, pod, msgId string, p *servic
 	return req
 }
 
-func NewEquipGetVariableListRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipGetVariableListCallbackRequest {
+func NewEquipGetVariableListRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetVariableListCallbackRequest {
 	req := &equipGetVariableListCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

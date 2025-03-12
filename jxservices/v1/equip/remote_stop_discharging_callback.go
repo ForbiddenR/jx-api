@@ -38,10 +38,11 @@ func NewEquipRequestStopDischargingRequest(sn, id, pod, msgId string, p *service
 	}
 }
 
-func NewEquipRequestStopDischargingRequestError(sn string, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRequestStopDischargingRequest {
+func NewEquipRequestStopDischargingRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRequestStopDischargingRequest {
 	req := &equipRequestStopDischargingRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.RequestStartDischargingTransaction.GetCallbackCategory(),
 			AccessPod:   pod,

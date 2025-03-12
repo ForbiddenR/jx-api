@@ -19,16 +19,16 @@ func TestCallStatusNotificationRequest(t *testing.T) {
 		MaxIdleConnDuration: 10 * time.Second,
 		MaxConnsPerHost:     5000,
 	}
-	req := NewEquipCallStatusNotificationCallbackRequest("", "", "", jxservices.IEC002(), 1)
+	req := NewEquipCallStatusNotificationCallbackRequest("", "", "", "", jxservices.IEC002(), 1)
 	service, err := url.Parse("http://127.0.0.1:12000/")
 	assert.Nil(t, err)
 	serviceClient, err := rest.NewRestClient(service, rest.ClientContentConfig{}, client)
 	assert.Nil(t, err)
 	result := serviceClient.Post().
-	RequestURI("test").
-	Body(req).
-	SetHeader(map[string]string{"test": "test"}).
-	Do(context.Background())
+		RequestURI("test").
+		Body(req).
+		SetHeader(map[string]string{"test": "test"}).
+		Do(context.Background())
 	assert.Nil(t, result.Error())
-	
+
 }

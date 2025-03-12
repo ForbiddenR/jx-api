@@ -42,14 +42,15 @@ func NewEquipCancelIntellectChargeCallbackRequest(sn, id, pod, msgId string, p *
 	return req
 }
 
-func NewEquipCancelIntellectChargeCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipCancelIntellectChargeRequest {
+func NewEquipCancelIntellectChargeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipCancelIntellectChargeRequest {
 	req := &equipCancelIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

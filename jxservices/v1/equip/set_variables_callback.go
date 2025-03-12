@@ -62,14 +62,15 @@ func NewEquipSetVariablesCallbackRequest(sn, id, pod, msgId string, p *services.
 	return req
 }
 
-func NewEquipSetVariablesRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetVariablesCallbackRequest {
+func NewEquipSetVariablesRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetVariablesCallbackRequest {
 	req := &equipSetVariablesCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ChangeConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

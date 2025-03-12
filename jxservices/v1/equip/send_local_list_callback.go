@@ -62,14 +62,15 @@ func NewEquipSendLocalListCallbackRequest(sn, id, pod, msgId string, p *services
 	return req
 }
 
-func NewEquipSendLocalListCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSendLocalListCallbackRequest {
+func NewEquipSendLocalListCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSendLocalListCallbackRequest {
 	req := &equipSendLocalListCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SendLocalList.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

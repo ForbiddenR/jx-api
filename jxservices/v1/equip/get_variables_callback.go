@@ -23,8 +23,8 @@ type equipGetVariablesCallbackRequestDetail struct {
 		Value    string     `json:"value"`
 		Readonly Mutability `json:"readonly"`
 	} `json:"variable"`
-	Variables []Variable `json:"variables"`
-	UnknownKey []string `json:"unknownKey,omitempty"`
+	Variables  []Variable `json:"variables"`
+	UnknownKey []string   `json:"unknownKey,omitempty"`
 }
 
 func (equipGetVariablesCallbackRequest) GetName() services.Request2ServicesNameType {
@@ -56,14 +56,15 @@ func NewEquipGetVariablesCallbackRequest(sn, id, pod, msgId string, p *services.
 	return req
 }
 
-func NewEquipGetVariablesRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipGetVariablesCallbackRequest {
+func NewEquipGetVariablesRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetVariablesCallbackRequest {
 	req := &equipGetVariablesCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 		Data:     &equipGetVariablesCallbackRequestDetail{},

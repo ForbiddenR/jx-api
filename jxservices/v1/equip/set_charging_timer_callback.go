@@ -42,14 +42,15 @@ func NewEquipSetChargingTimerCallbackRequest(sn, id, pod, msgId string, p *servi
 	return req
 }
 
-func NewEquipSetChargingTimerCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetChargingTimerCallbackRequest {
+func NewEquipSetChargingTimerCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetChargingTimerCallbackRequest {
 	req := &equipSetChargingTimerCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

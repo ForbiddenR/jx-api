@@ -27,28 +27,30 @@ func (equipCallStatusNotificationCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipCallStatusNotificationCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipCallStatusNotificationCallbackRequest {
+func NewEquipCallStatusNotificationCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipCallStatusNotificationCallbackRequest {
 	req := &equipCallStatusNotificationCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CallStatusNotification.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}
 	return req
 }
 
-func NewEquipCallStatusNotificationCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipCallStatusNotificationCallbackRequest {
+func NewEquipCallStatusNotificationCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipCallStatusNotificationCallbackRequest {
 	req := &equipCallStatusNotificationCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CallStatusNotification.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}
