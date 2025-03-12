@@ -48,14 +48,15 @@ func NewEquipGetDiagnosticsCallbackRequest(sn, pod, msgId string, p *services.Pr
 	return req
 }
 
-func NewEquipGetDiagnosticsCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipGetDiagnosticsCallbackRequest {
+func NewEquipGetDiagnosticsCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetDiagnosticsCallbackRequest {
 	req := &equipGetDiagnosticsCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetDiagnostics.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 		Data:     &equipGetDiagnosticsCallbackRequestDetail{},

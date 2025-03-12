@@ -27,14 +27,15 @@ func (equipSetChargingTimerCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetChargingTimerCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetChargingTimerCallbackRequest {
+func NewEquipSetChargingTimerCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetChargingTimerCallbackRequest {
 	req := &equipSetChargingTimerCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

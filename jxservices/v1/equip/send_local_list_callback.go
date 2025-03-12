@@ -47,14 +47,15 @@ func (equipSendLocalListCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSendLocalListCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSendLocalListCallbackRequest {
+func NewEquipSendLocalListCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSendLocalListCallbackRequest {
 	req := &equipSendLocalListCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SendLocalList.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

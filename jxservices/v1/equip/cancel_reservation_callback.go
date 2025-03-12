@@ -41,14 +41,15 @@ func NewEquipCancelReseravtionCallbackRequest(sn, pod, msgID string, p *services
 	return req
 }
 
-func NewEquipCancelReservationCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipCancelReservationCallbackRequest {
+func NewEquipCancelReservationCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipCancelReservationCallbackRequest {
 	req := &equipCancelReservationCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}

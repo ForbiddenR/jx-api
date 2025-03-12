@@ -74,12 +74,6 @@ func CallStatusNotificationCallbackRequest(ctx context.Context, req services.Req
 	return services.Transport(ctx, req)
 }
 
-// func CallStatusNotificationCallbackRequest(ctx context.Context, req services.Request) error {
-// 	header := services.GetCallbackHeaderValue(services.CallStatusNotification)
-// 	url := services.GetCallbackURL(req)
-// 	return services.RequestWithoutResponse(ctx, req, url, header, &equipCallStatusNotificationCallbackResponse{})
-// }
-
 var _ services.CallbackRequest = &equipTriggerMessageCallbackRequest{}
 
 type equipTriggerMessageCallbackRequest struct {

@@ -49,14 +49,15 @@ func (g *equipGetBaseReportCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipGetBaseReportCallbackRequestOCPP16(sn, pod, msgID string, status int, length int, unknownKey []string) *equipGetBaseReportCallbackRequest {
+func NewEquipGetBaseReportCallbackRequestOCPP16(sn, id, pod, msgId string, status int, length int, unknownKey []string) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    services.OCPP16(),
 			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 		Data:     &equipGetBaseReportCallbackRequestDetail{},

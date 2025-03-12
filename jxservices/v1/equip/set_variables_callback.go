@@ -47,14 +47,15 @@ func (equipSetVariablesCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetVariablesCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetVariablesCallbackRequest {
+func NewEquipSetVariablesCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetVariablesCallbackRequest {
 	req := &equipSetVariablesCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ChangeConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

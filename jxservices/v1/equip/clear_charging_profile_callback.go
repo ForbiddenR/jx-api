@@ -41,10 +41,11 @@ func NewClearChargingProfileCallbackRequest(sn, pod, msgID string, p *services.P
 	return req
 }
 
-func NewClearChargingProfileCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipClearChargingProfileRequest {
+func NewClearChargingProfileCallbackRequestError(sn, id, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipClearChargingProfileRequest {
 	req := &equipClearChargingProfileRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ClearChargingProfile.FirstUpper(),
 			AccessPod:   pod,

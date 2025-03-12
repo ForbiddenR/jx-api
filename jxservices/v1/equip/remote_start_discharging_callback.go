@@ -24,10 +24,11 @@ func (equipRequestStartDischargingRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipRequestStartDischargingRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipRequestStartDischargingRequest {
+func NewEquipRequestStartDischargingRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipRequestStartDischargingRequest {
 	return &equipRequestStartDischargingRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.RequestStartDischargingTransaction.GetCallbackCategory(),
 			AccessPod:   pod,

@@ -27,10 +27,11 @@ func (equipSetPriceSchemeRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipSetPriceSchemeCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetPriceSchemeRequest {
+func NewEquipSetPriceSchemeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int) *equipSetPriceSchemeRequest {
 	req := &equipSetPriceSchemeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SetPriceScheme.FirstUpper(),
 			AccessPod:   pod,

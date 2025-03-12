@@ -31,14 +31,15 @@ func (equipResetCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipResetCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipResetCallbackRequest {
+func NewEquipResetCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipResetCallbackRequest {
 	req := &equipResetCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.Reset.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

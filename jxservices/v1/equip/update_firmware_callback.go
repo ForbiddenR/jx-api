@@ -31,15 +31,15 @@ func (equipUpdateFirmwareCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipUpdateFirmwareCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipUpdateFirmwareCallbackRequest {
+func NewEquipUpdateFirmwareCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipUpdateFirmwareCallbackRequest {
 	return &equipUpdateFirmwareCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.UpdateFirmware.FirstUpper(),
 			AccessPod:   pod,
-
-			MsgID: msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

@@ -27,14 +27,15 @@ func (equipCancelIntellectChargeRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipCancelIntellectChargeCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipCancelIntellectChargeRequest {
+func NewEquipCancelIntellectChargeCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipCancelIntellectChargeRequest {
 	req := &equipCancelIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

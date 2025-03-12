@@ -40,11 +40,12 @@ func (equipGetIntellectChargeRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipGetIntellectChargeCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int,
+func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int,
 	cid, evseId string, intellectType uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
 	req := &equipGetIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetIntellectCharge.FirstUpper(),
 			AccessPod:   pod,

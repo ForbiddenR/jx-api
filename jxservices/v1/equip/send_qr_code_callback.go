@@ -31,14 +31,15 @@ func (e *equipSendQRCodeRequest) SetCallback(cb services.CB) {
 	e.Callback = cb
 }
 
-func NewEquipSendQRCodeCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSendQRCodeRequest {
+func NewEquipSendQRCodeCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSendQRCodeRequest {
 	req := &equipSendQRCodeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.SendQRCode.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}

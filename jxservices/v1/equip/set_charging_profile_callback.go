@@ -27,14 +27,14 @@ func (equipSetChargingProfileRequest) IsCallback() bool {
 	return true
 }
 
-func NewSetChargingProfileCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetChargingProfileRequest {
+func NewSetChargingProfileCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetChargingProfileRequest {
 	req := &equipSetChargingProfileRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
 			Category:    services.SetChargingProfile.FirstUpper(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}
