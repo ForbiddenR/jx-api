@@ -91,14 +91,15 @@ func NewEquipGetBaseReportCallbackRequest(sn, id, pod, msgId string, p *services
 	return req
 }
 
-func NewEquipGetBaseReportRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipGetBaseReportCallbackRequest {
+func NewEquipGetBaseReportRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 		Data:     &equipGetBaseReportCallbackRequestDetail{},

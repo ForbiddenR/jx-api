@@ -27,28 +27,30 @@ func (equipClearCacheCallbackRequest) IsCallback() bool {
 	return true
 }
 
-func NewEquipClearCacheCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipClearCacheCallbackRequest {
+func NewEquipClearCacheCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipClearCacheCallbackRequest {
 	req := &equipClearCacheCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ClearCache.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCB(status),
 	}
 	return req
 }
 
-func NewEquipClearCacheCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipClearCacheCallbackRequest {
+func NewEquipClearCacheCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipClearCacheCallbackRequest {
 	req := &equipClearCacheCallbackRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			Category:    services.ClearCache.GetCallbackCategory(),
 			AccessPod:   pod,
-			MsgID:       msgID,
+			MsgID:       msgId,
 		},
 		Callback: services.NewCBError(err),
 	}
