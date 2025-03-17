@@ -183,7 +183,7 @@ func (r Request2ServicesNameType) Split() []string {
 	case StopTransaction:
 		return []string{"stop", "transaction"}
 	}
-	for i := 0; i < len(r.String()); i++ {
+	for i := range len(r.String()) {
 		str := r.String()[i : i+1]
 		if str == strings.ToUpper(str) {
 			switch r.String()[:i] {

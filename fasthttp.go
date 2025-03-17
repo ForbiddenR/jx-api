@@ -3,7 +3,6 @@ package api
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"time"
 
 	"github.com/ForbiddenR/jxapi/apierrors"
@@ -19,7 +18,6 @@ func SendRequest[M ~map[S]S, S ~string](ctx context.Context, url string, protoco
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("send request to services -> url: %s, req: %s", url, reqEntityBytes)
 	return sendPostRequest(ctx, url, reqEntityBytes, header)
 }
 
@@ -55,7 +53,6 @@ func sendPostRequest[M ~map[S]S, S ~string](_ context.Context, url string, reque
 	if len(respBody) == 0 {
 		return nil, ErrBodyIsNil
 	}
-	fmt.Printf("response from services <- url: %s, resp: %s", url, respBody)
 	return respBody, nil
 }
 
