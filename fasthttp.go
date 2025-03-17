@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/ForbiddenR/jxapi/apierrors"
@@ -13,17 +14,16 @@ var headerContentTypeJson = []byte("application/json")
 
 var client *fasthttp.Client
 
-type headers = map[string]string
-
-func SendRequest(ctx context.Context, url string, protocol interface{}, header map[string]string) ([]byte, error) {
+func SendRequest[M ~map[S]S, S ~string](ctx context.Context, url string, protocol any, header M) ([]byte, error) {
 	reqEntityBytes, err := json.Marshal(protocol)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("send request to services -> url: %s, req: %s", url, reqEntityBytes)
 	return sendPostRequest(ctx, url, reqEntityBytes, header)
 }
 
-func sendPostRequest(_ context.Context, url string, requestBody []byte, headers headers) ([]byte, error) {
+func sendPostRequest[M ~map[S]S, S ~string](_ context.Context, url string, requestBody []byte, headers M) ([]byte, error) {
 	req := fasthttp.AcquireRequest()
 	req.SetRequestURI(url)
 	req.Header.SetMethod(fasthttp.MethodPost)
@@ -31,7 +31,7 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, headers 
 	req.Header.DisableNormalizing()
 	req.SetBodyRaw(requestBody)
 	for k, v := range headers {
-		req.Header.Set(k, v)
+		req.Header.Set(string(k), string(v))
 	}
 
 	resp := fasthttp.AcquireResponse()
@@ -40,14 +40,6 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, headers 
 		fasthttp.ReleaseRequest(req)
 	}()
 	err := client.DoTimeout(req, resp, 3*time.Second)
-
-	//if err != nil {
-	//	if _, know := httpConnError(err); know {
-	//		return nil, err
-	//	} else {
-	//		return nil, err
-	//	}
-	//}
 	if err != nil {
 		return nil, apierrors.GetFailedRequestDoTimeoutError(err)
 	}
@@ -63,6 +55,7 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, headers 
 	if len(respBody) == 0 {
 		return nil, ErrBodyIsNil
 	}
+	fmt.Printf("response from services <- url: %s, resp: %s", url, respBody)
 	return respBody, nil
 }
 
