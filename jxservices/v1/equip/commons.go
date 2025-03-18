@@ -1,5 +1,7 @@
 package equip
 
+const maxUint8 = ^uint8(0)
+
 type IdTokenStatusTypeEnum int
 
 const (

@@ -41,7 +41,7 @@ type equipUpdateTransactionReqeustDetail struct {
 	Timestamp     int64         `json:"timestamp"`
 	MeterValue    *MeterValue   `json:"MeterValue,omitempty"`
 	Tariff        *Tariff       `json:"tariff,omitempty"`
-	ChargingState uint8         `json:"chargingState"`
+	ChargingState *uint8        `json:"chargingState,omitempty"`
 	RemainingTime *int          `json:"remainingTime,omitempty"`
 	VIN           *string       `json:"vin,omitempty"`
 	Temperatures  *Temperatures `json:"temperatures,omitempty"`
@@ -67,10 +67,12 @@ func NewUpdateTransactionRequest(sn, id, pod, msgId string, p *services.Protocol
 			Tariff: &Tariff{
 				Id: -1,
 			},
-			ChargingState: chargeState,
+			// ChargingState: chargeState,
 		},
 	}
-
+	if chargeState != maxUint8 {
+		updateTransaction.Data.ChargingState = &chargeState
+	}
 	return updateTransaction
 }
 
