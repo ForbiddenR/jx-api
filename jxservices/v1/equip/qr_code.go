@@ -67,9 +67,9 @@ func (q *equipQRCodeResponse) GetMsg() string {
 }
 
 func QRCodeRequest(ctx context.Context, req services.Request) (*equipQRCodeResponse, error) {
-	header := services.GetSimpleHeaderValue(services.QRCode)
+	// header := services.GetSimpleHeaderValue(services.QRCode)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithResponse(ctx, req, url, header, &equipQRCodeResponse{})
+	return services.RequestWithResponse(ctx, req, url, &equipQRCodeResponse{})
 }

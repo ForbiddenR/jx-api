@@ -26,7 +26,6 @@ const (
 	TestSN          = "JK000000006"
 	TestAccessPod   = "jx-acos-0"
 	CallbackSuffix  = "Callback"
-	//Acos            = "Acos"
 )
 
 // Define some default status fields in callback.
@@ -163,58 +162,55 @@ func (r Request2ServicesNameType) String() string {
 	return string(r)
 }
 
-//type Request2ServicesPermsType string
+// func (r Request2ServicesNameType) Split() []string {
+// 	switch r {
+// 	case UpdateFirmware:
+// 		return []string{"push", "firmware", "equipment"}
+// 	case FirmwareStatusNotification:
+// 		return []string{"push", "firmware", "notification"}
+// 	case RemoteStartTransaction:
+// 		return []string{"remote", "Start"}
+// 	case RemoteStopTransaction:
+// 		return []string{"remote", "stop"}
+// 	case SendLocalList:
+// 		return []string{"set", "local", "authorize"}
+// 	case StartTransaction:
+// 		return []string{"start", "transaction"}
+// 	case StopTransaction:
+// 		return []string{"stop", "transaction"}
+// 	}
+// 	for i := range len(r.String()) {
+// 		str := r.String()[i : i+1]
+// 		if str == strings.ToUpper(str) {
+// 			switch r.String()[:i] {
+// 			case "equip":
+// 				return []string{strings.ToLower(r.String()[i:])}
+// 			case "authorize":
+// 				return []string{r.String()[:i]}
+// 			default:
+// 				return r.SplitName()
+// 			}
+// 		}
+// 	}
+// 	return []string{r.String()}
+// }
 
-// Split returns the value of "Perms".
-func (r Request2ServicesNameType) Split() []string {
-	switch r {
-	case UpdateFirmware:
-		return []string{"push", "firmware", "equipment"}
-	case FirmwareStatusNotification:
-		return []string{"push", "firmware", "notification"}
-	case RemoteStartTransaction:
-		return []string{"remote", "Start"}
-	case RemoteStopTransaction:
-		return []string{"remote", "stop"}
-	case SendLocalList:
-		return []string{"set", "local", "authorize"}
-	case StartTransaction:
-		return []string{"start", "transaction"}
-	case StopTransaction:
-		return []string{"stop", "transaction"}
-	}
-	for i := range len(r.String()) {
-		str := r.String()[i : i+1]
-		if str == strings.ToUpper(str) {
-			switch r.String()[:i] {
-			case "equip":
-				return []string{strings.ToLower(r.String()[i:])}
-			case "authorize":
-				return []string{r.String()[:i]}
-			default:
-				return r.SplitName()
-			}
-		}
-	}
-	return []string{r.String()}
-}
-
-// SplitName will be used by the function above to parser all the regular attributes.
-func (r Request2ServicesNameType) SplitName() []string {
-	var head, tail int
-	var result []string
-	for tail = 0; tail < len(r.String()); tail++ {
-		str := r.String()[tail : tail+1]
-		if str == strings.ToUpper(str) && tail != 0 {
-			result = append(result, strings.ToLower(r.String()[head:tail]))
-			head = tail
-		}
-	}
-	if head < tail {
-		result = append(result, strings.ToLower(r.String()[head:tail]))
-	}
-	return result
-}
+// // SplitName will be used by the function above to parser all the regular attributes.
+// func (r Request2ServicesNameType) SplitName() []string {
+// 	var head, tail int
+// 	var result []string
+// 	for tail = 0; tail < len(r.String()); tail++ {
+// 		str := r.String()[tail : tail+1]
+// 		if str == strings.ToUpper(str) && tail != 0 {
+// 			result = append(result, strings.ToLower(r.String()[head:tail]))
+// 			head = tail
+// 		}
+// 	}
+// 	if head < tail {
+// 		result = append(result, strings.ToLower(r.String()[head:tail]))
+// 	}
+// 	return result
+// }
 
 func (r Request2ServicesNameType) GetCallbackCategory() string {
 	return r.FirstUpper() + CallbackSuffix
@@ -416,33 +412,19 @@ func getCallbackError(clientId string, command string, err *apierrors.Error) *ap
 
 // GetProperCallbackError turns an entering error into callback error
 func GetProperCallbackError(clientId string, command string, err error) *apierrors.CallbackError {
-	if cbErr, ok := err.(*apierrors.CallbackError); ok {
-		return cbErr
-	}
-
-	if ocpError, ok := err.(*apierrors.Error); ok {
-		cbErr := getCallbackError(clientId, command, ocpError)
-		return cbErr
-	}
-
-	return apierrors.NewCallbackErrorOffline(clientId, command)
+	return typeCheckOr(err, func(e error) *apierrors.CallbackError {
+		if err, ok := err.(*apierrors.Error); ok {
+			return getCallbackError(clientId, command, err)
+		}
+		return apierrors.NewCallbackErrorOffline(clientId, command)
+	}, err)
 }
 
-func GetSimpleHeaderValue(alias Request2ServicesNameType) map[string]string {
-	headerValue := make([]string, 0)
-	headerValue = append(headerValue, api.Services, Equipment)
-	headerValue = append(headerValue, alias.Split()...)
-	header := map[string]string{api.Perms: strings.Join(headerValue, ":")}
-	return header
-}
-
-func GetCallbackHeaderValue(alias Request2ServicesNameType) map[string]string {
-	headerValue := make([]string, 0)
-	headerValue = append(headerValue, api.Services)
-	headerValue = append(headerValue, alias.Split()...)
-	headerValue = append(headerValue, Callback)
-	header := map[string]string{api.Perms: strings.Join(headerValue, ":")}
-	return header
+func typeCheckOr[T, B any](input any, f func(B) T, arg B) T {
+	if t, ok := input.(T); ok {
+		return t
+	}
+	return f(arg)
 }
 
 func GetSimpleURL(req Request) string {
@@ -451,17 +433,6 @@ func GetSimpleURL(req Request) string {
 
 func GetCallbackURL(req Request) string {
 	return api.ServicesUrl + Equip + "/" + Callback + "/" + req.GetName().String() + CallbackSuffix
-}
-
-func getHeader(req Request) map[string]string {
-	var headers map[string]string
-	if req.IsCallback() {
-		headers = GetCallbackHeaderValue(req.GetName())
-	} else {
-		headers = GetSimpleHeaderValue(req.GetName())
-	}
-	headers["TraceId"] = req.TraceId()
-	return headers
 }
 
 func getURI(req Request) string {
@@ -477,7 +448,8 @@ func Transport(ctx context.Context, req Request) error {
 		Post().
 		RequestURI(uri).
 		Body(req).
-		SetHeader(getHeader(req)).
+		SetHeader(api.TraceId, req.TraceId()).
+		SetParam().
 		Do(ctx)
 	if result.Error() != nil {
 		request, _ := json.Marshal(req)
@@ -495,9 +467,8 @@ func Transport(ctx context.Context, req Request) error {
 	return err
 }
 
-func RequestWithoutResponse[T Response](ctx context.Context, req Request, url string, header map[string]string, t T) (err error) {
-	header["TraceId"] = req.TraceId()
-	message, err := api.SendRequest(ctx, url, req, header)
+func RequestWithoutResponse[T Response](ctx context.Context, req Request, url string, t T) (err error) {
+	message, err := api.SendRequest(ctx, url, req, api.WithHeader(api.TraceId, req.TraceId()))
 	if err != nil {
 		return
 	}
@@ -514,9 +485,8 @@ func RequestWithoutResponse[T Response](ctx context.Context, req Request, url st
 	return err
 }
 
-func RequestWithResponse[T Response](ctx context.Context, req Request, url string, header map[string]string, t T) (resp T, err error) {
-	header["TraceId"] = req.TraceId()
-	message, err := api.SendRequest(ctx, url, req, header)
+func RequestWithResponse[T Response](ctx context.Context, req Request, url string, t T) (resp T, err error) {
+	message, err := api.SendRequest(ctx, url, req, api.WithHeader(api.TraceId, req.TraceId()))
 	if err != nil {
 		return resp, err
 	}

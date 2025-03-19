@@ -74,7 +74,7 @@ func (resp *equipOnlineResponse) GetMsg() string {
 }
 
 func OnlineRequest(ctx context.Context, req *equipOnlineRequest) error {
-	header := services.GetSimpleHeaderValue(services.Online)
+	// header := services.GetSimpleHeaderValue(services.Online)
 	url := services.GetSimpleURL(req)
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipOnlineResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipOnlineResponse{})
 }

@@ -126,9 +126,9 @@ type equipGetBaseReportResponseDetail struct {
 }
 
 func GetBaseReportCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.GetConfiguration)
+	// header := services.GetCallbackHeaderValue(services.GetConfiguration)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipGetBaseReportCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipGetBaseReportCallbackResponse{})
 }

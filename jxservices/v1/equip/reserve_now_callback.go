@@ -70,9 +70,9 @@ func (resp *equipReserveNowCallbackResponse) GetMsg() string {
 }
 
 func ReserveNowCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.ReserveNow)
+	// header := services.GetCallbackHeaderValue(services.ReserveNow)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipReserveNowCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipReserveNowCallbackResponse{})
 }

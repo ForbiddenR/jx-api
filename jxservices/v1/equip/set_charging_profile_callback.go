@@ -72,9 +72,9 @@ func (resp *equipSetChargingProfileResponse) GetMsg() string {
 }
 
 func SetChargingProfileRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SetChargingProfile)
+	// header := services.GetCallbackHeaderValue(services.SetChargingProfile)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetChargingProfileResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetChargingProfileResponse{})
 }

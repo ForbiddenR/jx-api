@@ -72,9 +72,9 @@ func (resp *equipCancelReservationCallbackResponse) GetMsg() string {
 }
 
 func CancelReservationCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.CancelReservation)
+	// header := services.GetCallbackHeaderValue(services.CancelReservation)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipCancelReservationCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipCancelReservationCallbackResponse{})
 }

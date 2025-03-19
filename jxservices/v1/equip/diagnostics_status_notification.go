@@ -108,9 +108,9 @@ type equipDiagnosticsStatusNotificationResponseDetail struct {
 }
 
 func DiagnosticsStatusNotificationRequest(ctx context.Context, req services.Request) error {
-	header := services.GetSimpleHeaderValue(services.DiagnosticsStatusNotification)
+	// header := services.GetSimpleHeaderValue(services.DiagnosticsStatusNotification)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipDiagnosticsStatusNotificationResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipDiagnosticsStatusNotificationResponse{})
 }

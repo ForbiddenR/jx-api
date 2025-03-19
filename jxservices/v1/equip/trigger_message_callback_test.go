@@ -27,7 +27,7 @@ func TestCallStatusNotificationRequest(t *testing.T) {
 	result := serviceClient.Post().
 		RequestURI("test").
 		Body(req).
-		SetHeader(map[string]string{"test": "test"}).
+		SetHeader("test", "test").
 		Do(context.Background())
 	assert.Nil(t, result.Error())
 

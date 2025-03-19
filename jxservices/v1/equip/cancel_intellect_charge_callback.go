@@ -72,9 +72,9 @@ func (resp *equipCancelIntellectChargeResponse) GetMsg() string {
 }
 
 func CancelIntellectChargeRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.CancelIntellectCharge)
+	// header := services.GetCallbackHeaderValue(services.CancelIntellectCharge)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipCancelIntellectChargeResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipCancelIntellectChargeResponse{})
 }

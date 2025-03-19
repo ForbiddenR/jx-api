@@ -82,9 +82,9 @@ type equipSetFactoryResetResponseDetail struct {
 }
 
 func SetFactoryResetRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SetFactoryReset)
+	// header := services.GetCallbackHeaderValue(services.SetFactoryReset)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetFactoryResetResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetFactoryResetResponse{})
 }

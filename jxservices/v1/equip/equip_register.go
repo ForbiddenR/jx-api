@@ -66,9 +66,9 @@ func (resp *equipRegisterResponse) GetMsg() string {
 }
 
 func RegisterRequest(ctx context.Context, req *equipRegisterRequest) error {
-	header := services.GetSimpleHeaderValue(services.Register)
+	// header := services.GetSimpleHeaderValue(services.Register)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipRegisterResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipRegisterResponse{})
 }

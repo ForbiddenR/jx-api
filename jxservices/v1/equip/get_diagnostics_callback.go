@@ -84,9 +84,9 @@ func (resp *equipGetDiagnosticsCallbackResponse) GetMsg() string {
 }
 
 func GetDiagnosticsCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.GetDiagnostics)
+	// header := services.GetCallbackHeaderValue(services.GetDiagnostics)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipGetDiagnosticsCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipGetDiagnosticsCallbackResponse{})
 }

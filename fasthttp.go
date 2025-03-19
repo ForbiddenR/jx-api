@@ -13,24 +13,40 @@ var headerContentTypeJson = []byte("application/json")
 
 var client *fasthttp.Client
 
-func SendRequest[M ~map[S]S, S ~string](ctx context.Context, url string, protocol any, header M) ([]byte, error) {
+type HttpOption func(*fasthttp.Request)
+
+func WithHeader[V ~string](key, value V) HttpOption {
+	return func(r *fasthttp.Request) {
+		r.Header.Set(string(key), string(value))
+	}
+}
+
+func WithHeaders[V ~map[S]S, S ~string](m V) HttpOption {
+	return func(r *fasthttp.Request) {
+		for k, v := range m {
+			r.Header.Set(string(k), string(v))
+		}
+	}
+}
+
+func SendRequest[T any](ctx context.Context, url string, protocol T, opts ...HttpOption) ([]byte, error) {
 	reqEntityBytes, err := json.Marshal(protocol)
 	if err != nil {
 		return nil, err
 	}
-	return sendPostRequest(ctx, url, reqEntityBytes, header)
+	return sendPostRequest(ctx, url, reqEntityBytes, opts...)
 }
 
-func sendPostRequest[M ~map[S]S, S ~string](_ context.Context, url string, requestBody []byte, headers M) ([]byte, error) {
+func sendPostRequest(_ context.Context, url string, requestBody []byte, opts ...HttpOption) ([]byte, error) {
 	req := fasthttp.AcquireRequest()
+	for _, opt := range opts {
+		opt(req)
+	}
 	req.SetRequestURI(url)
 	req.Header.SetMethod(fasthttp.MethodPost)
 	req.Header.SetContentTypeBytes(headerContentTypeJson)
 	req.Header.DisableNormalizing()
 	req.SetBodyRaw(requestBody)
-	for k, v := range headers {
-		req.Header.Set(string(k), string(v))
-	}
 
 	resp := fasthttp.AcquireResponse()
 	defer func() {

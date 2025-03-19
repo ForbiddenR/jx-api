@@ -72,9 +72,9 @@ func (resp *equipRemoteStopTransactionCallbackResponse) GetMsg() string {
 }
 
 func RemoteStopTransactionRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.RemoteStopTransaction)
+	// header := services.GetCallbackHeaderValue(services.RemoteStopTransaction)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipRemoteStopTransactionCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipRemoteStopTransactionCallbackResponse{})
 }

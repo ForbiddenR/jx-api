@@ -46,10 +46,10 @@ type accessVerifyResponseData struct {
 	ReadWait            utils.Duration `json:"readWait"`
 }
 
-func AccessVerifyRequest(ctx context.Context, ticket string, traceId string, request *accessVerifyRequest) (*accessVerifyResponse, error) {
-	header := map[string]string{api.Perms: esam.Access.Perm(), esam.TicketKey: ticket, api.TraceId: traceId}
+func AccessVerifyRequest(ctx context.Context, ticket, traceId string, request *accessVerifyRequest) (*accessVerifyResponse, error) {
+	// header := map[string]string{api.Perms: esam.Access.Perm(), esam.TicketKey: ticket, api.TraceId: traceId}
 	url := api.EsamUrl + esam.Equip + "/verify"
-	resp, err := api.SendRequest(ctx, url, request, header)
+	resp, err := api.SendRequest(ctx, url, request, api.WithHeader(api.Perms, esam.Access.Perm()), api.WithHeader(esam.TicketKey, ticket), api.WithHeader(api.TraceId, traceId))
 	if err != nil {
 		return nil, err
 	}

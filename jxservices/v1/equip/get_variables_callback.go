@@ -91,9 +91,9 @@ type equipGetVariablesResponseDetail struct {
 }
 
 func GetVariablesCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.GetConfiguration)
+	// header := services.GetCallbackHeaderValue(services.GetConfiguration)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipGetVariablesCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipGetVariablesCallbackResponse{})
 }

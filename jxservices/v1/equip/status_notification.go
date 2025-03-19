@@ -157,9 +157,9 @@ func (resp *equipStatusNotificationResponse) GetMsg() string {
 }
 
 func StatusNotificationRequest(ctx context.Context, req *equipStatusNotificationRequest) error {
-	header := services.GetSimpleHeaderValue(services.Register)
+	// // header := services.GetSimpleHeaderValue(services.Register)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipStatusNotificationResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipStatusNotificationResponse{})
 }

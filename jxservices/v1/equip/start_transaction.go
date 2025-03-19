@@ -135,9 +135,9 @@ type equipStartTransactionResponseDetail struct {
 }
 
 func StartTransactionRequest(ctx context.Context, req services.Request) (*equipStartTransactionResponse, error) {
-	header := services.GetSimpleHeaderValue(services.StartTransaction)
+	// // header := services.GetSimpleHeaderValue(services.StartTransaction)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithResponse(ctx, req, url, header, &equipStartTransactionResponse{})
+	return services.RequestWithResponse(ctx, req, url, &equipStartTransactionResponse{})
 }

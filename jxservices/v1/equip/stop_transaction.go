@@ -480,9 +480,9 @@ type equipStopTransactionResponseDetail struct {
 }
 
 func StopTransactionRequest(ctx context.Context, req *equipStopTransactionRequest) (*equipStopTransactionResponse, error) {
-	header := services.GetSimpleHeaderValue(services.StopTransaction)
+	// // header := services.GetSimpleHeaderValue(services.StopTransaction)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithResponse(ctx, req, url, header, &equipStopTransactionResponse{})
+	return services.RequestWithResponse(ctx, req, url, &equipStopTransactionResponse{})
 }

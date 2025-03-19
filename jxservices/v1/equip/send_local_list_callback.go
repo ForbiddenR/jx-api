@@ -92,9 +92,9 @@ func (resp *equipSendLocalListResponse) GetMsg() string {
 }
 
 func SendLocalListCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SendLocalList)
+	// header := services.GetCallbackHeaderValue(services.SendLocalList)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSendLocalListResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSendLocalListResponse{})
 }

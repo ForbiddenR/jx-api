@@ -101,9 +101,9 @@ type equipGetIntellectChargeResponseDetail struct {
 }
 
 func GetIntellectChargeCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.GetIntellectCharge)
+	// header := services.GetCallbackHeaderValue(services.GetIntellectCharge)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipGetIntellectChargeResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipGetIntellectChargeResponse{})
 }

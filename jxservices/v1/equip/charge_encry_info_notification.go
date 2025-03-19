@@ -93,9 +93,9 @@ type equipChargeEncryInfoNotificationResponseDetail struct {
 }
 
 func ChargeEncryInfoNotificationReqeust(ctx context.Context, req services.Request) error {
-	header := services.GetSimpleHeaderValue(services.ChargeEncryInfoNotification)
+	// header := services.GetSimpleHeaderValue(services.ChargeEncryInfoNotification)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipChargeEncryInfoNotificationResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipChargeEncryInfoNotificationResponse{})
 }

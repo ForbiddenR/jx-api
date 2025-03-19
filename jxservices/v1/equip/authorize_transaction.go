@@ -64,9 +64,9 @@ type equipAuthorizeTransactionResponseDetail struct {
 }
 
 func AuthorizeTransactionRequest(ctx context.Context, req *equipAuthorizeTransactionRequest) (*equipAuthorizeTransactionResponse, error) {
-	header := services.GetSimpleHeaderValue(services.Authorize)
+	// header := services.GetSimpleHeaderValue(services.Authorize)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithResponse(ctx, req, url, header, &equipAuthorizeTransactionResponse{})
+	return services.RequestWithResponse(ctx, req, url, &equipAuthorizeTransactionResponse{})
 }

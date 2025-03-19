@@ -83,7 +83,7 @@ func (resp *equipOfflineResponse) GetMsg() string {
 }
 
 func OfflineRequest(ctx context.Context, req *equipOfflineRequest) error {
-	header := services.GetSimpleHeaderValue(services.Offline)
+	// header := services.GetSimpleHeaderValue(services.Offline)
 	url := services.GetSimpleURL(req)
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipOfflineResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipOfflineResponse{})
 }

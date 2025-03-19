@@ -70,9 +70,9 @@ func (resp *equipSetIntellectChargeResponse) GetMsg() string {
 }
 
 func SetIntellectChargeRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SendQRCode)
+	// header := services.GetCallbackHeaderValue(services.SendQRCode)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetIntellectChargeResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetIntellectChargeResponse{})
 }

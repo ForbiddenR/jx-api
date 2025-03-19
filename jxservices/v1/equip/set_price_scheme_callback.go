@@ -71,9 +71,9 @@ func (resp *equipSetPriceSchemeResponse) GetMsg() string {
 }
 
 func SetPriceSchemeRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SetPriceScheme)
+	// header := services.GetCallbackHeaderValue(services.SetPriceScheme)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetPriceSchemeResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetPriceSchemeResponse{})
 }

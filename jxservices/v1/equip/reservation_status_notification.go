@@ -72,9 +72,9 @@ func (resp *equipReservationStatusNotificationResponse) GetMsg() string {
 }
 
 func ReservationStatusNotificationRequest(ctx context.Context, req *equipReservationStatusNotificationRequest) error {
-	header := services.GetSimpleHeaderValue(services.ReservationStatusNotification)
+	// header := services.GetSimpleHeaderValue(services.ReservationStatusNotification)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipReservationStatusNotificationResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipReservationStatusNotificationResponse{})
 }

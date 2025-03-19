@@ -80,9 +80,9 @@ type equipSetLoadBalanceResponseDetail struct {
 }
 
 func SetLoadBalanceRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SetLoadBalance)
+	// header := services.GetCallbackHeaderValue(services.SetLoadBalance)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetLoadBalanceResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetLoadBalanceResponse{})
 }

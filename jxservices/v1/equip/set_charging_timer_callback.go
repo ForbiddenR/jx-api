@@ -72,9 +72,9 @@ func (resp *equipSetChargingTimerCallbackResponse) GetMsg() string {
 }
 
 func SetChargingTimerCallbackRequest(ctx context.Context, req services.Request) error {
-	header := services.GetCallbackHeaderValue(services.SetChargingTimer)
+	// header := services.GetCallbackHeaderValue(services.SetChargingTimer)
 
 	url := services.GetCallbackURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipSetChargingTimerCallbackResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipSetChargingTimerCallbackResponse{})
 }

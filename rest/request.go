@@ -44,16 +44,18 @@ func (r *Request) RequestURI(uri string) *Request {
 	return r
 }
 
-func (r *Request) SetHeader(header map[string]string) *Request {
-	for k, v := range header {
-		r.req.Header.Set(k, v)
-	}
+func (r *Request) SetHeader(key, value string) *Request {
+	r.req.Header.Set(key, value)
+	return r
+}
+
+func (r *Request) SetParam() *Request {
 	r.req.Header.SetContentTypeBytes(headerContentTypeJson)
 	r.req.Header.DisableNormalizing()
 	return r
 }
 
-func (r *Request) Body(body interface{}) *Request {
+func (r *Request) Body(body any) *Request {
 	if r.err != nil {
 		return r
 	}

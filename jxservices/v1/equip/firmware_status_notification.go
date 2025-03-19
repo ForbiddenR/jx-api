@@ -113,9 +113,9 @@ func (resp *equipFirmwareStatusNotificationResponse) GetMsg() string {
 }
 
 func FirmwareStatusNotificationRequest(ctx context.Context, req services.Request) error {
-	header := services.GetSimpleHeaderValue(services.FirmwareStatusNotification)
+	// header := services.GetSimpleHeaderValue(services.FirmwareStatusNotification)
 
 	url := services.GetSimpleURL(req)
 
-	return services.RequestWithoutResponse(ctx, req, url, header, &equipFirmwareStatusNotificationResponse{})
+	return services.RequestWithoutResponse(ctx, req, url, &equipFirmwareStatusNotificationResponse{})
 }
