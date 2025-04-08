@@ -11,13 +11,8 @@ import (
 	api "github.com/ForbiddenR/jxapi/v2"
 	"github.com/ForbiddenR/jxapi/v2/apierrors"
 	"github.com/ForbiddenR/jxapi/v2/jxutils/extra"
-	"github.com/ForbiddenR/jxapi/v2/jxutils/store"
 	"github.com/ForbiddenR/toolkit/transport"
 )
-
-type callbackGenerator func(base Base, err *apierrors.CallbackError) Request
-
-var UnsupportedFeatures = store.NewReceptacle[callbackGenerator]()
 
 var IdHandle = unique.Make("equipmentId")
 
@@ -260,31 +255,46 @@ func (b *BaseConfig) Build() Base {
 	}
 }
 
-type Protocol struct {
+type protocolDetail struct {
 	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
+type Protocol struct {
+	p unique.Handle[protocolDetail]
+}
+
+func NewProtocol(name, version string) *Protocol {
+	return &Protocol{
+		p: unique.Make(protocolDetail{Name: name, Version: version}),
+	}
+}
+
 func NewIEC104Protocol(version string) *Protocol {
 	return &Protocol{
-		Name:    "IEC104",
-		Version: version,
+		unique.Make(protocolDetail{Name: "IEC104", Version: version}),
 	}
+}
+
+func (p *Protocol) Name() string {
+	return p.p.Value().Name
+}
+
+func (p *Protocol) Version() string {
+	return p.p.Value().Version
 }
 
 func (p *Protocol) String() string {
-	return p.Name + "" + p.Version
+	detail := p.p.Value()
+	return detail.Name + " " + detail.Version
 }
 
 func (p *Protocol) Equal(p2 *Protocol) bool {
-	return p.Name == p2.Name && p.Version == p2.Version
+	return p.p == p2.p
 }
 
 func (p *Protocol) UnmarshalJSON(data []byte) error {
-	var v struct {
-		Name    string `json:"name"`
-		Version string `json:"version"`
-	}
+	var v protocolDetail
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
@@ -301,20 +311,78 @@ func (p *Protocol) UnmarshalJSON(data []byte) error {
 	default:
 		return errors.New("invalid protocol name: " + v.Name)
 	}
-	p.Name = v.Name
-	p.Version = v.Version
-
+	p.p = unique.Make(protocolDetail{Name: v.Name, Version: v.Version})
 	return nil
 }
 
-var ocpp16p = &Protocol{Name: "OCPP", Version: "1.6"}
-var ocpp201p = &Protocol{Name: "OCPP", Version: "2.0.1"}
-var iec001 = &Protocol{Name: "IEC104", Version: "0.1"}
-var iec002 = &Protocol{Name: "IEC104", Version: "0.2"}
-var iec003 = &Protocol{Name: "IEC104", Version: "0.3"}
-var iec004 = &Protocol{Name: "IEC104", Version: "0.4"}
-var iec005 = &Protocol{Name: "IEC104", Version: "0.5"}
-var yunKuaiChong = &Protocol{Name: "YKC", Version: "1"}
+func (p *Protocol) MarshalJSON() ([]byte, error) {
+	return json.Marshal(p.p.Value())
+}
+
+var ocpp16p = &Protocol{unique.Make(protocolDetail{Name: "OCPP", Version: "1.6"})}
+var ocpp201p = &Protocol{unique.Make(protocolDetail{Name: "OCPP", Version: "2.0.1"})}
+var iec001 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.1"})}
+var iec002 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.2"})}
+var iec003 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.3"})}
+var iec004 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.4"})}
+var iec005 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.5"})}
+var yunKuaiChong = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "1"})}
+
+// type Protocol struct {
+// 	Name    string `json:"name"`
+// 	Version string `json:"version"`
+// }
+
+// func NewIEC104Protocol(version string) *Protocol {
+// 	return &Protocol{
+// 		Name:    "IEC104",
+// 		Version: version,
+// 	}
+// }
+
+// func (p *Protocol) String() string {
+// 	return p.Name + "" + p.Version
+// }
+
+// func (p *Protocol) Equal(p2 *Protocol) bool {
+// 	return p.Name == p2.Name && p.Version == p2.Version
+// }
+
+// func (p *Protocol) UnmarshalJSON(data []byte) error {
+// 	var v struct {
+// 		Name    string `json:"name"`
+// 		Version string `json:"version"`
+// 	}
+// 	if err := json.Unmarshal(data, &v); err != nil {
+// 		return err
+// 	}
+// 	switch v.Name {
+// 	case "OCPP":
+// 		if v.Version != "1.6" && v.Version != "2.0.1" {
+// 			return errors.New("invalid OCPP version: " + v.Version)
+// 		}
+// 	case "IEC104":
+// 		if v.Version != "0.1" && v.Version != "0.2" && v.Version != "0.3" && v.Version != "0.4" && v.Version != "0.5" && v.Version != "0.6" {
+// 			return errors.New("invalid IEC104 version: " + v.Version)
+// 		}
+// 	case "YKC":
+// 	default:
+// 		return errors.New("invalid protocol name: " + v.Name)
+// 	}
+// 	p.Name = v.Name
+// 	p.Version = v.Version
+
+// 	return nil
+// }
+
+// var ocpp16p = &Protocol{Name: "OCPP", Version: "1.6"}
+// var ocpp201p = &Protocol{Name: "OCPP", Version: "2.0.1"}
+// var iec001 = &Protocol{Name: "IEC104", Version: "0.1"}
+// var iec002 = &Protocol{Name: "IEC104", Version: "0.2"}
+// var iec003 = &Protocol{Name: "IEC104", Version: "0.3"}
+// var iec004 = &Protocol{Name: "IEC104", Version: "0.4"}
+// var iec005 = &Protocol{Name: "IEC104", Version: "0.5"}
+// var yunKuaiChong = &Protocol{Name: "YKC", Version: "1"}
 
 func OCPP16() *Protocol {
 	return ocpp16p
@@ -350,8 +418,7 @@ func YunKuaiChong() *Protocol {
 
 func YKC(version string) *Protocol {
 	return &Protocol{
-		Name:    "YKC",
-		Version: version,
+		unique.Make(protocolDetail{Name: "YKC", Version: version}),
 	}
 }
 
@@ -395,28 +462,29 @@ func getCallbackError(clientId string, command string, err *apierrors.Error) *ap
 }
 
 func PError(clientId string, command string, err error) *apierrors.CallbackError {
-	if cb, ok := err.(*apierrors.CallbackError); ok {
-		return cb
-	}
-	if ocp, ok := err.(*apierrors.Error); ok {
-		cb := getCallbackError(clientId, command, ocp)
-		return cb
-	}
-	return apierrors.NewCallbackErrorOffline(clientId, command)
+	return typeCheckOr(err, func(e error) *apierrors.CallbackError {
+		if err, ok := e.(*apierrors.Error); ok {
+			return getCallbackError(clientId, command, err)
+		}
+		return apierrors.NewCallbackErrorOffline(clientId, command)
+	}, err)
 }
 
 // GetProperCallbackError turns an entering error into callback error
 func GetProperCallbackError(clientId string, command string, err error) *apierrors.CallbackError {
-	if cbErr, ok := err.(*apierrors.CallbackError); ok {
-		return cbErr
-	}
+	return typeCheckOr(err, func(e error) *apierrors.CallbackError {
+		if err, ok := e.(*apierrors.Error); ok {
+			return getCallbackError(clientId, command, err)
+		}
+		return apierrors.NewCallbackErrorOffline(clientId, command)
+	}, err)
+}
 
-	if ocpError, ok := err.(*apierrors.Error); ok {
-		cbErr := getCallbackError(clientId, command, ocpError)
-		return cbErr
+func typeCheckOr[T, B any](input any, cast func(B) T, arg B) T {
+	if v, ok := input.(T); ok {
+		return v
 	}
-
-	return apierrors.NewCallbackErrorOffline(clientId, command)
+	return cast(arg)
 }
 
 func getHeader(req Request) map[string]string {

@@ -39,13 +39,13 @@ func (r *EquipRemoteStartTransactionRequest) UnmarshalJSON(data []byte) error {
 	}
 	if !aux.Protocol.Equal(services.OCPP16()) && !aux.Protocol.Equal(services.YunKuaiChong()) {
 		if aux.Data.EvseId == nil {
-			return errors.New(aux.Protocol.Name + ":evse serial is nil")
+			return errors.New(aux.Protocol.Name() + ":evse serial is nil")
 		}
 		if aux.Data.RemoteStartId == nil {
-			return errors.New(aux.Protocol.Name + ":remote start id is nil")
+			return errors.New(aux.Protocol.Name() + ":remote start id is nil")
 		}
 		if aux.Data.IdTokenType.Type == nil {
-			return errors.New(aux.Protocol.Name + ":id token type is nil")
+			return errors.New(aux.Protocol.Name() + ":id token type is nil")
 		}
 	}
 	return nil

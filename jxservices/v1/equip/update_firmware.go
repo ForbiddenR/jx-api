@@ -47,31 +47,31 @@ func (r *EquipUpdateFirmwareRequest) UnmarshalJSON(b []byte) error {
 	}
 	if aux.Protocol.Equal(services.YunKuaiChong()) {
 		if aux.Data.ChargerType == nil {
-			return errors.New(aux.Protocol.Name + ":charger type is nil")
+			return errors.New(aux.Protocol.Name() + ":charger type is nil")
 		}
 		if aux.Data.Power == nil {
-			return errors.New(aux.Protocol.Name + ":power is nil")
+			return errors.New(aux.Protocol.Name() + ":power is nil")
 		}
 		if aux.Data.Domain == nil {
-			return errors.New(aux.Protocol.Name + ":domain is nil")
+			return errors.New(aux.Protocol.Name() + ":domain is nil")
 		}
 		if aux.Data.Port == nil {
-			return errors.New(aux.Protocol.Name + ":port is nil")
+			return errors.New(aux.Protocol.Name() + ":port is nil")
 		}
 		if aux.Data.Username == nil {
-			return errors.New(aux.Protocol.Name + ":username is nil")
+			return errors.New(aux.Protocol.Name() + ":username is nil")
 		}
 		if aux.Data.Password == nil {
-			return errors.New(aux.Protocol.Name + ":password is nil")
+			return errors.New(aux.Protocol.Name() + ":password is nil")
 		}
 		if aux.Data.Path == nil {
-			return errors.New(aux.Protocol.Name + ":path is nil")
+			return errors.New(aux.Protocol.Name() + ":path is nil")
 		}
 		if aux.Data.Strategy == nil {
-			return errors.New(aux.Protocol.Name + ":strategy is nil")
+			return errors.New(aux.Protocol.Name() + ":strategy is nil")
 		}
 		if aux.Data.Timeout == nil {
-			return errors.New(aux.Protocol.Name + ":timeout is nil")
+			return errors.New(aux.Protocol.Name() + ":timeout is nil")
 		}
 	} else if !aux.Protocol.Equal(services.OCPP16()) {
 		if aux.Data.RequestID == nil {

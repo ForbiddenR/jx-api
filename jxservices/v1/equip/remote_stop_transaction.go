@@ -33,14 +33,14 @@ func (r *EquipRemoteStopTransactionRequest) UnmarshalJSON(data []byte) error {
 	}
 	if aux.Protocol.Equal(services.OCPP201()) {
 		if aux.Data.EvseId == nil {
-			return errors.New(aux.Protocol.Name + ":evse serial is nil")
+			return errors.New(aux.Protocol.Name() + ":evse serial is nil")
 		}
 		if aux.Data.ConnectorId == nil {
-			return errors.New(aux.Protocol.Name + ":connector serial is nil")
+			return errors.New(aux.Protocol.Name() + ":connector serial is nil")
 		}
 	} else if !aux.Protocol.Equal(services.OCPP16()) {
 		if aux.Data.ConnectorId == nil {
-			return errors.New(aux.Protocol.Name + ":connector serial is nil")
+			return errors.New(aux.Protocol.Name() + ":connector serial is nil")
 		}
 	}
 
