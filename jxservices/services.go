@@ -326,7 +326,7 @@ var iec002 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.2"
 var iec003 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.3"})}
 var iec004 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.4"})}
 var iec005 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.5"})}
-var yunKuaiChong = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "1"})}
+var yunKuaiChong = &Protocol{unique.Make(protocolDetail{Name: "YKC", Version: "1"})}
 
 // type Protocol struct {
 // 	Name    string `json:"name"`
