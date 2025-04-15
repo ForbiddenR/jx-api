@@ -1,6 +1,6 @@
 module github.com/ForbiddenR/jxapi/v2
 
-go 1.23.2
+go 1.23.8
 
 require (
 	github.com/ForbiddenR/toolkit v0.3.0
@@ -27,6 +27,7 @@ require (
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	go.uber.org/goleak v1.3.0 // indirect
 	golang.org/x/crypto v0.33.0 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
