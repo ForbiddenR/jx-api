@@ -8,7 +8,7 @@ import (
 
 	api "github.com/ForbiddenR/jxapi"
 	esam "github.com/ForbiddenR/jxapi/jxesam"
-	utils "github.com/ForbiddenR/jxapi/jxutils"
+	util "github.com/ForbiddenR/jxapi/jxutil"
 )
 
 const readWait = 80 * time.Second
@@ -38,16 +38,15 @@ type accessVerifyResponse struct {
 }
 
 type accessVerifyResponseData struct {
-	ID                  string         `json:"id"`
-	BaseUrl             string         `json:"baseUrl"`
-	HearbeatInterval    int            `json:"keepalive"`
-	TransactionInterval int            `json:"transactionInterval"`
-	Registered          bool           `json:"registered"`
-	ReadWait            utils.Duration `json:"readWait"`
+	ID                  string        `json:"id"`
+	BaseUrl             string        `json:"baseUrl"`
+	HearbeatInterval    int           `json:"keepalive"`
+	TransactionInterval int           `json:"transactionInterval"`
+	Registered          bool          `json:"registered"`
+	ReadWait            util.Duration `json:"readWait"`
 }
 
 func AccessVerifyRequest(ctx context.Context, ticket, traceId string, request *accessVerifyRequest) (*accessVerifyResponse, error) {
-	// header := map[string]string{api.Perms: esam.Access.Perm(), esam.TicketKey: ticket, api.TraceId: traceId}
 	url := api.EsamUrl + esam.Equip + "/verify"
 	resp, err := api.SendRequest(ctx, url, request, api.WithHeader(api.Perms, esam.Access.Perm()), api.WithHeader(esam.TicketKey, ticket), api.WithHeader(api.TraceId, traceId))
 	if err != nil {
@@ -70,7 +69,7 @@ func AccessVerifyRequest(ctx context.Context, ticket, traceId string, request *a
 	}
 
 	if accessResponse.Data.ReadWait == 0 {
-		accessResponse.Data.ReadWait = utils.Duration(readWait)
+		accessResponse.Data.ReadWait = util.Duration(readWait)
 	}
 
 	return accessResponse, nil

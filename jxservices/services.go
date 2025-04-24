@@ -9,7 +9,7 @@ import (
 
 	api "github.com/ForbiddenR/jxapi"
 	"github.com/ForbiddenR/jxapi/apierrors"
-	"github.com/ForbiddenR/jxapi/jxutils/store"
+	"github.com/ForbiddenR/jxapi/jxutil/store"
 )
 
 type callbackGenerator func(base Base, err *apierrors.CallbackError) Request

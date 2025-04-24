@@ -59,6 +59,7 @@ func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId strin
 	req := &equipDiagnosticsStatusNotificationRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    services.OCPP16(),
 			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,

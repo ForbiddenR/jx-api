@@ -9,7 +9,7 @@ import (
 type Duration time.Duration
 
 func (d *Duration) UnmarshalJSON(b []byte) error {
-	var value interface{}
+	var value any
 	if err := json.Unmarshal(b, &value); err != nil {
 		return err
 	}

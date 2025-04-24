@@ -98,7 +98,7 @@ func (p *Profile) GetFeature(name string) Feature {
 
 // ParseRequest checks whether a feature is supported and passes the rawRequest message to the requestParser function.
 // The type of the request message is passed to the requestParser function, which has to perform type assertion.
-func (p *Profile) ParseRequest(featureName string, rawRequest interface{}, requestParser func(raw interface{}, requestType reflect.Type) (Request, error)) (Request, error) {
+func (p *Profile) ParseRequest(featureName string, rawRequest any, requestParser func(raw any, requestType reflect.Type) (Request, error)) (Request, error) {
 	feature, ok := p.Features[featureName]
 	if !ok {
 		return nil, fmt.Errorf("Feature %s not found", featureName)
@@ -109,7 +109,7 @@ func (p *Profile) ParseRequest(featureName string, rawRequest interface{}, reque
 
 // ParseResponse checks whether a feature is supported and passes the rawResponse message to the responseParser function.
 // The type of the response message is passed to the responseParser function, which has to perform type assertion.
-func (p *Profile) ParseResponse(featureName string, rawResponse interface{}, responseParser func(raw interface{}, responseType reflect.Type) (Response, error)) (Response, error) {
+func (p *Profile) ParseResponse(featureName string, rawResponse any, responseParser func(raw any, responseType reflect.Type) (Response, error)) (Response, error) {
 	feature, ok := p.Features[featureName]
 	if !ok {
 		return nil, fmt.Errorf("Feature %s not found", featureName)
