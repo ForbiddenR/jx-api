@@ -28,8 +28,8 @@ func (c *Cache[K, V]) Set(key K, value V) {
 
 func (c *Cache[K, V]) Get(key K) (v V, found bool) {
 	if wp, found := c.cache.Load(key); found {
-		if value := wp.(weak.Pointer[V]).Value(); value != nil {
-			return *value, true
+		if v := wp.(weak.Pointer[V]).Value(); v != nil {
+			return *v, true
 		}
 	}
 	return

@@ -52,11 +52,11 @@ func (r *Request) SetHeader(header map[string]string) *Request {
 	return r
 }
 
-func (r *Request) Body(body any, extras ...extra.Extra) *Request {
+func (r *Request) Body(body any, opts ...extra.Option) *Request {
 	if r.err != nil {
 		return r
 	}
-	raw, err := extra.Marshal(body, extras...)
+	raw, err := extra.Marshal(body, opts...)
 	if err != nil {
 		r.err = err
 		return r

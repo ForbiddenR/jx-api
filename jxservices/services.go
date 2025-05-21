@@ -502,15 +502,14 @@ func getURI(req Request) string {
 
 func Transport(ctx context.Context, req Request) error {
 	equipmentId := transport.EquipmentIdFromCtx(ctx)
-	ext := extra.Extra{Key: IdHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
 		RequestURI(uri).
-		Body(req, ext).
+		Body(req, extra.WithExtra(IdHandle.Value(), equipmentId)).
 		SetHeader(getHeader(req)).
 		Do(ctx)
-	message, _ := extra.Marshal(req, ext)
+	message, _ := extra.Marshal(req, extra.WithExtra(IdHandle.Value(), equipmentId))
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))
 	if result.Error() != nil {
 		request, _ := json.Marshal(req)
@@ -532,15 +531,14 @@ func Transport(ctx context.Context, req Request) error {
 
 func TransportWithResp[T Response](ctx context.Context, req Request, t T) error {
 	equipmentId := transport.EquipmentIdFromCtx(ctx)
-	ext := extra.Extra{Key: IdHandle.Value(), Value: equipmentId}
 	uri := getURI(req)
 	result := api.ServiceClient.
 		Post().
 		RequestURI(uri).
-		Body(req, ext).
+		Body(req, extra.WithExtra(IdHandle.Value(), equipmentId)).
 		SetHeader(getHeader(req)).
 		Do(ctx)
-	message, _ := extra.Marshal(req, ext)
+	message, _ := extra.Marshal(req, extra.WithExtra(IdHandle.Value(), equipmentId))
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))
 	if result.Error() != nil {
 		request, _ := json.Marshal(req)
