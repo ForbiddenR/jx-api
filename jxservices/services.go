@@ -14,7 +14,10 @@ import (
 	"github.com/ForbiddenR/toolkit/transport"
 )
 
-var IdHandle = unique.Make("equipmentId")
+var (
+	IdHandle = unique.Make("equipmentId")
+	traceId  = unique.Make("TraceId")
+)
 
 // These constants are usually used in services package many times.
 const (
@@ -193,7 +196,7 @@ func (r Request2ServicesNameType) GetCallbackCategory() string {
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
 	Protocol    *Protocol `json:"protocol"`
-	Category    string    `json:"category"`
+	Category    string    `json:"-"`
 	AccessPod   string    `json:"accessPod"`
 	MsgID       string    `json:"msgId"`
 }
@@ -487,11 +490,11 @@ func typeCheckOr[T, B any](input any, cast func(B) T, arg B) T {
 	return cast(arg)
 }
 
-func getHeader(req Request) map[string]string {
-	header := make(map[string]string)
-	header["TraceId"] = req.TraceId()
-	return header
-}
+// func getHeader(req Request) map[string]string {
+// 	header := make(map[string]string)
+// 	header["TraceId"] = req.TraceId()
+// 	return header
+// }
 
 func getURI(req Request) string {
 	if req.IsCallback() {
@@ -507,7 +510,7 @@ func Transport(ctx context.Context, req Request) error {
 		Post().
 		RequestURI(uri).
 		Body(req, extra.WithExtra(IdHandle.Value(), equipmentId)).
-		SetHeader(getHeader(req)).
+		SetHeader(traceId.Value(), req.TraceId()).
 		Do(ctx)
 	message, _ := extra.Marshal(req, extra.WithExtra(IdHandle.Value(), equipmentId))
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))
@@ -536,7 +539,7 @@ func TransportWithResp[T Response](ctx context.Context, req Request, t T) error 
 		Post().
 		RequestURI(uri).
 		Body(req, extra.WithExtra(IdHandle.Value(), equipmentId)).
-		SetHeader(getHeader(req)).
+		SetHeader(traceId.Value(), req.TraceId()).
 		Do(ctx)
 	message, _ := extra.Marshal(req, extra.WithExtra(IdHandle.Value(), equipmentId))
 	api.Log.Info(fmt.Sprintf("send request to services. url: %s data: %s", uri, message))

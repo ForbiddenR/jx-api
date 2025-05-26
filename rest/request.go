@@ -44,7 +44,13 @@ func (r *Request) RequestURI(uri string) *Request {
 	return r
 }
 
-func (r *Request) SetHeader(header map[string]string) *Request {
+func (r *Request) SetHeader(k, v string) *Request {
+	r.req.Header.Set(k, v)
+	r.req.Header.SetContentTypeBytes(headerContentTypeJson)
+	return r
+}
+
+func (r *Request) SetHeaders(header map[string]string) *Request {
 	for k, v := range header {
 		r.req.Header.Set(k, v)
 	}

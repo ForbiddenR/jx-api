@@ -48,10 +48,6 @@ type accessVerifyResponseData struct {
 }
 
 func AccessVerifyRequest(ctx context.Context, ticket string, traceId string, request *accessVerifyRequest) (*accessVerifyResponse, error) {
-	// headerValue := make([]string, 0, 4)
-	// headerValue = append(headerValue, api.Esam, esam.Equip)
-	// headerValue = append(headerValue, esam.Access.Split()...)
-
 	header := map[string]string{api.Perms: esam.Perm(), esam.TicketKey: ticket, api.TraceId: traceId}
 	url := api.EsamUrl + esam.Equip + "/verify"
 	resp, err := api.SendRequest(ctx, url, request, header)
