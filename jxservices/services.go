@@ -220,7 +220,7 @@ type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
 	EquipmentId string    `json:"equipmentId"`
 	Protocol    *Protocol `json:"protocol"`
-	Category    string    `json:"category"`
+	Category    string    `json:"-"`
 	AccessPod   string    `json:"accessPod"`
 	MsgID       string    `json:"msgId"`
 }
