@@ -195,15 +195,14 @@ func (r Request2ServicesNameType) String() string {
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
 	Protocol    *Protocol `json:"protocol"`
-	Category    string    `json:"-"`
-	AccessPod   string    `json:"accessPod"`
-	MsgID       string    `json:"msgId"`
+	// Category    string    `json:"-"`
+	AccessPod string `json:"accessPod"`
+	MsgID     string `json:"msgId"`
 }
 
 type BaseConfig struct {
 	equipmentSn string
 	protocol    *Protocol
-	category    string
 	accessPod   string
 	msgID       string
 }
@@ -222,10 +221,10 @@ func (b *BaseConfig) Protocol(p *Protocol) *BaseConfig {
 	return b
 }
 
-func (b *BaseConfig) Category(cate string) *BaseConfig {
-	b.category = cate
-	return b
-}
+// func (b *BaseConfig) Category(cate string) *BaseConfig {
+// 	b.category = cate
+// 	return b
+// }
 
 // // TODO: use a common string rather than a string with type Request2ServicesNameType.
 // func (b *BaseConfig) Categories(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
@@ -251,7 +250,6 @@ func (b *BaseConfig) Build() Base {
 	return Base{
 		EquipmentSn: b.equipmentSn,
 		Protocol:    b.protocol,
-		Category:    b.category,
 		AccessPod:   b.accessPod,
 		MsgID:       b.msgID,
 	}
@@ -329,62 +327,6 @@ var iec003 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.3"
 var iec004 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.4"})}
 var iec005 = &Protocol{unique.Make(protocolDetail{Name: "IEC104", Version: "0.5"})}
 var yunKuaiChong = &Protocol{unique.Make(protocolDetail{Name: "YKC", Version: "1"})}
-
-// type Protocol struct {
-// 	Name    string `json:"name"`
-// 	Version string `json:"version"`
-// }
-
-// func NewIEC104Protocol(version string) *Protocol {
-// 	return &Protocol{
-// 		Name:    "IEC104",
-// 		Version: version,
-// 	}
-// }
-
-// func (p *Protocol) String() string {
-// 	return p.Name + "" + p.Version
-// }
-
-// func (p *Protocol) Equal(p2 *Protocol) bool {
-// 	return p.Name == p2.Name && p.Version == p2.Version
-// }
-
-// func (p *Protocol) UnmarshalJSON(data []byte) error {
-// 	var v struct {
-// 		Name    string `json:"name"`
-// 		Version string `json:"version"`
-// 	}
-// 	if err := json.Unmarshal(data, &v); err != nil {
-// 		return err
-// 	}
-// 	switch v.Name {
-// 	case "OCPP":
-// 		if v.Version != "1.6" && v.Version != "2.0.1" {
-// 			return errors.New("invalid OCPP version: " + v.Version)
-// 		}
-// 	case "IEC104":
-// 		if v.Version != "0.1" && v.Version != "0.2" && v.Version != "0.3" && v.Version != "0.4" && v.Version != "0.5" && v.Version != "0.6" {
-// 			return errors.New("invalid IEC104 version: " + v.Version)
-// 		}
-// 	case "YKC":
-// 	default:
-// 		return errors.New("invalid protocol name: " + v.Name)
-// 	}
-// 	p.Name = v.Name
-// 	p.Version = v.Version
-
-// 	return nil
-// }
-
-// var ocpp16p = &Protocol{Name: "OCPP", Version: "1.6"}
-// var ocpp201p = &Protocol{Name: "OCPP", Version: "2.0.1"}
-// var iec001 = &Protocol{Name: "IEC104", Version: "0.1"}
-// var iec002 = &Protocol{Name: "IEC104", Version: "0.2"}
-// var iec003 = &Protocol{Name: "IEC104", Version: "0.3"}
-// var iec004 = &Protocol{Name: "IEC104", Version: "0.4"}
-// var iec005 = &Protocol{Name: "IEC104", Version: "0.5"}
-// var yunKuaiChong = &Protocol{Name: "YKC", Version: "1"}
 
 func OCPP16() *Protocol {
 	return ocpp16p
@@ -488,12 +430,6 @@ func typeCheckOr[T, B any](input any, cast func(B) T, arg B) T {
 	}
 	return cast(arg)
 }
-
-// func getHeader(req Request) map[string]string {
-// 	header := make(map[string]string)
-// 	header["TraceId"] = req.TraceId()
-// 	return header
-// }
 
 func getURI(req Request) string {
 	if req.IsCallback() {

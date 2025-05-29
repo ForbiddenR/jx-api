@@ -44,3 +44,30 @@ func TestURL(t *testing.T) {
 
 	assert.Equal(t, "ac/callback/sendQRCodeCallback", Equip+"/"+Callback+"/"+SendQRCode.String()+"Callback")
 }
+
+type inner struct {
+	Category string
+	number int
+}
+
+type inner2 struct {
+	number int
+}
+
+func BenchmarkInitializing(b *testing.B) {
+	b.Run("nornal", func(b *testing.B) {
+		for i := range b.N {
+			_ = inner{
+				Category: Authorize.firstUpper(),
+				number: i,
+			}
+		}
+	})
+	b.Run("optimized", func(b *testing.B) {
+		for i := range b.N {
+			_ = inner2{
+				number: i,
+			}
+		}
+	})
+}
