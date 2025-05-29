@@ -11,7 +11,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.SendLocalList.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},
@@ -21,7 +20,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.SendLocalList.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},
@@ -45,7 +43,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.SendLocalList.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 			},
 // 			Callback: services.NewCB(1),
@@ -54,7 +51,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.SendLocalList.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 			},
 // 			Callback: services.NewCB(2),

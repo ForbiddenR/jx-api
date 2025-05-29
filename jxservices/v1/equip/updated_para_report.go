@@ -46,7 +46,6 @@ func NewEquipUpdatedParaReportRequest(sn, id, pod, msgId string, p *services.Pro
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.UpdatedParaReport.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

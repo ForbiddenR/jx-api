@@ -33,7 +33,6 @@ func NewEquipSetChargingTimerCallbackRequest(sn, id, pod, msgId string, p *servi
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -48,7 +47,6 @@ func NewEquipSetChargingTimerCallbackRequestError(sn, id, pod, msgId string, p *
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -72,8 +70,6 @@ func (resp *equipSetChargingTimerCallbackResponse) GetMsg() string {
 }
 
 func SetChargingTimerCallbackRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetCallbackHeaderValue(services.SetChargingTimer)
-
 	url := services.GetCallbackURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipSetChargingTimerCallbackResponse{})

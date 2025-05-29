@@ -36,7 +36,6 @@ func NewEquipAuthorizeTransactionRequest(sn, id, pod, msgID string, p *services.
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.Authorize.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -64,8 +63,6 @@ type equipAuthorizeTransactionResponseDetail struct {
 }
 
 func AuthorizeTransactionRequest(ctx context.Context, req *equipAuthorizeTransactionRequest) (*equipAuthorizeTransactionResponse, error) {
-	// header := services.GetSimpleHeaderValue(services.Authorize)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithResponse(ctx, req, url, &equipAuthorizeTransactionResponse{})

@@ -55,7 +55,6 @@ func NewEquipGetBaseReportCallbackRequestOCPP16(sn, id, pod, msgId string, statu
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    services.OCPP16(),
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -81,7 +80,6 @@ func NewEquipGetBaseReportCallbackRequest(sn, id, pod, msgId string, p *services
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -97,7 +95,6 @@ func NewEquipGetBaseReportRequestError(sn, id, pod, msgId string, p *services.Pr
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -126,8 +123,6 @@ type equipGetBaseReportResponseDetail struct {
 }
 
 func GetBaseReportCallbackRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetCallbackHeaderValue(services.GetConfiguration)
-
 	url := services.GetCallbackURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipGetBaseReportCallbackResponse{})

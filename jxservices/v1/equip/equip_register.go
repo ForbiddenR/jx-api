@@ -24,7 +24,6 @@ func NewEquipRegisterRequest(sn, id, pod, msgID string, protocol *services.Proto
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    protocol,
-			Category:    services.Register.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -66,8 +65,6 @@ func (resp *equipRegisterResponse) GetMsg() string {
 }
 
 func RegisterRequest(ctx context.Context, req *equipRegisterRequest) error {
-	// header := services.GetSimpleHeaderValue(services.Register)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipRegisterResponse{})

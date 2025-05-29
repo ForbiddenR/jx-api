@@ -44,7 +44,6 @@ func NewEquipReservationStatusNotification(sn, id, pod, msgID string, p *service
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.ReservationStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

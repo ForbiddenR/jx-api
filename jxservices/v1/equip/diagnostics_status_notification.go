@@ -61,7 +61,6 @@ func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId strin
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    services.OCPP16(),
-			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -78,7 +77,6 @@ func NewEquipDiagnosticsStatusNotificationRequest(sn, id, pod, msgId string, p *
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -109,8 +107,6 @@ type equipDiagnosticsStatusNotificationResponseDetail struct {
 }
 
 func DiagnosticsStatusNotificationRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetSimpleHeaderValue(services.DiagnosticsStatusNotification)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipDiagnosticsStatusNotificationResponse{})

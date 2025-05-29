@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"strings"
 
 	api "github.com/ForbiddenR/jxapi"
 	"github.com/ForbiddenR/jxapi/apierrors"
@@ -152,77 +151,27 @@ const (
 	RequestStopDischargingTransaction  Request2ServicesNameType = "remoteStopDischarging"
 )
 
-// FirstUpper is only for the interfaces having a regular category.
-func (r Request2ServicesNameType) FirstUpper() string {
-	s := r.String()
-	return strings.ToUpper(s[:1]) + s[1:]
-}
+// // FirstUpper is only for the interfaces having a regular category.
+// func (r Request2ServicesNameType) FirstUpper() string {
+// 	s := r.String()
+// 	return strings.ToUpper(s[:1]) + s[1:]
+// }
 
 func (r Request2ServicesNameType) String() string {
 	return string(r)
 }
 
-// func (r Request2ServicesNameType) Split() []string {
-// 	switch r {
-// 	case UpdateFirmware:
-// 		return []string{"push", "firmware", "equipment"}
-// 	case FirmwareStatusNotification:
-// 		return []string{"push", "firmware", "notification"}
-// 	case RemoteStartTransaction:
-// 		return []string{"remote", "Start"}
-// 	case RemoteStopTransaction:
-// 		return []string{"remote", "stop"}
-// 	case SendLocalList:
-// 		return []string{"set", "local", "authorize"}
-// 	case StartTransaction:
-// 		return []string{"start", "transaction"}
-// 	case StopTransaction:
-// 		return []string{"stop", "transaction"}
-// 	}
-// 	for i := range len(r.String()) {
-// 		str := r.String()[i : i+1]
-// 		if str == strings.ToUpper(str) {
-// 			switch r.String()[:i] {
-// 			case "equip":
-// 				return []string{strings.ToLower(r.String()[i:])}
-// 			case "authorize":
-// 				return []string{r.String()[:i]}
-// 			default:
-// 				return r.SplitName()
-// 			}
-// 		}
-// 	}
-// 	return []string{r.String()}
+// func (r Request2ServicesNameType) GetCallbackCategory() string {
+// 	return r.FirstUpper() + CallbackSuffix
 // }
-
-// // SplitName will be used by the function above to parser all the regular attributes.
-// func (r Request2ServicesNameType) SplitName() []string {
-// 	var head, tail int
-// 	var result []string
-// 	for tail = 0; tail < len(r.String()); tail++ {
-// 		str := r.String()[tail : tail+1]
-// 		if str == strings.ToUpper(str) && tail != 0 {
-// 			result = append(result, strings.ToLower(r.String()[head:tail]))
-// 			head = tail
-// 		}
-// 	}
-// 	if head < tail {
-// 		result = append(result, strings.ToLower(r.String()[head:tail]))
-// 	}
-// 	return result
-// }
-
-func (r Request2ServicesNameType) GetCallbackCategory() string {
-	return r.FirstUpper() + CallbackSuffix
-}
 
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
 	EquipmentId string    `json:"equipmentId"`
 	Protocol    *Protocol `json:"protocol"`
-	Category    string    `json:"-"`
-	AccessPod   string    `json:"accessPod"`
-	MsgID       string    `json:"msgId"`
+	// Category    string    `json:"-"`
+	AccessPod string `json:"accessPod"`
+	MsgID     string `json:"msgId"`
 }
 
 type BaseConfig struct {
@@ -260,11 +209,11 @@ func (b *BaseConfig) Category(cate string) *BaseConfig {
 
 // TODO: use a common string rather than a string with type Request2ServicesNameType.
 func (b *BaseConfig) Categories(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
-	if !isCallback {
-		b.category = kind.FirstUpper()
-	} else {
-		b.category = kind.FirstUpper() + CallbackSuffix
-	}
+	// if !isCallback {
+	// 	b.category = kind.FirstUpper()
+	// } else {
+	// 	b.category = kind.FirstUpper() + CallbackSuffix
+	// }
 	return b
 }
 
@@ -283,7 +232,6 @@ func (b *BaseConfig) Build() Base {
 		EquipmentSn: b.equipmentSn,
 		EquipmentId: b.equipmentId,
 		Protocol:    b.protocol,
-		Category:    b.category,
 		AccessPod:   b.accessPod,
 		MsgID:       b.msgID,
 	}

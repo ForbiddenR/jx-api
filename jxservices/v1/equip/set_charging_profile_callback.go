@@ -32,7 +32,6 @@ func NewSetChargingProfileCallbackRequest(sn, id, pod, msgId string, p *services
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetChargingProfile.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -47,7 +46,6 @@ func NewSetChargingProfileCallbackRequestError(sn, id, pod, msgId string, p *ser
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.SetChargingProfile.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

@@ -53,7 +53,6 @@ func NewEquipChargingTimerNotificationRequest(sn, id, pod, msgId string, connect
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    services.OCPP16(),
-			Category:    services.ChargingTimerNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -82,8 +81,6 @@ func (resp *equipChargingTimerNotificationResponse) GetMsg() string {
 }
 
 func ChargingTimerNotificationRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetSimpleHeaderValue(services.ChargingTimerNotification)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipChargingTimerNotificationResponse{})

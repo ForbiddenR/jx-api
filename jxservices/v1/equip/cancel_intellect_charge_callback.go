@@ -33,7 +33,6 @@ func NewEquipCancelIntellectChargeCallbackRequest(sn, id, pod, msgId string, p *
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -48,7 +47,6 @@ func NewEquipCancelIntellectChargeCallbackRequestError(sn, id, pod, msgId string
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -72,8 +70,6 @@ func (resp *equipCancelIntellectChargeResponse) GetMsg() string {
 }
 
 func CancelIntellectChargeRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetCallbackHeaderValue(services.CancelIntellectCharge)
-
 	url := services.GetCallbackURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipCancelIntellectChargeResponse{})

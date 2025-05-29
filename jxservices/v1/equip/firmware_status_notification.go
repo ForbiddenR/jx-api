@@ -71,7 +71,6 @@ func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, id, pod, msgId string, 
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    services.OCPP16(),
-			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -87,7 +86,6 @@ func NewEquipFirmwareStatusNotificationRequest(sn, id, pod, msgId string, p *ser
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -113,8 +111,6 @@ func (resp *equipFirmwareStatusNotificationResponse) GetMsg() string {
 }
 
 func FirmwareStatusNotificationRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetSimpleHeaderValue(services.FirmwareStatusNotification)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipFirmwareStatusNotificationResponse{})

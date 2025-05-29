@@ -403,7 +403,6 @@ func NewEquipStopTransactionRequestWithConfig(config *StopTransactionRequestConf
 			EquipmentSn: config.Sn,
 			EquipmentId: config.Id,
 			Protocol:    config.Protocol,
-			Category:    services.StopTransaction.FirstUpper(),
 			AccessPod:   config.Pod,
 			MsgID:       config.MsgId,
 		},
@@ -440,7 +439,6 @@ func NewEquipStopTransactionRequest(sn, id, pod, msgId string, p *services.Proto
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.StopTransaction.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -480,8 +478,6 @@ type equipStopTransactionResponseDetail struct {
 }
 
 func StopTransactionRequest(ctx context.Context, req *equipStopTransactionRequest) (*equipStopTransactionResponse, error) {
-	// // header := services.GetSimpleHeaderValue(services.StopTransaction)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithResponse(ctx, req, url, &equipStopTransactionResponse{})

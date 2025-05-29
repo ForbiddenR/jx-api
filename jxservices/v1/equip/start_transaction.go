@@ -49,7 +49,6 @@ func NewEquipStartTransactionRequestWithConfig(config *StartTransactionRequestCo
 			EquipmentSn: config.Sn,
 			EquipmentId: config.Id,
 			Protocol:    config.Protocol,
-			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   config.Pod,
 			MsgID:       config.MsgId,
 		},
@@ -93,7 +92,6 @@ func NewEquipStartTransactionRequest(sn, id, pod, msgId string, p *services.Prot
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -135,8 +133,6 @@ type equipStartTransactionResponseDetail struct {
 }
 
 func StartTransactionRequest(ctx context.Context, req services.Request) (*equipStartTransactionResponse, error) {
-	// // header := services.GetSimpleHeaderValue(services.StartTransaction)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithResponse(ctx, req, url, &equipStartTransactionResponse{})

@@ -77,7 +77,6 @@ func NewEquipBMSInfoRequest(sn, id, pod, msgId string, protocol *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    protocol,
-			Category:    services.BMSInfo.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

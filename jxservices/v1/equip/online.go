@@ -32,7 +32,6 @@ func NewEquipOnlineRequest(sn, id, pod, msgID string, protocol *services.Protoco
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    protocol,
-			Category:    services.Online.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

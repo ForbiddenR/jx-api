@@ -43,7 +43,6 @@ type equipOfflineRequestDetail struct {
 func NewEquipOfflineRequest(sn, id, pod, msgID string, protocol *services.Protocol, reason string) *equipOfflineRequest {
 	return &equipOfflineRequest{
 		Base: services.Base{
-			Category:    services.Offline.FirstUpper(),
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    protocol,

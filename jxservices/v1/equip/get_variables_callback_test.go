@@ -25,7 +25,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},
@@ -37,7 +36,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},
@@ -49,7 +47,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 			},
 // 			Callback: &equipGetVariablesCallbackRequestDetail{
@@ -77,7 +74,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 			},
 // 			Callback: &equipGetVariablesCallbackRequestDetail{
@@ -88,7 +84,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},
@@ -100,7 +95,6 @@ package equip
 // 			Base: services.Base{
 // 				EquipmentSn: services.TestSN,
 // 				Protocol:    p,
-// 				Category:    services.GetConfiguration.GetCallbackCategory(),
 // 				AccessPod:   services.TestAccessPod,
 // 				MsgID:       "1",
 // 			},

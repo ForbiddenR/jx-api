@@ -37,7 +37,6 @@ func NewEquipUpdateFirmwareCallbackRequest(sn, id, pod, msgId string, p *service
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.UpdateFirmware.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -51,7 +50,6 @@ func NewEquipUpdateFirmwareCallbackRequestError(sn, id, pod, msgId string, p *se
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.UpdateFirmware.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -75,8 +73,6 @@ func (resp *equipUpdateFirmwareCallbackResponse) GetMsg() string {
 }
 
 func UpdateFirmwareCallbackRequestWithGeneric(ctx context.Context, req services.Request) error {
-	// // header := services.GetCallbackHeaderValue(services.UpdateFirmware)
-
 	url := services.GetCallbackURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipUpdateFirmwareCallbackResponse{})

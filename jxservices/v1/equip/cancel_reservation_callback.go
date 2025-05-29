@@ -33,7 +33,6 @@ func NewEquipCancelReseravtionCallbackRequest(sn, id, pod, msgId string, p *serv
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -48,7 +47,6 @@ func NewEquipCancelReservationCallbackRequestError(sn, id, pod, msgId string, p 
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -72,8 +70,6 @@ func (resp *equipCancelReservationCallbackResponse) GetMsg() string {
 }
 
 func CancelReservationCallbackRequest(ctx context.Context, req services.Request) error {
-	// header := services.GetCallbackHeaderValue(services.CancelReservation)
-
 	url := services.GetCallbackURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipCancelReservationCallbackResponse{})

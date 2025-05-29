@@ -54,7 +54,6 @@ func NewNotifyEventRequest(sn, id, pod, msgId string, p *services.Protocol, code
 			EquipmentSn: sn,
 			EquipmentId: id,
 			Protocol:    p,
-			Category:    services.NotifyEvent.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
