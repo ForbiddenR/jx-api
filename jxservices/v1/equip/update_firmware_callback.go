@@ -36,7 +36,6 @@ func NewEquipUpdateFirmwareCallbackRequest(sn, pod, msgID string, p *services.Pr
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UpdateFirmware.FirstUpper(),
 			AccessPod:   pod,
 
 			MsgID: msgID,
@@ -50,7 +49,6 @@ func NewEquipUpdateFirmwareCallbackRequestError(sn, pod, msgID string, p *servic
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UpdateFirmware.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

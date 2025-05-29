@@ -32,7 +32,6 @@ func NewEquipCancelIntellectChargeCallbackRequest(sn, pod, msgID string, p *serv
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -46,7 +45,6 @@ func NewEquipCancelIntellectChargeCallbackRequestError(sn, pod, msgID string, p 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.CancelIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

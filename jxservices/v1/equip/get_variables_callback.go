@@ -45,7 +45,6 @@ func NewEquipGetVariablesCallbackRequest(sn, pod, msgID string, p *services.Prot
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -61,7 +60,6 @@ func NewEquipGetVariablesRequestError(sn, pod, msgID string, p *services.Protoco
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

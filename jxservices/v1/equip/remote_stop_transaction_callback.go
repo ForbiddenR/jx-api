@@ -32,7 +32,6 @@ func NewEquipRemoteStopTransactionCallbackRequest(sn, pod, msgID string, p *serv
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteStopTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -46,7 +45,6 @@ func NewEquipRemoteStopTransactionCallbackRequestError(sn, pod, msgID string, p 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteStopTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

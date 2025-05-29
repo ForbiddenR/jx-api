@@ -33,7 +33,6 @@ func NewEquipConnectorPositionReportRequest(sn, pod, msgID string, p *services.P
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ConnectorPositionReport.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

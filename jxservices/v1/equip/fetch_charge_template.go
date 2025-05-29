@@ -28,7 +28,6 @@ func NewequipFetchChargeTemplateRequest(sn, pod, msgId string, p *services.Proto
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.FetchChargeTemplate.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

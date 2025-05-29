@@ -28,7 +28,6 @@ func NewEquipBMSRequirementWithChargerOutputRequest(sn, pod, msgId string, p *se
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.BmsRequirementWithChargerOutput.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

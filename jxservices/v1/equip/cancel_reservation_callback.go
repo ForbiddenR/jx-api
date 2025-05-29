@@ -29,7 +29,6 @@ func NewEquipCancelReseravtionCallbackRequest(sn, pod, msgID string, p *services
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -43,7 +42,6 @@ func NewEquipCancelReservationCallbackRequestError(sn, pod, msgID string, p *ser
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.CancelReservation.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

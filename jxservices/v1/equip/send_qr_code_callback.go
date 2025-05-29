@@ -36,7 +36,6 @@ func NewEquipSendQRCodeCallbackRequest(sn, pod, msgID string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SendQRCode.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -58,7 +57,6 @@ func NewEquipSendQRCodeCallbackRequestError(sn, pod, msgID string, p *services.P
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SendQRCode.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

@@ -48,7 +48,6 @@ func NewEquipMeterValuesOCPP16Request(sn, pod, msgID string, connectorId string)
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.MeterValues.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -66,7 +65,6 @@ func NewEquipMeterValuesRequest(sn, pod, msgID string, p *services.Protocol) *eq
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.MeterValues.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

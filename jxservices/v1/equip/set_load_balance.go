@@ -33,7 +33,6 @@ func NewEquipSetLoadBalanceRequest(sn, pod, msgID string, p *services.Protocol, 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetLoadBalance.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -48,7 +47,6 @@ func NewEquipSetLoadBalanceRequestError(sn, pod, msgID string, p *services.Proto
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetLoadBalance.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

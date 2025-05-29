@@ -29,7 +29,6 @@ func NewEquipRemoteUpdateAccountBalanceCallbackRequest(sn, pod, msgId string, p 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteUpdateAccountBalance.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -42,7 +41,6 @@ func NewEquipRemoteUpdateAccountBalanceCallbackRequestError(sn, pod, msgId strin
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteUpdateAccountBalance.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

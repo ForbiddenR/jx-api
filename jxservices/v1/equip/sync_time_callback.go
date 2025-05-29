@@ -29,7 +29,6 @@ func NewEquipSyncTimeCallbackRequest(sn, pod, msgId string, p *services.Protocol
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SyncTime.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -43,7 +42,6 @@ func NewEquipSyncTimeCallbackRequestError(sn, pod, msgId string, p *services.Pro
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SyncTime.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

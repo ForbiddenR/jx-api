@@ -28,7 +28,6 @@ func NewEquipChargingHandshakeRequest(sn, pod, msgId string, p *services.Protoco
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ChargingHandshake.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

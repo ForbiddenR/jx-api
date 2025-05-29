@@ -48,7 +48,6 @@ func NewEquipStartTransactionRequestWithConfig(config *StartTransactionRequestCo
 		Base: services.Base{
 			EquipmentSn: config.Sn,
 			Protocol:    config.Protocol,
-			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   config.Pod,
 			MsgID:       config.MsgID,
 		},
@@ -91,7 +90,6 @@ func NewEquipStartTransactionRequest(sn, pod, msgID string, p *services.Protocol
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.StartTransaction.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

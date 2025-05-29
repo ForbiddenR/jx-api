@@ -15,19 +15,6 @@ const (
 	SendLocalListNotSupported    = 3
 )
 
-// func OCPP16SendLocalListStatus(status protocol.SendLocalListResponseJsonStatus) int {
-// 	switch status {
-// 	case protocol.SendLocalListResponseJsonStatusAccepted:
-// 		return SendLocalListAccept
-// 	case protocol.SendLocalListResponseJsonStatusFailed:
-// 		return SendLocalListFailed
-// 	case protocol.SendLocalListResponseJsonStatusVersionMismatch:
-// 		return SendLocalListVersionMismatch
-// 	default:
-// 		return SendLocalListNotSupported
-// 	}
-// }
-
 var _ services.Request = &equipSendLocalListCallbackRequest{}
 
 type equipSendLocalListCallbackRequest struct {
@@ -52,7 +39,6 @@ func NewEquipSendLocalListCallbackRequest(sn, pod, msgID string, p *services.Pro
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SendLocalList.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -66,7 +52,6 @@ func NewEquipSendLocalListCallbackRequestError(sn, pod, msgID string, p *service
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SendLocalList.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

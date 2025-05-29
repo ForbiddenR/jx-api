@@ -53,7 +53,6 @@ func NewEquipGetBaseReportCallbackRequestOCPP16(sn, pod, msgID string, status in
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -74,7 +73,6 @@ func NewEquipGetBaseReportCallbackRequest(sn, pod, msgID string, p *services.Pro
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -89,7 +87,6 @@ func NewEquipGetBaseReportRequestError(sn, pod, msgID string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetBaseReport.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -98,24 +95,6 @@ func NewEquipGetBaseReportRequestError(sn, pod, msgID string, p *services.Protoc
 	}
 	return req
 }
-
-// var _ services.Response = &equipGetBaseReportCallbackResponse{}
-
-// type equipGetBaseReportCallbackResponse struct {
-// 	api.Response
-// 	Data *equipGetBaseReportResponseDetail `json:"data"`
-// }
-
-// func (resp *equipGetBaseReportCallbackResponse) GetStatus() int {
-// 	return resp.Status
-// }
-
-// func (resp *equipGetBaseReportCallbackResponse) GetMsg() string {
-// 	return resp.Msg
-// }
-
-// type equipGetBaseReportResponseDetail struct {
-// }
 
 func GetBaseReportCallbackRequest(ctx context.Context, req services.Request) error {
 	return services.Transport(ctx, req)

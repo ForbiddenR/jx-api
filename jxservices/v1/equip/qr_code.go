@@ -24,7 +24,6 @@ func NewEquipQRCodeRequest(sn, pod, msgID string, protocol *services.Protocol, c
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    protocol,
-			Category:    services.QRCode.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

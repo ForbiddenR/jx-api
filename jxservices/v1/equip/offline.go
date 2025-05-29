@@ -42,7 +42,6 @@ type equipOfflineRequestDetail struct {
 func NewEquipOfflineRequest(sn string, protocol *services.Protocol, pod, msgID string, reason string) *equipOfflineRequest {
 	return &equipOfflineRequest{
 		Base: services.Base{
-			Category:    services.Offline.FirstUpper(),
 			EquipmentSn: sn,
 			Protocol:    protocol,
 			AccessPod:   pod,
@@ -65,20 +64,6 @@ func (e *equipOfflineRequest) TraceId() string {
 func (equipOfflineRequest) IsCallback() bool {
 	return false
 }
-
-// var _ services.Response = &equipOfflineResponse{}
-
-// type equipOfflineResponse struct {
-// 	api.Response
-// }
-
-// func (resp *equipOfflineResponse) GetStatus() int {
-// 	return resp.Status
-// }
-
-// func (resp *equipOfflineResponse) GetMsg() string {
-// 	return resp.Msg
-// }
 
 func OfflineRequest(ctx context.Context, req *equipOfflineRequest) error {
 	return services.Transport(ctx, req)

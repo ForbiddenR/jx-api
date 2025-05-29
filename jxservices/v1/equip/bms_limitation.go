@@ -69,7 +69,6 @@ func NewEquipBMSLimitRequestWithConfig(config *BMSLimitRequestConfig) *equipBMSL
 		Base: services.Base{
 			EquipmentSn: config.Sn,
 			Protocol:    config.Protocol,
-			Category:    services.BMSLimit.FirstUpper(),
 			AccessPod:   config.Pod,
 			MsgID:       config.MsgID,
 		},
@@ -94,7 +93,6 @@ func NewEquipBMSLimitRequest(sn string, protocol *services.Protocol, pod, msgID 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    protocol,
-			Category:    services.BMSLimit.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

@@ -35,7 +35,6 @@ func NewEquipAuthorizeTransactionRequest(sn, pod, msgID string, p *services.Prot
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.Authorize.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

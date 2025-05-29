@@ -28,7 +28,6 @@ func NewUpdateCurrentMonitorRequest(sn, pod, msgId string, p *services.Protocol)
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UpdateCurrentMonitor.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

@@ -31,7 +31,6 @@ func NewUploadTransactionRecordRequest(sn, pod, msgId string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UploadTransactionRecord.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

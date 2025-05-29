@@ -29,7 +29,6 @@ func NewClearChargingProfileCallbackRequest(sn, pod, msgID string, p *services.P
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearChargingProfile.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -43,7 +42,6 @@ func NewClearChargingProfileCallbackRequestError(sn, pod, msgID string, p *servi
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearChargingProfile.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

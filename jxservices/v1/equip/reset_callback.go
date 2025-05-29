@@ -36,7 +36,6 @@ func NewEquipResetCallbackRequest(sn, pod, msgID string, p *services.Protocol, s
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.Reset.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -51,7 +50,6 @@ func NewEquipResetCallbackRequestError(sn, pod, msgID string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.Reset.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

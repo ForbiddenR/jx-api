@@ -38,7 +38,6 @@ func NewEquipBootNotificationRequest(sn, pod, msgID string, p *services.Protocol
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.BootNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -46,20 +45,6 @@ func NewEquipBootNotificationRequest(sn, pod, msgID string, p *services.Protocol
 	request.Data = &equipBootNotificationRequestDetail{}
 	return request
 }
-
-// var _ services.Response = &equipBootNotificationResponse{}
-
-// type equipBootNotificationResponse struct {
-// 	api.Response
-// }
-
-// func (resp *equipBootNotificationResponse) GetStatus() int {
-// 	return resp.Status
-// }
-
-// func (resp *equipBootNotificationResponse) GetMsg() string {
-// 	return resp.Msg
-// }
 
 func BootNotificationRequest(ctx context.Context, req *equipBootNotificationRequest) error {
 	return services.Transport(ctx, req)

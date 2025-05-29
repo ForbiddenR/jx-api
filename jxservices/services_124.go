@@ -36,13 +36,3 @@ func (r Request2ServicesNameType) GetCallbackCategory2() string {
 	categoryCache.Set(r, category)
 	return category
 }
-
-// TODO: use a common string rather than a string with type Request2ServicesNameType.
-func (b *BaseConfig) Categories2(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
-	if !isCallback {
-		b.category = kind.FirstUpper()
-	} else {
-		b.category = kind.GetCallbackCategory()
-	}
-	return b
-}

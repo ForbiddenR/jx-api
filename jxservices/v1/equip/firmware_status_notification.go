@@ -47,7 +47,6 @@ func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, pod, msgID string, stat
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -62,7 +61,6 @@ func NewEquipFirmwareStatusNotificationRequest(sn, pod, msgID string, p *service
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.FirmwareStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

@@ -35,7 +35,6 @@ func NewEquipStatusNotificationRequestOCPP16(sn, pod, msgID string, connectorId 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.StatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -65,7 +64,6 @@ func NewEquipStatusNotificationRequest(sn, pod, msgID string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.StatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

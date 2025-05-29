@@ -33,7 +33,6 @@ func NewEquipAuthorizeChargeTemplateRequest(sn, pod, msgId string, p *services.P
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.Authorize.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

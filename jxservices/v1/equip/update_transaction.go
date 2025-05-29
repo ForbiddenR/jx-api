@@ -54,7 +54,6 @@ func NewUpdateTransactionRequest(sn, pod, msgID string, p *services.Protocol, tr
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UpdateTransaction.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

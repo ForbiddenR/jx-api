@@ -45,7 +45,6 @@ func NewEquipGetIntellectChargeCallbackRequest(sn, pod, msgID string, p *service
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetIntellectCharge.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -69,7 +68,6 @@ func NewEquipGetIntellectChargeCallbackRequestError(sn, pod, msgID string, p *se
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetConfiguration.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

@@ -49,7 +49,6 @@ func NewEquipChargingTimerNotificationRequest(sn, pod, msgID string, connectorId
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.ChargingTimerNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

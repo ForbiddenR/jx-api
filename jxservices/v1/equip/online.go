@@ -34,7 +34,6 @@ func NewEquipOnlineRequest(sn string, protocol *services.Protocol, pod, msgID st
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    protocol,
-			Category:    services.Online.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -50,26 +49,6 @@ type OnlineConfig struct {
 func NewEquipOnlineRequestWithConfig(config OnlineConfig) *equipOnlineRequest {
 	return NewEquipOnlineRequest(config.Sn, config.Protocol, config.Pod, config.MsgID)
 }
-
-// var _ services.Response = &equipOnlineResponse{}
-
-// type equipOnlineResponse struct {
-// 	api.Response
-// 	Data *equipOnlineResponseDetail `json:"data"`
-// }
-
-// type equipOnlineResponseDetail struct {
-// 	EquipmentID string `json:"equipmentId" validate:"-"`
-// 	EquipmentSN string `json:"equipmentSN" validate:"-"`
-// }
-
-// func (resp *equipOnlineResponse) GetStatus() int {
-// 	return resp.Status
-// }
-
-// func (resp *equipOnlineResponse) GetMsg() string {
-// 	return resp.Msg
-// }
 
 func OnlineRequest(ctx context.Context, req *equipOnlineRequest) error {
 	return services.Transport(ctx, req)

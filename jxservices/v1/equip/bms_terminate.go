@@ -28,7 +28,6 @@ func NewEquipBMSTerminateRequest(sn, pod, msgId string, p *services.Protocol) *e
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.BmsTerminate.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

@@ -35,7 +35,6 @@ func NewEquipSetFactoryResetRequest(sn, pod, msgID string, p *services.Protocol,
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetFactoryReset.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -50,7 +49,6 @@ func NewEquipSetFactoryResetRequestError(sn, pod, msgID string, p *services.Prot
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetFactoryReset.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

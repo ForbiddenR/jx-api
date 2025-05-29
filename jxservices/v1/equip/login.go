@@ -57,7 +57,6 @@ func NewEquipLoginRequest(sn, pod, msgID string, p *services.Protocol) *equipLog
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.Login.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

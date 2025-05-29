@@ -29,7 +29,6 @@ func NewEquipSetPriceSchemeCallbackRequest(sn, pod, msgID string, p *services.Pr
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetPriceScheme.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -43,7 +42,6 @@ func NewEquipSetPriceSchemeCallbackRequestError(sn, pod, msgID string, p *servic
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetPriceScheme.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

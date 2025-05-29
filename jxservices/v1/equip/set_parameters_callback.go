@@ -29,7 +29,6 @@ func NewEquipSetParametersCallbackRequest(sn, pod, msgId string, p *services.Pro
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetParameters.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -43,7 +42,6 @@ func NewEquipSetParametersCallbackRequestError(sn, pod, msgId string, p *service
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetParameters.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

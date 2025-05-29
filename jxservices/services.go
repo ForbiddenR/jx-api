@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"strings"
 	"unique"
 
 	api "github.com/ForbiddenR/jxapi/v2"
@@ -179,19 +178,19 @@ const (
 	SyncTime                        Request2ServicesNameType = "syncTime"
 )
 
-// FirstUpper is only for the interfaces having a regular category.
-func (r Request2ServicesNameType) FirstUpper() string {
-	s := r.String()
-	return strings.ToUpper(s[:1]) + s[1:]
-}
+// // FirstUpper is only for the interfaces having a regular category.
+// func (r Request2ServicesNameType) FirstUpper() string {
+// 	s := r.String()
+// 	return strings.ToUpper(s[:1]) + s[1:]
+// }
 
 func (r Request2ServicesNameType) String() string {
 	return string(r)
 }
 
-func (r Request2ServicesNameType) GetCallbackCategory() string {
-	return r.FirstUpper() + CallbackSuffix
-}
+// func (r Request2ServicesNameType) GetCallbackCategory() string {
+// 	return r.FirstUpper() + CallbackSuffix
+// }
 
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
@@ -228,15 +227,15 @@ func (b *BaseConfig) Category(cate string) *BaseConfig {
 	return b
 }
 
-// TODO: use a common string rather than a string with type Request2ServicesNameType.
-func (b *BaseConfig) Categories(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
-	if !isCallback {
-		b.category = kind.FirstUpper()
-	} else {
-		b.category = kind.FirstUpper() + CallbackSuffix
-	}
-	return b
-}
+// // TODO: use a common string rather than a string with type Request2ServicesNameType.
+// func (b *BaseConfig) Categories(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
+// 	if !isCallback {
+// 		b.category = kind.FirstUpper()
+// 	} else {
+// 		b.category = kind.FirstUpper() + CallbackSuffix
+// 	}
+// 	return b
+// }
 
 func (b *BaseConfig) Hostname(hostname string) *BaseConfig {
 	b.accessPod = hostname

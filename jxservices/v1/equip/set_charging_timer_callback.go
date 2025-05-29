@@ -31,7 +31,6 @@ func NewEquipSetChargingTimerCallbackRequest(sn, pod, msgID string, p *services.
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -45,7 +44,6 @@ func NewEquipSetChargingTimerCallbackRequestError(sn, pod, msgID string, p *serv
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.SetChargingTimer.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

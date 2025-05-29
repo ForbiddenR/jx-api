@@ -49,7 +49,6 @@ func NewEquipStopTransactionRequest(sn, pod, msgID string, p *services.Protocol,
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.StopTransaction.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

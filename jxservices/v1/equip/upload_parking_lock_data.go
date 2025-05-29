@@ -37,7 +37,6 @@ func NewEquipUploadParkingLockDataRequest(sn, pod, msgId string, p *services.Pro
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.UploadParkingLockData.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

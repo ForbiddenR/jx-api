@@ -29,7 +29,6 @@ func NewEquipReadCurrentMonitorCallbackRequest(sn, pod, msgId string, p *service
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ReadCurrentMonitor.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -43,7 +42,6 @@ func NewEquipReadCurrentMonitorCallbackRequestError(sn, pod, msgId string, p *se
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ReadCurrentMonitor.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

@@ -22,7 +22,6 @@ func NewEquipRegisterRequest(sn string, protocol *services.Protocol, pod, msgID 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    protocol,
-			Category:    services.Register.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

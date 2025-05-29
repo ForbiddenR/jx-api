@@ -29,7 +29,6 @@ func NewEquipRequestStopDischargingRequest(sn, pod, msgId string, p *services.Pr
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RequestStartDischargingTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -42,7 +41,6 @@ func NewEquipRequestStopDischargingRequestError(sn string, pod, msgId string, p 
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RequestStartDischargingTransaction.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

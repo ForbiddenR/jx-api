@@ -28,7 +28,6 @@ func NewEquipChargerTerminateRequest(sn, pod, msgId string, p *services.Protocol
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ChargerTerminate.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

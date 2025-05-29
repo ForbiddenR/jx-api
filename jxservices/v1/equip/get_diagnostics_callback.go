@@ -37,7 +37,6 @@ func NewEquipGetDiagnosticsCallbackRequest(sn, pod, msgId string, p *services.Pr
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetDiagnostics.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -52,7 +51,6 @@ func NewEquipGetDiagnosticsCallbackRequestError(sn, pod, msgID string, p *servic
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.GetDiagnostics.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

@@ -44,7 +44,6 @@ func NewEquipNotifyReportRequest(sn, pod, msgID string, p *services.Protocol, re
 			AccessPod:   pod,
 			MsgID:       msgID,
 			Protocol:    p,
-			Category:    services.NotifyReport.FirstUpper(),
 		},
 		Data: &equipNotifyReportRequestDetail{
 			RequestId:  requestId,

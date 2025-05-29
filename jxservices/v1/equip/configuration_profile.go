@@ -44,7 +44,6 @@ func NewEquipConfigurationProfileRequest(sn, pod, msgId string, p *services.Prot
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ConfigurationProfile.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

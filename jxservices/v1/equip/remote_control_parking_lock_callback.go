@@ -29,7 +29,6 @@ func NewEquipRemoteControlParkingLockCallbackRequest(sn, pod, msgID string, p *s
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteControlParkingLock.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -42,7 +41,6 @@ func NewEquipRemoteControlParkingLockCallbackRequestError(sn, pod, msgID string,
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.RemoteControlParkingLock.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

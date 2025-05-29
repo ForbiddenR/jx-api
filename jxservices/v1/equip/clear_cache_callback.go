@@ -29,7 +29,6 @@ func NewEquipClearCacheCallbackRequest(sn, pod, msgID string, p *services.Protoc
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearCache.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -43,7 +42,6 @@ func NewEquipClearCacheCallbackRequestError(sn, pod, msgID string, p *services.P
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearCache.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},

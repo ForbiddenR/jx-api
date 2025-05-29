@@ -28,7 +28,6 @@ func NewEquipErrorReportRequest(sn, pod, msgId string, p *services.Protocol) *eq
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ErrorReport.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

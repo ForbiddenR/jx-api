@@ -29,7 +29,6 @@ func NewEquipClearOfflineCardsCallbackRequest(sn, pod, msgId string, p *services
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearOfflineCards.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},
@@ -43,7 +42,6 @@ func NewEquipClearOfflineCardsCallbackRequestError(sn, pod, msgId string, p *ser
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.ClearOfflineCards.GetCallbackCategory(),
 			AccessPod:   pod,
 			MsgID:       msgId,
 		},

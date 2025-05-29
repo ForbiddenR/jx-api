@@ -42,7 +42,6 @@ func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, pod, msgID string, s
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    services.OCPP16(),
-			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
@@ -58,7 +57,6 @@ func NewEquipDiagnosticsStatusNotificationRequest(sn, pod, msgID string, p *serv
 		Base: services.Base{
 			EquipmentSn: sn,
 			Protocol:    p,
-			Category:    services.DiagnosticsStatusNotification.FirstUpper(),
 			AccessPod:   pod,
 			MsgID:       msgID,
 		},
