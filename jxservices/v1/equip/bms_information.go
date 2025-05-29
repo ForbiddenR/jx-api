@@ -24,7 +24,7 @@ const (
 	BatteryTypeOtherBattery
 )
 
-const bmsInfoQueue = services.QueuePrefix + "bms"
+const bmsInfoQueue = services.QueuePrefix + "bms_info"
 
 var _ services.Request = &equipBMSInfoRequest{}
 

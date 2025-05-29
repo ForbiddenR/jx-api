@@ -17,7 +17,7 @@ type BMSLimitRequestInterface interface {
 	Construct(BMSLimitRequestConfig)
 }
 
-const bmsLimitQueue = services.QueuePrefix + "bms"
+const bmsLimitQueue = services.QueuePrefix + "bms_limit"
 
 type equipBMSLimitRequest struct {
 	services.Base
