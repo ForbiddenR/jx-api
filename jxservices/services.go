@@ -178,7 +178,6 @@ type BaseConfig struct {
 	equipmentSn string
 	equipmentId string
 	protocol    *Protocol
-	category    string
 	accessPod   string
 	msgID       string
 }
@@ -199,21 +198,6 @@ func (b *BaseConfig) EquipmentId(id string) *BaseConfig {
 
 func (b *BaseConfig) Protocol(p *Protocol) *BaseConfig {
 	b.protocol = p
-	return b
-}
-
-func (b *BaseConfig) Category(cate string) *BaseConfig {
-	b.category = cate
-	return b
-}
-
-// TODO: use a common string rather than a string with type Request2ServicesNameType.
-func (b *BaseConfig) Categories(kind Request2ServicesNameType, isCallback bool) *BaseConfig {
-	// if !isCallback {
-	// 	b.category = kind.FirstUpper()
-	// } else {
-	// 	b.category = kind.FirstUpper() + CallbackSuffix
-	// }
 	return b
 }
 
