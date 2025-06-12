@@ -149,6 +149,7 @@ const (
 	ConnectorPositionReport            Request2ServicesNameType = "connectorPositionReport"
 	RequestStartDischargingTransaction Request2ServicesNameType = "remoteStartDischarging"
 	RequestStopDischargingTransaction  Request2ServicesNameType = "remoteStopDischarging"
+	NotifyIntellectCharging            Request2ServicesNameType = "notifyIntellectCharging"
 )
 
 // // FirstUpper is only for the interfaces having a regular category.

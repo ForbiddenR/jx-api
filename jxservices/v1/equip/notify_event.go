@@ -69,8 +69,6 @@ func NewNotifyEventRequest(sn, id, pod, msgId string, p *services.Protocol, code
 }
 
 func NotifyEventRequest(ctx context.Context, req *equipNotifyEventRequest) error {
-	// header := services.GetSimpleHeaderValue(services.NotifyEvent)
-
 	url := services.GetSimpleURL(req)
 
 	return services.RequestWithoutResponse(ctx, req, url, &equipNotifyEventResponse{})
