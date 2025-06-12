@@ -3,6 +3,7 @@ package equip
 import (
 	"context"
 
+	api "github.com/ForbiddenR/jxapi"
 	services "github.com/ForbiddenR/jxapi/jxservices"
 )
 
@@ -34,19 +35,24 @@ func (equipNotifyIntellectChargingRequest) IsCallback() bool {
 	return false
 }
 
-func NewNotifyIntellectCharging(sn, id, pod, msgId string, p *services.Protocol) *equipNotifyIntellectChargingRequest {
+func NewEequipNotifyIntellectCharging(base services.Base, connectorId string, typ uint8, intellectId, startTime string, status uint8) *equipNotifyIntellectChargingRequest {
 	return &equipNotifyIntellectChargingRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
+		Base: base,
+		Data: &equipNotifyIntellectChargingRequestData{
+			EVSE: EVSE{
+				Id:          "0",
+				ConnectorId: connectorId,
+			},
+			IntellectType: typ,
+			IntellectId:   intellectId,
+			StartTime:     startTime,
+			Status:        status,
 		},
-		Data: &equipNotifyIntellectChargingRequestData{},
 	}
 }
 
 func NotifyIntellectChargingRequest(ctx context.Context, req services.Request) error {
-	return services.Transport(ctx, req)
+	url := services.GetSimpleURL(req)
+
+	return services.RequestWithoutResponse(ctx, req, url, &api.Response{})
 }
