@@ -40,7 +40,7 @@ func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId str
 		Base: base,
 		Data: &equipNotifyIntellectChargingRequestData{
 			EVSE: EVSE{
-				Id:          "0",
+				Id:          "1",
 				ConnectorId: connectorId,
 			},
 			IntellectType: typ,
