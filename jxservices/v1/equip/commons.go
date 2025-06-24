@@ -245,3 +245,15 @@ type Temperatures struct {
 	Temperature4 float64 `json:"temperature4"`
 	Temperature5 float64 `json:"temperature5"`
 }
+
+type IntellectCharge struct {
+	EVSE           EVSE    `json:"evse"`
+	IntellectType  uint8   `json:"type"`
+	Strategy       uint8     `json:"strategy"`
+	IntellectId    string  `json:"intellectId"`
+	StartTime      string  `json:"startTime"`
+	EndTime        *string `json:"endTime"`
+	EndElectricity *int    `json:"endElectricity"`
+	EndSoc         *int    `json:"endSOC"`
+	Status         uint8   `json:"status"`
+}

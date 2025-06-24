@@ -13,14 +13,7 @@ type equipNotifyIntellectChargingRequest struct {
 }
 
 type equipNotifyIntellectChargingRequestData struct {
-	EVSE           EVSE    `json:"evse"`
-	IntellectType  uint8   `json:"type"`
-	IntellectId    string  `json:"intellectId"`
-	StartTime      string  `json:"startTime"`
-	EndTime        *string `json:"endTime"`
-	EndElectricity *int    `json:"endElectricity"`
-	EndSoc         *int    `json:"endSOC"`
-	Status         uint8   `json:"status"`
+	IntellectCharge
 }
 
 func (r *equipNotifyIntellectChargingRequest) GetName() services.Request2ServicesNameType {
@@ -35,18 +28,21 @@ func (equipNotifyIntellectChargingRequest) IsCallback() bool {
 	return false
 }
 
-func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId string, typ uint8, intellectId, startTime string, status uint8) *equipNotifyIntellectChargingRequest {
+func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId string, typ, strategy uint8, intellectId, startTime string, status uint8) *equipNotifyIntellectChargingRequest {
 	return &equipNotifyIntellectChargingRequest{
 		Base: base,
 		Data: &equipNotifyIntellectChargingRequestData{
-			EVSE: EVSE{
-				Id:          "1",
-				ConnectorId: connectorId,
+			IntellectCharge{
+				EVSE: EVSE{
+					Id:          "1",
+					ConnectorId: connectorId,
+				},
+				IntellectType: typ,
+				Strategy:      strategy,
+				IntellectId:   intellectId,
+				StartTime:     startTime,
+				Status:        status,
 			},
-			IntellectType: typ,
-			IntellectId:   intellectId,
-			StartTime:     startTime,
-			Status:        status,
 		},
 	}
 }

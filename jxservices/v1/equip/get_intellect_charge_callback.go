@@ -17,15 +17,16 @@ type equipGetIntellectChargeRequest struct {
 }
 
 type equipGetIntellectChargeRequestDetail struct {
-	services.CB
-	EVSE           EVSE    `json:"evse"`
-	IntellectType  uint8   `json:"type"`
-	IntellectId    string  `json:"intellectId"`
-	StartTime      string  `json:"startTime"`
-	EndTime        *string `json:"endTime"`
-	EndElectricity *int    `json:"endElectricity"`
-	EndSoc         *int    `json:"endSOC"`
-	Status         uint8   `json:"status"`
+	IntellectCharge
+	// services.CB
+	// EVSE           EVSE    `json:"evse"`
+	// IntellectType  uint8   `json:"type"`
+	// IntellectId    string  `json:"intellectId"`
+	// StartTime      string  `json:"startTime"`
+	// EndTime        *string `json:"endTime"`
+	// EndElectricity *int    `json:"endElectricity"`
+	// EndSoc         *int    `json:"endSOC"`
+	// Status         uint8   `json:"status"`
 }
 
 func (*equipGetIntellectChargeRequest) GetName() services.Request2ServicesNameType {
@@ -41,7 +42,7 @@ func (equipGetIntellectChargeRequest) IsCallback() bool {
 }
 
 func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int,
-	cid, evseId string, intellectType uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
+	cid, evseId string, intellectType, strategy uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
 	req := &equipGetIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
@@ -52,14 +53,17 @@ func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *ser
 		},
 		Callback: services.NewCB(status),
 		Data: &equipGetIntellectChargeRequestDetail{
-			EVSE: EVSE{
-				Id:          evseId,
-				ConnectorId: cid,
+			IntellectCharge{
+				EVSE: EVSE{
+					Id:          evseId,
+					ConnectorId: cid,
+				},
+				IntellectType: intellectType,
+				Strategy: strategy,
+				IntellectId:   intellectId,
+				StartTime:     startTime,
+				Status:        intellectStatus,
 			},
-			IntellectType: intellectType,
-			IntellectId:   intellectId,
-			StartTime:     startTime,
-			Status:        intellectStatus,
 		},
 	}
 	return req
