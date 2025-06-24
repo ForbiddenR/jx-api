@@ -248,8 +248,7 @@ type Temperatures struct {
 
 type IntellectCharge struct {
 	EVSE           EVSE    `json:"evse"`
-	IntellectType  uint8   `json:"type"`
-	Strategy       uint8     `json:"strategy"`
+	IntellectType  uint8   `json:"strategy"`
 	IntellectId    string  `json:"intellectId"`
 	StartTime      string  `json:"startTime"`
 	EndTime        *string `json:"endTime"`

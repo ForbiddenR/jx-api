@@ -28,7 +28,7 @@ func (equipNotifyIntellectChargingRequest) IsCallback() bool {
 	return false
 }
 
-func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId string, typ, strategy uint8, intellectId, startTime string, status uint8) *equipNotifyIntellectChargingRequest {
+func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId string, t uint8, intellectId, startTime string, status uint8) *equipNotifyIntellectChargingRequest {
 	return &equipNotifyIntellectChargingRequest{
 		Base: base,
 		Data: &equipNotifyIntellectChargingRequestData{
@@ -37,8 +37,7 @@ func NewEequipNotifyIntellectChargingRequest(base services.Base, connectorId str
 					Id:          "1",
 					ConnectorId: connectorId,
 				},
-				IntellectType: typ,
-				Strategy:      strategy,
+				IntellectType: t,
 				IntellectId:   intellectId,
 				StartTime:     startTime,
 				Status:        status,

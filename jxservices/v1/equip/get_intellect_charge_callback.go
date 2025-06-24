@@ -42,7 +42,7 @@ func (equipGetIntellectChargeRequest) IsCallback() bool {
 }
 
 func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int,
-	cid, evseId string, intellectType, strategy uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
+	cid, evseId string, intellectType uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
 	req := &equipGetIntellectChargeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
@@ -59,7 +59,6 @@ func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *ser
 					ConnectorId: cid,
 				},
 				IntellectType: intellectType,
-				Strategy: strategy,
 				IntellectId:   intellectId,
 				StartTime:     startTime,
 				Status:        intellectStatus,
