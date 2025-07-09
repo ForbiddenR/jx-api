@@ -34,6 +34,7 @@ type equipNotifyEventRequestData struct {
 	RemoteAddress string `json:"remoteAddress"`
 	ConnectorId   string `json:"connectorSerial"`
 	Level         *int   `json:"level,omitempty"`
+	Fault         *int   `json:"fault,omitempty"`
 }
 
 type equipNotifyEventResponse struct {
