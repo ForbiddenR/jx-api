@@ -27,14 +27,14 @@ func (equipNotifyEventRequest) IsCallback() bool {
 }
 
 type equipNotifyEventRequestData struct {
-	Code          int64  `json:"code"`
-	Time          int64  `json:"time"`
-	Clean         bool   `json:"clean"`
-	EventID       int64  `json:"eventId"`
-	RemoteAddress string `json:"remoteAddress"`
-	ConnectorId   string `json:"connectorSerial"`
-	Level         *int   `json:"level,omitempty"`
-	Fault         *int   `json:"fault,omitempty"`
+	Code          int64   `json:"code"`
+	Time          int64   `json:"time"`
+	Clean         bool    `json:"clean"`
+	EventID       int64   `json:"eventId"`
+	RemoteAddress string  `json:"remoteAddress"`
+	ConnectorId   string  `json:"connectorSerial"`
+	Level         *int    `json:"level,omitempty"`
+	Fault         *string `json:"fault,omitempty"`
 }
 
 type equipNotifyEventResponse struct {
