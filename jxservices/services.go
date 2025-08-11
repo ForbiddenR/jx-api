@@ -152,27 +152,16 @@ const (
 	NotifyIntellectCharging            Request2ServicesNameType = "notifyIntellectCharging"
 )
 
-// // FirstUpper is only for the interfaces having a regular category.
-// func (r Request2ServicesNameType) FirstUpper() string {
-// 	s := r.String()
-// 	return strings.ToUpper(s[:1]) + s[1:]
-// }
-
 func (r Request2ServicesNameType) String() string {
 	return string(r)
 }
-
-// func (r Request2ServicesNameType) GetCallbackCategory() string {
-// 	return r.FirstUpper() + CallbackSuffix
-// }
 
 type Base struct {
 	EquipmentSn string    `json:"equipmentSn"`
 	EquipmentId string    `json:"equipmentId"`
 	Protocol    *Protocol `json:"protocol"`
-	// Category    string    `json:"-"`
-	AccessPod string `json:"accessPod"`
-	MsgID     string `json:"msgId"`
+	AccessPod   string    `json:"accessPod"`
+	MsgID       string    `json:"msgId"`
 }
 
 type BaseConfig struct {
@@ -256,7 +245,7 @@ func (p *Protocol) UnmarshalJSON(data []byte) error {
 			return errors.New("invalid OCPP version: " + v.Version)
 		}
 	case "IEC104":
-		if v.Version != "0.1" && v.Version != "0.2" && v.Version != "0.3" && v.Version != "0.4" && v.Version != "0.5" && v.Version != "0.6" {
+		if v.Version != "0.1" && v.Version != "0.2" && v.Version != "0.3" && v.Version != "0.4" && v.Version != "0.5" && v.Version != "0.6" && v.Version != "0.7" && v.Version != "0.8" {
 			return errors.New("invalid IEC104 version: " + v.Version)
 		}
 	default:
