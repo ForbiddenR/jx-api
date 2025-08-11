@@ -264,6 +264,9 @@ var iec002 = &Protocol{Name: "IEC104", Version: "0.2"}
 var iec003 = &Protocol{Name: "IEC104", Version: "0.3"}
 var iec004 = &Protocol{Name: "IEC104", Version: "0.4"}
 var iec005 = &Protocol{Name: "IEC104", Version: "0.5"}
+var iec006 = &Protocol{Name: "IEC104", Version: "0.6"}
+var iec007 = &Protocol{Name: "IEC104", Version: "0.7"}
+var iec008 = &Protocol{Name: "IEC104", Version: "0.8"}
 
 func OCPP16() *Protocol {
 	return ocpp16p
@@ -291,6 +294,18 @@ func IEC004() *Protocol {
 
 func IEC005() *Protocol {
 	return iec005
+}
+
+func IEC006() *Protocol {
+	return iec006
+}
+
+func IEC007() *Protocol {
+	return iec007
+}
+
+func IEC008() *Protocol {
+	return iec008
 }
 
 // CB includes callback information
