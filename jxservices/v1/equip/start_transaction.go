@@ -36,7 +36,6 @@ type equipStartTransactionRequestDetail struct {
 
 type StartTransactionRequestConfig struct {
 	services.ReusedConfig
-	IdToken       string
 	ConnectorId   string
 	Timestamp     int64
 	Offline       bool
@@ -52,9 +51,6 @@ func NewEquipStartTransactionRequestWithConfig(config *StartTransactionRequestCo
 			MsgID:       config.MsgID,
 		},
 		Data: &equipStartTransactionRequestDetail{
-			IdTokenType: IdTokenType{
-				IdToken: config.IdToken,
-			},
 			ConnectorSerial: config.ConnectorId,
 			Timestamp:       config.Timestamp,
 			Offline:         config.Offline,

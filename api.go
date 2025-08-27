@@ -33,7 +33,7 @@ const (
 	Esam     = "esam"
 )
 
-const msgId = "msgId"
+const msgID = "msgId"
 
 const (
 	Perms = "Perms"
@@ -74,7 +74,7 @@ func UnmarshalAndVerify(payload []byte, req any, validate *validator.Validate) e
 }
 
 func Decode(payload []byte, req any, validate *validator.Validate) (string, error) {
-	msgId := gjson.GetBytes(payload, msgId).String()
+	msgId := gjson.GetBytes(payload, msgID).String()
 	if err := json.Unmarshal(payload, req); err != nil {
 		return msgId, err
 	}
