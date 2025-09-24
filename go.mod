@@ -1,6 +1,6 @@
 module github.com/ForbiddenR/jxapi/v2
 
-go 1.23.2
+go 1.23.12
 
 require (
 	github.com/ForbiddenR/toolkit v0.5.1
