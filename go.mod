@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/validator/v10 v10.27.0
 	github.com/makasim/amqpextra v1.2.1
 	github.com/rabbitmq/amqp091-go v1.10.0
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/tidwall/gjson v1.18.0
 	github.com/tidwall/sjson v1.2.5
 	github.com/valyala/fasthttp v1.65.0
