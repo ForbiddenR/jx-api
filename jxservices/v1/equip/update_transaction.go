@@ -41,7 +41,7 @@ type equipUpdateTransactionReqeustDetail struct {
 	ConnectorId   string        `json:"connectorSerial"`
 	Offline       bool          `json:"offline"`
 	Timestamp     int64         `json:"timestamp"`
-	MeterValue    *MeterValue   `json:"MeterValue,omitempty"`
+	MeterValue    *MeterValue   `json:"meterValue,omitempty"`
 	Tariff        *Tariff       `json:"tariff,omitempty"`
 	ChargingState uint8         `json:"chargingState"`
 	RemainingTime *int          `json:"remainingTime,omitempty"`

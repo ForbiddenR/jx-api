@@ -16,7 +16,6 @@ type Option func([]byte) ([]byte, error)
 func WithExtra(k, v string) Option {
 	return func(b []byte) ([]byte, error) {
 		return sjson.SetBytes(b, k, v)
-
 	}
 }
 
