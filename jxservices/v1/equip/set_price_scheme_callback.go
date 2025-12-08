@@ -45,6 +45,7 @@ func NewEquipSetPriceSchemeCallbackRequestError(sn, id, pod, msgId string, p *se
 	req := &equipSetPriceSchemeRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			AccessPod:   pod,
 			MsgID:       msgId,

@@ -31,6 +31,7 @@ func NewSetChargingProfileCallbackRequest(sn, id, pod, msgId string, p *services
 	req := &equipSetChargingProfileRequest{
 		Base: services.Base{
 			EquipmentSn: sn,
+			EquipmentId: id,
 			Protocol:    p,
 			AccessPod:   pod,
 			MsgID:       msgId,
