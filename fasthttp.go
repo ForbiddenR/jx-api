@@ -69,7 +69,7 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, opts ...
 	if len(respBody) == 0 {
 		return nil, ErrBodyIsNil
 	}
-	return respBody, nil
+	return append([]byte(nil), respBody...), nil
 }
 
 // not used
