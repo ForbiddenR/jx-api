@@ -47,7 +47,6 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, opts ...
 	req.Header.SetContentTypeBytes(headerContentTypeJson)
 	req.Header.DisableNormalizing()
 	req.SetBodyRaw(requestBody)
-
 	resp := fasthttp.AcquireResponse()
 	defer func() {
 		fasthttp.ReleaseResponse(resp)
@@ -57,57 +56,15 @@ func sendPostRequest(_ context.Context, url string, requestBody []byte, opts ...
 	if err != nil {
 		return nil, apierrors.GetFailedRequestDoTimeoutError(err)
 	}
-
 	if statusCode := resp.StatusCode(); statusCode != fasthttp.StatusOK {
 		if statusCode == fasthttp.StatusNotFound {
 			return nil, ErrNotFound
 		}
 		return nil, ErrServicesException
 	}
-
 	respBody := resp.Body()
 	if len(respBody) == 0 {
 		return nil, ErrBodyIsNil
 	}
-	return append([]byte(nil), respBody...), nil
+	return append([]byte{}, respBody...), nil
 }
-
-// not used
-//func httpConnError(err error) (string, bool) {
-//	errName := ""
-//	know := false
-//	if err == fasthttp.ErrTimeout {
-//		errName = "timeout"
-//		know = true
-//	} else if err == fasthttp.ErrNoFreeConns {
-//		errName = "conn_limit"
-//		know = true
-//	} else if err == fasthttp.ErrConnectionClosed {
-//		errName = "conn_close"
-//		know = true
-//	} else {
-//		errName = reflect.TypeOf(err).String()
-//		if errName == "net.OpError" {
-//			// Write and Read errors are not so often and in fact they just mean timeout problems
-//			errName = "timeout"
-//			know = true
-//		}
-//	}
-//	return errName, know
-//}
-
-// get request
-//func (a *ApiServer) sendGetRequest() {
-//	req := fasthttp.AcquireRequest()
-//	req.SetRequestURI("http://localhost:8080/")
-//	req.Header.SetMethod(fasthttp.MethodGet)
-//	resp := fasthttp.AcquireResponse()
-//	err := a.client.Do(req, resp)
-//	fasthttp.ReleaseRequest(req)
-//	if err == nil {
-//		fmt.Printf("DEBUG Response: %s\n", resp.Body())
-//	} else {
-//		fmt.Fprintf(os.Stderr, "Err Connection error: %v\n", err)
-//	}
-//	fasthttp.ReleaseResponse(resp)
-//}
