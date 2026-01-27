@@ -20,7 +20,7 @@ type equipLoginRequestDetail struct {
 	ManufacturerCode   string  `json:"manufacturerCode"`
 	FirmwareVersion    *string `json:"firmwareVersion"`
 	Iccid              *string `json:"iccid"`
-	Imsi               *string `json:"imsi"`
+	Imei               *string `json:"imei"`
 	ReconnectingReason *string `json:"reason"`
 }
 
