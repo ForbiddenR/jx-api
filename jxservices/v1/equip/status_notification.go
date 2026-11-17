@@ -32,13 +32,11 @@ type StatusNotificationRequestConfig struct {
 func NewEquipStatusNotificationRequestOCPP16(sn, id, pod, msgId string, connectorId string, status int, errorCode StatusNotificationErrorCodeEnum, timestamp int64) *equipStatusNotificationRequest {
 	ec := string(errorCode)
 	return &equipStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipStatusNotificationRequestDetail{
 			ConnectorSerial: connectorId,
 			Status:          status,
@@ -62,13 +60,11 @@ func NewStatusNotification(base services.Base, config *StatusNotificationRequest
 
 func NewEquipStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, connectorId string, status int, timestamp int64) *equipStatusNotificationRequest {
 	return &equipStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipStatusNotificationRequestDetail{
 			ConnectorSerial: connectorId,
 			Status:          status,

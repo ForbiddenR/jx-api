@@ -20,13 +20,11 @@ type equipRegisterRequestDetail struct {
 
 func NewEquipRegisterRequest(sn, id, pod, msgID string, protocol *services.Protocol) *equipRegisterRequest {
 	return &equipRegisterRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 
 		Data: &equipRegisterRequestDetail{},
 	}

@@ -33,14 +33,12 @@ func (e *equipSendQRCodeRequest) SetCallback(cb services.CB) {
 
 func NewEquipSendQRCodeCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSendQRCodeRequest {
 	req := &equipSendQRCodeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 	return req
 }
@@ -55,14 +53,12 @@ func NewSendQRCodeCallbackRequest(base services.Base, option services.Option) *e
 
 func NewEquipSendQRCodeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSendQRCodeRequest {
 	req := &equipSendQRCodeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

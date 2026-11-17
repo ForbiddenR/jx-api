@@ -51,13 +51,11 @@ func (r *equipNotifyEventResponse) GetMsg() string {
 
 func NewNotifyEventRequest(sn, id, pod, msgId string, p *services.Protocol, code, time int64, clean bool, eventID int64, remoteAddress, connectorId string) *equipNotifyEventRequest {
 	return &equipNotifyEventRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipNotifyEventRequestData{
 			Code:          code,
 			Time:          time,

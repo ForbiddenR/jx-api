@@ -33,30 +33,26 @@ func (equipSetFactoryResetRequest) IsCallback() bool {
 
 func NewEquipSetFactoryResetRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipSetFactoryResetRequest {
 	req := &equipSetFactoryResetRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipSetFactoryResetRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
+		Data:        &equipSetFactoryResetRequestDetail{},
 	}
 	return req
 }
 
 func NewEquipSetFactoryResetRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSetFactoryResetRequest {
 	req := &equipSetFactoryResetRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipSetFactoryResetRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        &equipSetFactoryResetRequestDetail{},
 	}
 	return req
 }

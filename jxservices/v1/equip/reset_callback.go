@@ -33,14 +33,12 @@ func (equipResetCallbackRequest) IsCallback() bool {
 
 func NewEquipResetCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipResetCallbackRequest {
 	req := &equipResetCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 
 	return req
@@ -48,14 +46,12 @@ func NewEquipResetCallbackRequest(sn, id, pod, msgId string, p *services.Protoco
 
 func NewEquipResetCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipResetCallbackRequest {
 	req := &equipResetCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

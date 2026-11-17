@@ -154,7 +154,7 @@ type StatusNotificationJson struct {
 	VendorId *string `json:"vendorId,omitempty" yaml:"vendorId,omitempty"`
 }
 
-var enumValues_StatusNotificationJsonStatus = []interface{}{
+var enumValues_StatusNotificationJsonStatus = []any{
 	"Available",
 	"Preparing",
 	"Charging",
@@ -186,7 +186,7 @@ func (j *StatusNotificationJsonStatus) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-var enumValues_StatusNotificationJsonErrorCode = []interface{}{
+var enumValues_StatusNotificationJsonErrorCode = []any{
 	"ConnectorLockFailure",
 	"EVCommunicationError",
 	"GroundFailure",

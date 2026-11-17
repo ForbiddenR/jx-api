@@ -33,28 +33,24 @@ func (equipUpdateFirmwareCallbackRequest) IsCallback() bool {
 
 func NewEquipUpdateFirmwareCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipUpdateFirmwareCallbackRequest {
 	return &equipUpdateFirmwareCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipUpdateFirmwareCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipUpdateFirmwareCallbackRequest {
 	return &equipUpdateFirmwareCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     nil,
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        nil,
 	}
 }
 

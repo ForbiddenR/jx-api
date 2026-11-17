@@ -29,28 +29,24 @@ func (s *equipRemoteStopTransactionCallbackRequest) IsCallback() bool {
 
 func NewEquipRemoteStopTransactionCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipRemoteStopTransactionCallbackRequest {
 	req := &equipRemoteStopTransactionCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 	return req
 }
 
 func NewEquipRemoteStopTransactionCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStopTransactionCallbackRequest {
 	req := &equipRemoteStopTransactionCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

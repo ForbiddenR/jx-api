@@ -28,13 +28,11 @@ func NewEquipOnlineRequestWithConfig(config OnlineConfig) *equipOnlineRequest {
 
 func NewEquipOnlineRequest(sn, id, pod, msgID string, protocol *services.Protocol) *equipOnlineRequest {
 	return &equipOnlineRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 
 		Data: &equipOnlineRequestDetail{},
 	}

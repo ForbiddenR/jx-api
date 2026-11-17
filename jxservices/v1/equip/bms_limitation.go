@@ -66,13 +66,11 @@ type BMSLimitRequestConfig struct {
 
 func NewEquipBMSLimitRequestWithConfig(config *BMSLimitRequestConfig) *equipBMSLimitRequest {
 	return &equipBMSLimitRequest{
-		Base: services.Base{
-			EquipmentSn: config.Sn,
-			EquipmentId: config.Id,
-			Protocol:    config.Protocol,
-			AccessPod:   config.Pod,
-			MsgID:       config.MsgId,
-		},
+		EquipmentSn: config.Sn,
+		EquipmentId: config.Id,
+		Protocol:    config.Protocol,
+		AccessPod:   config.Pod,
+		MsgID:       config.MsgId,
 		Data: &equipBMSLimitRequestDetail{
 			ConnectorId:      config.ConnectorId,
 			MaxTemp:          config.MaxTemp,
@@ -91,13 +89,11 @@ func NewEquipBMSLimitRequestWithConfig(config *BMSLimitRequestConfig) *equipBMSL
 func NewEquipBMSLimitRequest(sn, id, pod, msgId string, protocol *services.Protocol, connecorId string, maxTemp uint64,
 	maxCurrent, maxVoltage, maxOutputVoltage, maxOutputCurrent, soc, capacity float64, vin string, prepare bool) *equipBMSLimitRequest {
 	req := &equipBMSLimitRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipBMSLimitRequestDetail{
 			ConnectorId:      connecorId,
 			MaxTemp:          maxTemp,

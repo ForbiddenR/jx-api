@@ -54,13 +54,11 @@ func NewLogin(base services.Base, config *LoginRequestConfig) *equipLoginRequest
 
 func NewEquipLoginRequest(sn, id, pod, msgId string, p *services.Protocol, modelCode, manufacturerCode string) *equipLoginRequest {
 	request := &equipLoginRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 	request.Data = &equipLoginRequestDetail{
 		ModelCode:        modelCode,

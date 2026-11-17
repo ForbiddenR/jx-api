@@ -41,15 +41,13 @@ func (equipGetVariablesCallbackRequest) IsCallback() bool {
 
 func NewEquipGetVariablesCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipGetVariablesCallbackRequest {
 	req := &equipGetVariablesCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetVariablesCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetVariablesCallbackRequestDetail{},
 	}
 	req.Data.Variables = []Variable(nil)
 	return req
@@ -57,15 +55,13 @@ func NewEquipGetVariablesCallbackRequest(sn, id, pod, msgId string, p *services.
 
 func NewEquipGetVariablesRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetVariablesCallbackRequest {
 	req := &equipGetVariablesCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipGetVariablesCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        &equipGetVariablesCallbackRequestDetail{},
 	}
 	return req
 }

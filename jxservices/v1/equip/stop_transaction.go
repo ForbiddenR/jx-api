@@ -399,13 +399,11 @@ type StopTransactionRequestConfig struct {
 
 func NewEquipStopTransactionRequestWithConfig(config *StopTransactionRequestConfig) *equipStopTransactionRequest {
 	return &equipStopTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: config.Sn,
-			EquipmentId: config.Id,
-			Protocol:    config.Protocol,
-			AccessPod:   config.Pod,
-			MsgID:       config.MsgId,
-		},
+		EquipmentSn: config.Sn,
+		EquipmentId: config.Id,
+		Protocol:    config.Protocol,
+		AccessPod:   config.Pod,
+		MsgID:       config.MsgId,
 		Data: &equipStopTransactionRequestDetail{
 			IdTokenType:   &IdTokenType{},
 			StopReason:    config.StopReason,
@@ -435,13 +433,11 @@ func (equipStopTransactionRequest) IsCallback() bool {
 func NewEquipStopTransactionRequest(sn, id, pod, msgId string, p *services.Protocol,
 	reason StoppingReasonType, transactionId string, isOffline bool, timestamp int64) *equipStopTransactionRequest {
 	req := &equipStopTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipStopTransactionRequestDetail{
 			IdTokenType:   &IdTokenType{},
 			StopReason:    reason,

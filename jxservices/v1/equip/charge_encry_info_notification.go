@@ -54,13 +54,11 @@ func NewEquipChargeEncryInfoNotificationRequestWithConfig(config *ChargeEncryInf
 func NewEquipChargeEncryInfoNotificationRequest(sn, id, pod, msgID string, p *services.Protocol,
 	connectorId, transactionId, encryptedData, meterNum string, elecmeterVersion int64, encryType uint64) *equipChargeEncryInfoNotificationRequest {
 	req := &equipChargeEncryInfoNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipChargeEncryInfoNotificationRequestDetail{
 			ConnectorId:      connectorId,
 			TransactionId:    transactionId,

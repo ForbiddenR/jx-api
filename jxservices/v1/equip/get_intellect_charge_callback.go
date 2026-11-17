@@ -44,14 +44,12 @@ func (equipGetIntellectChargeRequest) IsCallback() bool {
 func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *services.Protocol, status int,
 	cid, evseId string, intellectType uint8, intellectId string, startTime string, intellectStatus uint8) *equipGetIntellectChargeRequest {
 	req := &equipGetIntellectChargeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
 		Data: &equipGetIntellectChargeRequestDetail{
 			IntellectCharge{
 				EVSE: EVSE{
@@ -70,15 +68,13 @@ func NewEquipGetIntellectChargeCallbackRequest(sn, id, pod, msgID string, p *ser
 
 func NewEquipGetIntellectChargeCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetIntellectChargeRequest {
 	req := &equipGetIntellectChargeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipGetIntellectChargeRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        &equipGetIntellectChargeRequestDetail{},
 	}
 	return req
 }

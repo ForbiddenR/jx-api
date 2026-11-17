@@ -51,15 +51,13 @@ func (g *equipGetBaseReportCallbackRequest) IsCallback() bool {
 
 func NewEquipGetBaseReportCallbackRequestOCPP16(sn, id, pod, msgId string, status int, length int, unknownKey []string) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	// if len(variable) > 0 {
 	// 	req.Callback.Variable = variable
@@ -76,30 +74,26 @@ func NewEquipGetBaseReportCallbackRequestOCPP16(sn, id, pod, msgId string, statu
 
 func NewEquipGetBaseReportCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	return req
 }
 
 func NewEquipGetBaseReportRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	return req
 }

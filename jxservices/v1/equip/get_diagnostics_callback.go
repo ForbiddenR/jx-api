@@ -35,30 +35,26 @@ func (equipGetDiagnosticsCallbackRequest) IsCallback() bool {
 
 func NewEquipGetDiagnosticsCallbackRequest(sn, id, pod, msgId string, p *services.Protocol, status int) *equipGetDiagnosticsCallbackRequest {
 	req := &equipGetDiagnosticsCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetDiagnosticsCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetDiagnosticsCallbackRequestDetail{},
 	}
 	return req
 }
 
 func NewEquipGetDiagnosticsCallbackRequestError(sn, id, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipGetDiagnosticsCallbackRequest {
 	req := &equipGetDiagnosticsCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipGetDiagnosticsCallbackRequestDetail{},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
+		Data:        &equipGetDiagnosticsCallbackRequestDetail{},
 	}
 	return req
 }

@@ -67,13 +67,11 @@ func (*equipFirmwareStatusNotificationRequest) IsCallback() bool {
 
 func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, id, pod, msgId string, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
 	return &equipFirmwareStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipFirmwareStatusNotificationRequestDetail{
 			Status: status,
 		},
@@ -82,13 +80,11 @@ func NewEquipFirmwareStatusNotificationRequestOCPP16(sn, id, pod, msgId string, 
 
 func NewEquipFirmwareStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, requestID uint32, status FirmwareStatusNotificationType) *equipFirmwareStatusNotificationRequest {
 	return &equipFirmwareStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipFirmwareStatusNotificationRequestDetail{
 			RequestId: &requestID,
 			Status:    status,

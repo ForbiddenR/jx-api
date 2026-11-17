@@ -21,13 +21,11 @@ type equipQRCoeRequestDetail struct {
 
 func NewEquipQRCodeRequest(sn, id, pod, msgID string, protocol *services.Protocol, connectorId string) *equipQRCodeRequest {
 	return &equipQRCodeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipQRCoeRequestDetail{
 			ConnectorId: connectorId,
 		},

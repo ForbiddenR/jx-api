@@ -57,13 +57,11 @@ func (equipDiagnosticsStatusNotificationRequest) IsCallback() bool {
 
 func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId string, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
 	req := &equipDiagnosticsStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipDiagnosticsStatusNotificationRequestDetail{
 			Status: status,
 		},
@@ -73,13 +71,11 @@ func NewEquipDiagnosticsStatusNotificationRequestOCPP16(sn, id, pod, msgId strin
 
 func NewEquipDiagnosticsStatusNotificationRequest(sn, id, pod, msgId string, p *services.Protocol, requestId int64, status DiagnosticsStatusNotificationType) *equipDiagnosticsStatusNotificationRequest {
 	req := &equipDiagnosticsStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipDiagnosticsStatusNotificationRequestDetail{
 			RequestId: &requestId,
 			Status:    status,

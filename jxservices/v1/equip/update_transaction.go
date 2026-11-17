@@ -49,13 +49,11 @@ type equipUpdateTransactionReqeustDetail struct {
 
 func NewUpdateTransactionRequest(sn, id, pod, msgId string, p *services.Protocol, transactionId, connectorId string, offline bool, timestamp int64, chargeState uint8) *equipUpdateTransactionRequest {
 	updateTransaction := &equipUpdateTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipUpdateTransactionReqeustDetail{
 			Actime:        time.Now().Unix(),
 			TransactionId: transactionId,

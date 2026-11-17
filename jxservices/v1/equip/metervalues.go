@@ -45,13 +45,11 @@ func (equipMeterValuesRequest) IsCallback() bool {
 
 func NewEquipMeterValuesOCPP16Request(sn, id, pod, msgId string, connectorId string) *equipMeterValuesRequest {
 	meterValue := &equipMeterValuesRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipMeterValuesRequestDetail{
 			ConnectorId: &connectorId,
 			Actime:      time.Now().Unix(),
@@ -63,13 +61,11 @@ func NewEquipMeterValuesOCPP16Request(sn, id, pod, msgId string, connectorId str
 
 func NewEquipMeterValuesRequest(sn, id, pod, msgID string, p *services.Protocol) *equipMeterValuesRequest {
 	meterValue := &equipMeterValuesRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			EquipmentId: id,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		EquipmentId: id,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipMeterValuesRequestDetail{
 			MeterValue: &MeterValue{},
 		},
