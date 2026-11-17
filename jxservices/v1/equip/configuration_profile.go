@@ -41,12 +41,10 @@ func (r *equipConfigurationProfileRequest) IsCallback() bool {
 
 func NewEquipConfigurationProfileRequest(sn, pod, msgId string, p *services.Protocol) *equipConfigurationProfileRequest {
 	return &equipConfigurationProfileRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

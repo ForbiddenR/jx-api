@@ -26,25 +26,21 @@ func (e *equipRemoteUpdateAccountBalanceCallbackRequest) IsCallback() bool {
 
 func NewEquipRemoteUpdateAccountBalanceCallbackRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipRemoteUpdateAccountBalanceCallbackRequest {
 	return &equipRemoteUpdateAccountBalanceCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipRemoteUpdateAccountBalanceCallbackRequestError(sn, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteUpdateAccountBalanceCallbackRequest {
 	return &equipRemoteUpdateAccountBalanceCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 }
 

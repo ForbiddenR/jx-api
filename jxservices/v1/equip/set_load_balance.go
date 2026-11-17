@@ -30,28 +30,24 @@ func (equipSetLoadBalanceRequest) IsCallback() bool {
 
 func NewEquipSetLoadBalanceRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipSetLoadBalanceRequest {
 	req := &equipSetLoadBalanceRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipSetLoadBalanceRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
+		Data:        &equipSetLoadBalanceRequestDetail{},
 	}
 	return req
 }
 
 func NewEquipSetLoadBalanceRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipSetLoadBalanceRequest {
 	req := &equipSetLoadBalanceRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipSetLoadBalanceRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCBError(err),
+		Data:        &equipSetLoadBalanceRequestDetail{},
 	}
 	return req
 }

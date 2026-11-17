@@ -26,25 +26,21 @@ func (equipRequestStartDischargingRequest) IsCallback() bool {
 
 func NewEquipRequestStartDischargingRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipRequestStartDischargingRequest {
 	return &equipRequestStartDischargingRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipRequestStartDischargingRequestError(sn string, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRequestStartDischargingRequest {
 	req := &equipRequestStartDischargingRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

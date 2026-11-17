@@ -26,26 +26,22 @@ func (equipSyncTimeCallbackRequest) IsCallback() bool {
 
 func NewEquipSyncTimeCallbackRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipSyncTimeCallbackRequest {
 	req := &equipSyncTimeCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 	return req
 }
 
 func NewEquipSyncTimeCallbackRequestError(sn, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipSyncTimeCallbackRequest {
 	req := &equipSyncTimeCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

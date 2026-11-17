@@ -30,12 +30,10 @@ func (equipAuthorizeChargeTemplateRequest) IsCallback() bool {
 
 func NewEquipAuthorizeChargeTemplateRequest(sn, pod, msgId string, p *services.Protocol, chargeTemplateId string) *equipAuthorizeChargeTemplateRequest {
 	return &equipAuthorizeChargeTemplateRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipAuthorizeChargeTemplateRequestDetail{
 			ChargeTemplateId: chargeTemplateId,
 		},

@@ -25,12 +25,10 @@ func (r *equipUpdateCurrentMonitorRequest) IsCallback() bool {
 
 func NewUpdateCurrentMonitorRequest(sn, pod, msgId string, p *services.Protocol) *equipUpdateCurrentMonitorRequest {
 	return &equipUpdateCurrentMonitorRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

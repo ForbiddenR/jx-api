@@ -26,25 +26,21 @@ func (equipRequestStopDischargingRequest) IsCallback() bool {
 
 func NewEquipRequestStopDischargingRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipRequestStopDischargingRequest {
 	return &equipRequestStopDischargingRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipRequestStopDischargingRequestError(sn string, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRequestStopDischargingRequest {
 	req := &equipRequestStopDischargingRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

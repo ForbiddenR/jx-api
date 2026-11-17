@@ -44,12 +44,10 @@ type StartTransactionRequestConfig struct {
 
 func NewEquipStartTransactionRequestWithConfig(config *StartTransactionRequestConfig) *equipStartTransactionRequest {
 	req := &equipStartTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: config.Sn,
-			Protocol:    config.Protocol,
-			AccessPod:   config.Pod,
-			MsgID:       config.MsgID,
-		},
+		EquipmentSn: config.Sn,
+		Protocol:    config.Protocol,
+		AccessPod:   config.Pod,
+		MsgID:       config.MsgID,
 		Data: &equipStartTransactionRequestDetail{
 			ConnectorSerial: config.ConnectorId,
 			Timestamp:       config.Timestamp,
@@ -83,12 +81,10 @@ func NewEquipStartTransactionRequest(sn, pod, msgID string, p *services.Protocol
 	idToken string, connectorId string,
 	timestamp int64) *equipStartTransactionRequest {
 	req := &equipStartTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipStartTransactionRequestDetail{
 			IdTokenType: IdTokenType{
 				IdToken: idToken,

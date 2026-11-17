@@ -50,14 +50,12 @@ func (g *equipGetBaseReportCallbackRequest) IsCallback() bool {
 
 func NewEquipGetBaseReportCallbackRequestOCPP16(sn, pod, msgID string, status int, length int, unknownKey []string) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    services.OCPP16(),
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    services.OCPP16(),
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	req.Data.Variable = make([]Variable, 0, length)
 	req.Data.Variables = []Variable(nil)
@@ -70,28 +68,24 @@ func NewEquipGetBaseReportCallbackRequestOCPP16(sn, pod, msgID string, status in
 
 func NewEquipGetBaseReportCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	return req
 }
 
 func NewEquipGetBaseReportRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipGetBaseReportCallbackRequest {
 	req := &equipGetBaseReportCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCBError(err),
-		Data:     &equipGetBaseReportCallbackRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCBError(err),
+		Data:        &equipGetBaseReportCallbackRequestDetail{},
 	}
 	return req
 }

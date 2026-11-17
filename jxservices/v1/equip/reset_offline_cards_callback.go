@@ -26,25 +26,21 @@ func (r *equipResetOfflineCardsCallbackRequest) TraceId() string {
 
 func NewEquipResetOfflineCardsCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipResetOfflineCardsCallbackRequest {
 	return &equipResetOfflineCardsCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipResetOfflineCardsCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipResetOfflineCardsCallbackRequest {
 	return &equipResetOfflineCardsCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCBError(err),
 	}
 }
 

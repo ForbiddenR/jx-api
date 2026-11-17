@@ -34,12 +34,10 @@ func (equipUploadParkingLockDataRequest) IsCallback() bool {
 
 func NewEquipUploadParkingLockDataRequest(sn, pod, msgId string, p *services.Protocol, connectorId string, lockStatus, vehicleStatus, power, alarmStatus uint8) *equipUploadParkingLockDataRequest {
 	return &equipUploadParkingLockDataRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 		Data: &equipUploadParkingLockDataRequestDetail{
 			ConnectorId:   connectorId,
 			LockStatus:    lockStatus,

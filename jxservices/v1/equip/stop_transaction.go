@@ -46,12 +46,10 @@ func (equipStopTransactionRequest) IsCallback() bool {
 
 func NewEquipStopTransactionRequest(sn, pod, msgID string, p *services.Protocol, reason int, transactionId string, isOffline bool, timestamp int64) *equipStopTransactionRequest {
 	req := &equipStopTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipStopTransactionRequestDetail{
 			IdTokenType:   &IdTokenType{},
 			StopReason:    reason,

@@ -26,26 +26,22 @@ func (equipRemoteStartParallelTransactionCallbackRquest) IsCallback() bool {
 
 func NewEquipRemoteStartParallelTransactionCallbackRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipRemoteStartParallelTransactionCallbackRquest {
 	req := &equipRemoteStartParallelTransactionCallbackRquest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 	return req
 }
 
 func NewEquipRemoteStartParallelTransactionCallbackRequestError(sn, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteStartParallelTransactionCallbackRquest {
 	req := &equipRemoteStartParallelTransactionCallbackRquest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

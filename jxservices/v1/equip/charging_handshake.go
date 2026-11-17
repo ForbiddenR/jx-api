@@ -25,12 +25,10 @@ func (r *equipChargingHandshakeRequest) IsCallback() bool {
 
 func NewEquipChargingHandshakeRequest(sn, pod, msgId string, p *services.Protocol) *equipChargingHandshakeRequest {
 	return &equipChargingHandshakeRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

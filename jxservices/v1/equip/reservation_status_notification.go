@@ -39,12 +39,10 @@ func (equipReservationStatusNotificationRequest) IsCallback() bool {
 
 func NewEquipReservationStatusNotification(sn, pod, msgID string, p *services.Protocol, reservationId uint64, status ReservationStatusNotificationRequestStautsType) *equipReservationStatusNotificationRequest {
 	return &equipReservationStatusNotificationRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipReservationStatusNotificationRequestDetail{
 			ReservationId: reservationId,
 			Status:        status,

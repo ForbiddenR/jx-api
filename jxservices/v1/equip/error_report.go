@@ -25,12 +25,10 @@ func (r *equipErrorReportRequest) IsCallback() bool {
 
 func NewEquipErrorReportRequest(sn, pod, msgId string, p *services.Protocol) *equipErrorReportRequest {
 	return &equipErrorReportRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

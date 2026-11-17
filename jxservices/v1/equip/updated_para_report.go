@@ -41,12 +41,10 @@ func (equipUpdatedParaReportRequest) IsCallback() bool {
 
 func NewEquipUpdatedParaReportRequest(sn, pod, msgID string, p *services.Protocol, authFree, btFastAuth uint8, outputType string, outputCurrentLimit float64) *equipUpdatedParaReportRequest {
 	return &equipUpdatedParaReportRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipUpdatedParaReportRequestDetail{
 			AuthFree:           authFree,
 			BtFastAuth:         btFastAuth,

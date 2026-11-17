@@ -74,12 +74,10 @@ func NewEquipBMSInfoRequestWithConfig(config *BMsInfoRequestConfig) *equipBMSInf
 
 func NewEquipBMSInfoRequest(sn, pod, msgID string, protocol *services.Protocol, connectorId string, limitVoltage float64, version string, ty uint8, totalVoltage, totalEnergy float64, vin string) *equipBMSInfoRequest {
 	req := &equipBMSInfoRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipBMSInfoRequestDetail{
 			ConnectorId:  connectorId,
 			LimitVoltage: limitVoltage,

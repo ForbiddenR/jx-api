@@ -25,12 +25,10 @@ func (r *equipFetchChargeTemplateRequest) IsCallback() bool {
 
 func NewequipFetchChargeTemplateRequest(sn, pod, msgId string, p *services.Protocol) *equipFetchChargeTemplateRequest {
 	req := &equipFetchChargeTemplateRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 	return req
 }

@@ -41,12 +41,10 @@ type equipOfflineRequestDetail struct {
 
 func NewEquipOfflineRequest(sn string, protocol *services.Protocol, pod, msgID string, reason string) *equipOfflineRequest {
 	return &equipOfflineRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 		Data: &equipOfflineRequestDetail{
 			OfflineReason: reason,
 		},

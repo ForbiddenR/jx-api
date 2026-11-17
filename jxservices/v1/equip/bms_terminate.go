@@ -25,12 +25,10 @@ func (r *equipBMSTerminateRequest) IsCallback() bool {
 
 func NewEquipBMSTerminateRequest(sn, pod, msgId string, p *services.Protocol) *equipBMSTerminateRequest {
 	return &equipBMSTerminateRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

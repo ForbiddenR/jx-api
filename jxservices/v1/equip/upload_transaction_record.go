@@ -28,13 +28,11 @@ func (r *equipUploadTransactionRecordRequest) IsCallback() bool {
 
 func NewUploadTransactionRecordRequest(sn, pod, msgId string, p *services.Protocol) *equipUploadTransactionRecordRequest {
 	return &equipUploadTransactionRecordRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Data: &equipUploadTransactionRecordRequestData{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Data:        &equipUploadTransactionRecordRequestData{},
 	}
 }
 

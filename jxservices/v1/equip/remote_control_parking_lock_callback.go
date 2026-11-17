@@ -26,25 +26,21 @@ func (r *equipRemoteControlParkingLockCallbackRequest) IsCallback() bool {
 
 func NewEquipRemoteControlParkingLockCallbackRequest(sn, pod, msgID string, p *services.Protocol, status int) *equipRemoteControlParkingLockCallbackRequest {
 	return &equipRemoteControlParkingLockCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCB(status),
 	}
 }
 
 func NewEquipRemoteControlParkingLockCallbackRequestError(sn, pod, msgID string, p *services.Protocol, err *apierrors.CallbackError) *equipRemoteControlParkingLockCallbackRequest {
 	return &equipRemoteControlParkingLockCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Callback:    services.NewCBError(err),
 	}
 }
 

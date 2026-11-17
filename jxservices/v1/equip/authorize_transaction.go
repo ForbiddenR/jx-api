@@ -32,13 +32,11 @@ func (equipAuthorizeTransactionRequest) IsCallback() bool {
 
 func NewEquipAuthorizeTransactionRequest(sn, pod, msgID string, p *services.Protocol) *equipAuthorizeTransactionRequest {
 	return &equipAuthorizeTransactionRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
-		Data: &equipAuthorizeTransactionRequestDetail{},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgID,
+		Data:        &equipAuthorizeTransactionRequestDetail{},
 	}
 }
 

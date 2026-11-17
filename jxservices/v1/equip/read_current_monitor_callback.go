@@ -26,26 +26,22 @@ func (equipReadCurrentMonitorCallbackRequest) IsCallback() bool {
 
 func NewEquipReadCurrentMonitorCallbackRequest(sn, pod, msgId string, p *services.Protocol, status int) *equipReadCurrentMonitorCallbackRequest {
 	req := &equipReadCurrentMonitorCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCB(status),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCB(status),
 	}
 	return req
 }
 
 func NewEquipReadCurrentMonitorCallbackRequestError(sn, pod, msgId string, p *services.Protocol, err *apierrors.CallbackError) *equipReadCurrentMonitorCallbackRequest {
 	req := &equipReadCurrentMonitorCallbackRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

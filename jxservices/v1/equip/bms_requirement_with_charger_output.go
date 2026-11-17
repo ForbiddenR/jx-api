@@ -25,12 +25,10 @@ func (r *equipBMSRequirementWithChargerOutputRequest) IsCallback() bool {
 
 func NewEquipBMSRequirementWithChargerOutputRequest(sn, pod, msgId string, p *services.Protocol) *equipBMSRequirementWithChargerOutputRequest {
 	req := &equipBMSRequirementWithChargerOutputRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 	return req
 }

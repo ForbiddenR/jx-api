@@ -25,12 +25,10 @@ func (r *equipChargerTerminateRequest) IsCallback() bool {
 
 func NewEquipChargerTerminateRequest(sn, pod, msgId string, p *services.Protocol) *equipChargerTerminateRequest {
 	return &equipChargerTerminateRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
 	}
 }
 

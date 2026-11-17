@@ -27,14 +27,12 @@ func (r *equipUnsupportRequest) IsCallback() bool {
 
 func NewEquipUnsupportRequest(sn, pod, msgId string, p *services.Protocol, name string, err *apierrors.CallbackError) *equipUnsupportRequest {
 	req := &equipUnsupportRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    p,
-			AccessPod:   pod,
-			MsgID:       msgId,
-		},
-		name:     services.Request2ServicesNameType(name),
-		Callback: services.NewCBError(err),
+		EquipmentSn: sn,
+		Protocol:    p,
+		AccessPod:   pod,
+		MsgID:       msgId,
+		name:        services.Request2ServicesNameType(name),
+		Callback:    services.NewCBError(err),
 	}
 	return req
 }

@@ -31,12 +31,10 @@ func (equipOnlineRequest) IsCallback() bool {
 
 func NewEquipOnlineRequest(sn string, protocol *services.Protocol, pod, msgID string) *equipOnlineRequest {
 	return &equipOnlineRequest{
-		Base: services.Base{
-			EquipmentSn: sn,
-			Protocol:    protocol,
-			AccessPod:   pod,
-			MsgID:       msgID,
-		},
+		EquipmentSn: sn,
+		Protocol:    protocol,
+		AccessPod:   pod,
+		MsgID:       msgID,
 
 		Data: &equipOnlineRequestDetail{},
 	}
