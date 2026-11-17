@@ -26,7 +26,7 @@ func TestDuration(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			var data testStruct
-			if err := json.Unmarshal([]byte(fmt.Sprintf(`{"duration":%s}`, test.input)), &data); err != nil {
+			if err := json.Unmarshal(fmt.Appendf(nil, `{"duration":%s}`, test.input), &data); err != nil {
 				t.Errorf("Error parsing %s: %v", test.input, err)
 			}
 			if data.Duration != test.expected {
